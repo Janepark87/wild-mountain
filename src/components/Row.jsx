@@ -18,5 +18,5 @@ export const Row = styled.div`
 `;
 
 Row.defaultProps = {
-	type: 'horizontal',
+	type: 'verticle',
 };
