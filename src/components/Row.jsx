@@ -10,7 +10,7 @@ const Row = styled.div`
 			align-items: center;
 		`}
 	${(props) =>
-		props.type === 'verticle' &&
+		props.type === 'vertical' &&
 		css`
 			flex-direction: column;
 			gap: 1.6rem;
@@ -18,7 +18,7 @@ const Row = styled.div`
 `;
 
 Row.defaultProps = {
-	type: 'verticle',
+	type: 'vertical',
 };
 
 export default Row;
