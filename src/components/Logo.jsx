@@ -12,7 +12,7 @@ const Img = styled.img`
 
 const StyledSpan = styled.span`
 	display: inline-block;
-	font-size: 1.75rem;
+	font-size: 1.6rem;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 `;
