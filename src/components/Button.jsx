@@ -63,4 +63,6 @@ Button.defaultProps = {
 	variation: 'primary',
 };
 
+Button.shouldForwardProp = () => true;
+
 export default Button;

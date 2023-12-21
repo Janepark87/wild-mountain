@@ -46,7 +46,7 @@ const Discount = styled.div`
 `;
 
 export default function CabinRow({ cabin }) {
-	const { id: cabinId, name, maxCapacity, regularPrice, discount, image, description } = cabin;
+	const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
 
 	const queryClient = useQueryClient();
 	const { mutate, isLoading: isDeleting } = useMutation({
