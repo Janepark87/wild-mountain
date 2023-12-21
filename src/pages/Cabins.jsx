@@ -1,6 +1,6 @@
 import CabinTable from '../features/cabins/CabinTable';
-import { Heading } from '../components/Heading';
-import { Row } from '../components/Row';
+import Heading from '../components/Heading';
+import Row from '../components/Row';
 
 export default function Cabins() {
 	return (

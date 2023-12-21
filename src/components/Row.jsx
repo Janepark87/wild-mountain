@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Row = styled.div`
+const Row = styled.div`
 	display: flex;
 
 	${(props) =>
@@ -20,3 +20,5 @@ export const Row = styled.div`
 Row.defaultProps = {
 	type: 'verticle',
 };
+
+export default Row;

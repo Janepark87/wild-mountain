@@ -6,7 +6,7 @@ const rotate = keyframes`
   }
 `;
 
-export const Spinner = styled.div`
+const Spinner = styled.div`
 	width: 6.4rem;
 	margin: 4.8rem auto;
 	aspect-ratio: 1;
@@ -15,3 +15,5 @@ export const Spinner = styled.div`
 	-webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
 	animation: ${rotate} 1.5s infinite linear;
 `;
+
+export default Spinner;
