@@ -44,7 +44,7 @@ export default function CabinTable() {
 				<div>Capacity</div>
 				<div>Price</div>
 				<div>Discount</div>
-				<div>Delete</div>
+				<div></div>
 			</TableHeader>
 
 			{cabins.map((cabin) => (

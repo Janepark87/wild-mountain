@@ -9,34 +9,47 @@ export async function getCabins() {
 	return data;
 }
 
-export async function createCabin(newCabin) {
-	// create a new image path
-	const randomInteger = Math.floor(Date.now() + 1);
-	const imageName = `${randomInteger}-${newCabin.image.name}`.replaceAll('/', '');
+async function uploadImageToSupabase(image) {
+	const imageName = `${Math.floor(Date.now() + 1)}-${(image?.name || '').replaceAll('/', '')}`;
 	const imagePath = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/cabin-images/${imageName}`;
 
-	// create a new cabin
-	const { data, error } = await supabase
-		.from('cabins')
-		.insert([{ ...newCabin, image: imagePath }])
-		.select();
+	const { error: storageError } = await supabase.storage.from('cabin-images').upload(imageName, image);
 
-	if (error) {
-		console.error(error);
-		throw new Error('Cabins could not be created.');
-	}
-
-	// upload image into supabase
-	const { error: storageError } = await supabase.storage.from('cabin-images').upload(imageName, newCabin.image);
-
-	// delete the cabin If there was an error uploading image
 	if (storageError) {
-		await supabase.from('cabins').delete().eq('id', data.id);
 		console.error(storageError);
-		throw new Error('Cabin image could not be upload and the cabin was not created.');
+		throw new Error('Cabin image could not be uploaded, and the cabin was not created.');
 	}
 
-	return data;
+	return imagePath;
+}
+
+async function createImagePath(image) {
+	const hasCabinImage = Boolean(image);
+
+	if (!hasCabinImage) return null;
+
+	const hasImagePath = image?.startsWith?.(import.meta.env.VITE_SUPABASE_URL);
+	const imagePath = hasImagePath ? image : await uploadImageToSupabase(image);
+
+	return imagePath;
+}
+
+export async function createUpdateCabin(cabin, updateId) {
+	let query = supabase.from('cabins');
+
+	try {
+		const imagePathPromise = createImagePath(cabin.image);
+		const imagePath = await imagePathPromise;
+
+		if (!updateId) query = query.insert([{ ...cabin, image: imagePath }]); // create
+		else query = query.update({ ...cabin, image: imagePath }).eq('id', updateId); // update
+
+		const { data } = await query.select().single();
+		return data;
+	} catch (error) {
+		console.error(error);
+		throw new Error(`Cabins could not be ${updateId ? 'updated' : 'created'}.`);
+	}
 }
 
 export async function deleteCabin(id) {

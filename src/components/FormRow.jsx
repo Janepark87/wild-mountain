@@ -35,12 +35,19 @@ const FormError = styled.span`
 	color: var(--color-red-700);
 `;
 
-export default function FormRow({ label, error, children }) {
+const PreviewImg = styled.img`
+	object-fit: cover;
+	height: 15rem;
+	width: 100%;
+`;
+
+export default function FormRow({ label, error, children, updateMode, updateValues }) {
 	return (
 		<StyledFormRow>
 			{label && <Label htmlFor={children.props.id}>{label}</Label>}
 			{children}
 			{error && <FormError>{error}</FormError>}
+			{updateMode && updateValues.image && <PreviewImg src={updateValues.image} alt={updateValues.name} />}
 		</StyledFormRow>
 	);
 }
