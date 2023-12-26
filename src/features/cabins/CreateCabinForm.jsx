@@ -23,7 +23,7 @@ export default function CreateCabinForm({ updateCabin = {} }) {
 		const resetValues = { onSuccess: () => reset(getValues()) };
 
 		if (updateMode) careateUpdateCabinMutate({ cabinData, updateId }, resetValues);
-		else careateUpdateCabinMutate({ cabinData, updateId: null }, resetValues);
+		else careateUpdateCabinMutate({ cabinData }, resetValues);
 	};
 
 	return (

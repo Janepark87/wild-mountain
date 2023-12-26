@@ -20,7 +20,7 @@ export function useCreateUpdateCabin(updateMode) {
 	const queryClient = useQueryClient();
 
 	const createMutationConfig = {
-		mutationFn: ({ cabinData, updateId }) => createUpdateCabin(cabinData, updateId),
+		mutationFn: ({ cabinData, updateId = null }) => createUpdateCabin(cabinData, updateId),
 		onSuccess: () => {
 			const action = updateMode ? 'updated' : 'created';
 			toast.success(`Cabin successfully ${action}`);

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { formatCurrency } from '../../utils/helpers';
 import CreateCabinForm from './CreateCabinForm';
-import { useDeleteCabin } from '../../hooks/useCabin';
+import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
+import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 
 const TableRow = styled.div`
 	display: grid;
@@ -47,8 +48,22 @@ const Discount = styled.div`
 
 export default function CabinRow({ cabin }) {
 	const [toggleEditForm, setToggleEditForm] = useState(false);
-	const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
 	const { deleteCabinMutate, isDeleting } = useDeleteCabin();
+	const { careateUpdateCabinMutate, createUpdateLoading } = useCreateUpdateCabin();
+
+	const duplicateCabin = () => {
+		const copyCabin = {
+			name: `Copy of ${name}`,
+			maxCapacity,
+			regularPrice,
+			discount,
+			description,
+			image,
+		};
+
+		careateUpdateCabinMutate({ cabinData: copyCabin });
+	};
 
 	return (
 		<>
@@ -60,9 +75,14 @@ export default function CabinRow({ cabin }) {
 				{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
 				<div>
-					<button onClick={() => setToggleEditForm((show) => !show)}>Edit</button>
+					<button>
+						<HiSquare2Stack onClick={duplicateCabin} disabled={createUpdateLoading} />
+					</button>
+					<button onClick={() => setToggleEditForm((show) => !show)}>
+						<HiPencil />
+					</button>
 					<button onClick={() => deleteCabinMutate(cabinId)} disabled={isDeleting}>
-						Delete
+						<HiTrash />
 					</button>
 				</div>
 			</TableRow>
