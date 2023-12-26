@@ -1,45 +1,29 @@
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
-import { createUpdateCabin } from '../../services/apiCabins';
 import Form from '../../components/Form';
 import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import FileInput from '../../components/FileInput';
 import Button from '../../components/Button';
+import { useCreateUpdateCabin } from '../../hooks/useCabin';
 
 export default function CreateCabinForm({ updateCabin = {} }) {
 	const { id: updateId, ...updateValues } = updateCabin;
 	const updateMode = Boolean(updateId);
+	const { careateUpdateCabinMutate, createUpdateLoading: cabinLoading } = useCreateUpdateCabin(updateMode);
 
 	const { register, handleSubmit, reset, getValues, formState } = useForm({
 		defaultValues: updateMode ? updateCabin : {},
 	});
-
 	const { errors } = formState;
-
-	const queryClient = useQueryClient();
-
-	const createMutationConfig = {
-		mutationFn: ({ cabinData, updateId }) => createUpdateCabin(cabinData, updateId),
-		onSuccess: () => {
-			const action = updateMode ? 'updated' : 'created';
-			toast.success(`Cabin successfully ${action}`);
-			queryClient.invalidateQueries({ queryKey: ['cabins'] });
-			reset(getValues());
-		},
-		onError: (err) => toast.error(err.message),
-	};
-
-	const { mutate: cabinMutate, isPending: cabinLoading } = useMutation(createMutationConfig);
 
 	const onSubmit = (data) => {
 		let image = typeof data.image === 'object' && data.image?.length > 0 ? data.image[0] : updateCabin.image;
 		const cabinData = { ...data, image };
+		const resetValues = { onSuccess: () => reset(getValues()) };
 
-		if (updateMode) cabinMutate({ cabinData, updateId });
-		else cabinMutate({ cabinData, updateId: null });
+		if (updateMode) careateUpdateCabinMutate({ cabinData, updateId }, resetValues);
+		else careateUpdateCabinMutate({ cabinData, updateId: null }, resetValues);
 	};
 
 	return (
