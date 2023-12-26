@@ -49,8 +49,8 @@ const Discount = styled.div`
 export default function CabinRow({ cabin }) {
 	const [toggleEditForm, setToggleEditForm] = useState(false);
 	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
-	const { deleteCabinMutate, isDeleting } = useDeleteCabin();
-	const { careateUpdateCabinMutate, createUpdateLoading } = useCreateUpdateCabin();
+	const { deleteCabinMutate, isCabinDeleting } = useDeleteCabin();
+	const { careateUpdateCabinMutate, isCabinCreatingUpdating } = useCreateUpdateCabin();
 
 	const duplicateCabin = () => {
 		const copyCabin = {
@@ -76,12 +76,12 @@ export default function CabinRow({ cabin }) {
 
 				<div>
 					<button>
-						<HiSquare2Stack onClick={duplicateCabin} disabled={createUpdateLoading} />
+						<HiSquare2Stack onClick={duplicateCabin} disabled={isCabinCreatingUpdating} />
 					</button>
 					<button onClick={() => setToggleEditForm((show) => !show)}>
 						<HiPencil />
 					</button>
-					<button onClick={() => deleteCabinMutate(cabinId)} disabled={isDeleting}>
+					<button onClick={() => deleteCabinMutate(cabinId)} disabled={isCabinDeleting}>
 						<HiTrash />
 					</button>
 				</div>

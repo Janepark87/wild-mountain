@@ -6,14 +6,14 @@ import { getCabins, createUpdateCabin, deleteCabin } from '../services/apiCabins
 export function useCabinQuery() {
 	const {
 		data: cabins,
-		isPending,
+		isPending: isCabinsLoading,
 		isError: isCabinError,
 	} = useQuery({
 		queryKey: ['cabins'],
 		queryFn: getCabins,
 	});
 
-	return { cabins, isPending, isCabinError };
+	return { cabins, isCabinsLoading, isCabinError };
 }
 
 export function useCreateUpdateCabin(updateMode) {
@@ -29,15 +29,15 @@ export function useCreateUpdateCabin(updateMode) {
 		onError: (err) => toast.error(err.message),
 	};
 
-	const { mutate: careateUpdateCabinMutate, isPending: createUpdateLoading } = useMutation(createMutationConfig);
+	const { mutate: careateUpdateCabinMutate, isPending: isCabinCreatingUpdating } = useMutation(createMutationConfig);
 
-	return { careateUpdateCabinMutate, createUpdateLoading };
+	return { careateUpdateCabinMutate, isCabinCreatingUpdating };
 }
 
 export function useDeleteCabin() {
 	const queryClient = useQueryClient();
 
-	const { mutate: deleteCabinMutate, isPending: isDeleting } = useMutation({
+	const { mutate: deleteCabinMutate, isPending: isCabinDeleting } = useMutation({
 		mutationFn: deleteCabin,
 		onSuccess: () => {
 			toast.success('Cabin succesfully deleted');
@@ -46,5 +46,5 @@ export function useDeleteCabin() {
 		onError: (err) => toast.error(err.message),
 	});
 
-	return { deleteCabinMutate, isDeleting };
+	return { deleteCabinMutate, isCabinDeleting };
 }
