@@ -1,6 +1,6 @@
 import Heading from '../components/Heading';
 import Row from '../components/Row';
-import UpdateSettingsForm from '../features/settings/UpdateSettingsForm';
+import UpdateSettingsForm from '../features/settings/UpdateSettingsForm2';
 
 export default function Settings() {
 	return (
