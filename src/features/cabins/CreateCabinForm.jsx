@@ -7,7 +7,6 @@ import FileInput from '../../components/FileInput';
 import Button from '../../components/Button';
 import { useCreateUpdateCabin } from '../../hooks/useCabin';
 import useInputValidation from '../../hooks/useInputValidation';
-import { useEffect } from 'react';
 
 export default function CreateCabinForm({ updateCabin = {} }) {
 	const { id: updateId, ...updateValues } = updateCabin;
