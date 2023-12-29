@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import { useCreateUpdateCabin } from '../../hooks/useCabin';
 import useInputValidation from '../../hooks/useInputValidation';
 
-export default function CreateCabinForm({ updateCabin = {} }) {
+export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 	const { id: updateId, ...updateValues } = updateCabin;
 	const updateMode = Boolean(updateId);
 	const { careateUpdateCabinMutate, isCabinCreatingUpdating } = useCreateUpdateCabin(updateMode);
@@ -33,6 +33,7 @@ export default function CreateCabinForm({ updateCabin = {} }) {
 			onSuccess: () => {
 				setBtnDisable(true);
 				updateMode ? reset(getValues()) : reset();
+				onCloseModal?.();
 			},
 		};
 
@@ -41,7 +42,7 @@ export default function CreateCabinForm({ updateCabin = {} }) {
 	};
 
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
+		<Form onSubmit={handleSubmit(onSubmit)} type={onCloseModal ? 'modal' : 'regular'}>
 			<FormRow label="Cabin name" error={errors?.name?.message}>
 				<Input
 					type="text"
