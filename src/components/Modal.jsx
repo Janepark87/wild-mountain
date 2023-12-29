@@ -1,7 +1,8 @@
-import { cloneElement, createContext, useContext, useEffect, useState } from 'react';
+import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
+import { useClickAway } from '../hooks/useClickAway';
 
 const StyledModal = styled.div`
 	position: fixed;
@@ -72,22 +73,18 @@ const useModal = () => useContext(ModalContext);
 function OpenTrigger({ children, type }) {
 	const { openModal } = useModal();
 
-	return cloneElement(children, {
-		onClick: (e) => {
-			openModal(type);
-			e.stopPropagation();
-		},
-	});
+	return cloneElement(children, { onClick: () => openModal(type) });
 }
 
 function Window({ children, type, customEvent = false }) {
 	const { typeName, closeModal } = useModal();
+	const { ref } = useClickAway(closeModal);
 
 	if (type !== typeName) return null;
 
 	return createPortal(
 		<Overlay>
-			<StyledModal>
+			<StyledModal ref={ref}>
 				<Button onClick={closeModal}>
 					<HiXMark />
 				</Button>
