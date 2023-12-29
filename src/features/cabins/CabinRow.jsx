@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { formatCurrency } from '../../utils/helpers';
 import CreateCabinForm from './CreateCabinForm';
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import Modal from '../../components/Modal';
 
 const TableRow = styled.div`
 	display: grid;
@@ -47,7 +47,6 @@ const Discount = styled.div`
 `;
 
 export default function CabinRow({ cabin }) {
-	const [toggleEditForm, setToggleEditForm] = useState(false);
 	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
 	const { deleteCabinMutate, isCabinDeleting } = useDeleteCabin();
 	const { careateUpdateCabinMutate, isCabinCreatingUpdating } = useCreateUpdateCabin();
@@ -66,27 +65,33 @@ export default function CabinRow({ cabin }) {
 	};
 
 	return (
-		<>
-			<TableRow role="row">
-				<Img src={image} alt={name} />
-				<Cabin>{name}</Cabin>
-				<div>Fits up to {maxCapacity} guests</div>
-				<Price>{formatCurrency(regularPrice)}</Price>
-				{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+		<TableRow role="row">
+			<Img src={image} alt={name} />
+			<Cabin>{name}</Cabin>
+			<div>Fits up to {maxCapacity} guests</div>
+			<Price>{formatCurrency(regularPrice)}</Price>
+			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
-				<div>
-					<button>
-						<HiSquare2Stack onClick={duplicateCabin} disabled={isCabinCreatingUpdating} />
-					</button>
-					<button onClick={() => setToggleEditForm((show) => !show)}>
-						<HiPencil />
-					</button>
-					<button onClick={() => deleteCabinMutate(cabinId)} disabled={isCabinDeleting}>
-						<HiTrash />
-					</button>
-				</div>
-			</TableRow>
-			{toggleEditForm && <CreateCabinForm updateCabin={cabin} />}
-		</>
+			<div>
+				<button>
+					<HiSquare2Stack onClick={duplicateCabin} disabled={isCabinCreatingUpdating} />
+				</button>
+
+				<Modal>
+					<Modal.OpenTrigger type="cabin-form-edit">
+						<button>
+							<HiPencil />
+						</button>
+					</Modal.OpenTrigger>
+					<Modal.Window type="cabin-form-edit" customEvent={true}>
+						<CreateCabinForm updateCabin={cabin} />
+					</Modal.Window>
+				</Modal>
+
+				<button onClick={() => deleteCabinMutate(cabinId)} disabled={isCabinDeleting}>
+					<HiTrash />
+				</button>
+			</div>
+		</TableRow>
 	);
 }
