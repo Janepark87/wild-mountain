@@ -9,7 +9,7 @@ export default function AddCabin() {
 				<Modal.OpenTrigger type="cabin-form">
 					<Button>Add new cabin</Button>
 				</Modal.OpenTrigger>
-				<Modal.Window type="cabin-form" customEvent={true}>
+				<Modal.Window type="cabin-form">
 					<CreateCabinForm />
 				</Modal.Window>
 			</Modal>

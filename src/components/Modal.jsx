@@ -27,7 +27,6 @@ const Overlay = styled.div`
 	backdrop-filter: blur(4px);
 	z-index: 1000;
 	transition: all 0.5s;
-	cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -76,7 +75,7 @@ function OpenTrigger({ children, type }) {
 	return cloneElement(children, { onClick: () => openModal(type) });
 }
 
-function Window({ children, type, customEvent = false }) {
+function Window({ children, type, customEvent = true }) {
 	const { typeName, closeModal } = useModal();
 	const { ref } = useClickAway(closeModal);
 

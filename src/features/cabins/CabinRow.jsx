@@ -4,6 +4,7 @@ import CreateCabinForm from './CreateCabinForm';
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import Modal from '../../components/Modal';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 const TableRow = styled.div`
 	display: grid;
@@ -83,14 +84,19 @@ export default function CabinRow({ cabin }) {
 							<HiPencil />
 						</button>
 					</Modal.OpenTrigger>
-					<Modal.Window type="cabin-form-edit" customEvent={true}>
+					<Modal.Window type="cabin-form-edit">
 						<CreateCabinForm updateCabin={cabin} />
 					</Modal.Window>
-				</Modal>
 
-				<button onClick={() => deleteCabinMutate(cabinId)} disabled={isCabinDeleting}>
-					<HiTrash />
-				</button>
+					<Modal.OpenTrigger type="cabin-delete-confirmation">
+						<button>
+							<HiTrash />
+						</button>
+					</Modal.OpenTrigger>
+					<Modal.Window type="cabin-delete-confirmation">
+						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
+					</Modal.Window>
+				</Modal>
 			</div>
 		</TableRow>
 	);
