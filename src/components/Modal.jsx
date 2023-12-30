@@ -55,9 +55,10 @@ const Button = styled.button`
 `;
 
 const ModalContext = createContext();
+const useModal = () => useContext(ModalContext);
 
 // Modal Provider
-export default function Modal({ children }) {
+function Modal({ children }) {
 	const [typeName, setTypeName] = useState('');
 
 	const closeModal = () => setTypeName('');
@@ -65,9 +66,6 @@ export default function Modal({ children }) {
 
 	return <ModalContext.Provider value={{ typeName, closeModal, openModal }}>{children}</ModalContext.Provider>;
 }
-
-// useModal custom hook
-const useModal = () => useContext(ModalContext);
 
 function OpenTrigger({ children, type }) {
 	const { openModal } = useModal();
@@ -97,3 +95,5 @@ function Window({ children, type, customEvent = true }) {
 
 Modal.OpenTrigger = OpenTrigger;
 Modal.Window = Window;
+
+export default Modal;
