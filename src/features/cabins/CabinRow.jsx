@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import { HiEllipsisVertical, HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { formatCurrency } from '../../utils/helpers';
 import Table from '../../components/Table';
@@ -65,7 +65,9 @@ export default function CabinRow({ cabin }) {
 
 			<Dropdown>
 				<Modal>
-					<Dropdown.Toggle id={cabinId} />
+					<Dropdown.Toggle id={cabinId}>
+						<HiEllipsisVertical />
+					</Dropdown.Toggle>
 
 					<Dropdown.Menu id={cabinId}>
 						<Dropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>

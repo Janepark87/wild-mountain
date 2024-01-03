@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from 'react';
-import { HiEllipsisVertical } from 'react-icons/hi2';
 import styled from 'styled-components';
 import { useClickAway } from '../hooks/useClickAway';
 
@@ -79,7 +78,7 @@ function Dropdown({ children }) {
 	);
 }
 
-function Toggle({ id }) {
+function Toggle({ id, children }) {
 	const { openId, openMenu, closeMenu } = useDropdown();
 
 	const handleClick = (e) => {
@@ -87,11 +86,7 @@ function Toggle({ id }) {
 		openId === '' || openId !== id ? openMenu(id) : closeMenu();
 	};
 
-	return (
-		<StyledToggle onClick={handleClick}>
-			<HiEllipsisVertical />
-		</StyledToggle>
-	);
+	return <StyledToggle onClick={handleClick}>{children}</StyledToggle>;
 }
 
 function Menu({ id, children }) {
