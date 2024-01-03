@@ -6,7 +6,7 @@ import Table from '../../components/Table';
 import CreateCabinForm from './CreateCabinForm';
 import Modal from '../../components/Modal';
 import ConfirmDelete from '../../components/ConfirmDelete';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
+import Dropdown from '../../components/Dropdown';
 
 const Img = styled.img`
 	display: block;
@@ -63,35 +63,33 @@ export default function CabinRow({ cabin }) {
 			<Price>{formatCurrency(regularPrice)}</Price>
 			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
-			<EllipsisDropdown>
+			<Dropdown>
 				<Modal>
-					<EllipsisDropdown.Dropdown>
-						<EllipsisDropdown.Toggle id={cabinId} />
+					<Dropdown.Toggle id={cabinId} />
 
-						<EllipsisDropdown.Menu id={cabinId}>
-							<EllipsisDropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
-								Copy
-							</EllipsisDropdown.Item>
+					<Dropdown.Menu id={cabinId}>
+						<Dropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
+							Copy
+						</Dropdown.Item>
 
-							<Modal.Trigger type="cabin-form-edit">
-								<EllipsisDropdown.Item icon={<HiPencil />}>Edit</EllipsisDropdown.Item>
-							</Modal.Trigger>
+						<Modal.Trigger type="cabin-form-edit">
+							<Dropdown.Item icon={<HiPencil />}>Edit</Dropdown.Item>
+						</Modal.Trigger>
 
-							<Modal.Trigger type="cabin-delete-confirmation">
-								<EllipsisDropdown.Item icon={<HiTrash />}>Delete</EllipsisDropdown.Item>
-							</Modal.Trigger>
-						</EllipsisDropdown.Menu>
+						<Modal.Trigger type="cabin-delete-confirmation">
+							<Dropdown.Item icon={<HiTrash />}>Delete</Dropdown.Item>
+						</Modal.Trigger>
+					</Dropdown.Menu>
 
-						<Modal.Window type="cabin-form-edit">
-							<CreateCabinForm updateCabin={cabin} />
-						</Modal.Window>
+					<Modal.Window type="cabin-form-edit">
+						<CreateCabinForm updateCabin={cabin} />
+					</Modal.Window>
 
-						<Modal.Window type="cabin-delete-confirmation">
-							<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
-						</Modal.Window>
-					</EllipsisDropdown.Dropdown>
+					<Modal.Window type="cabin-delete-confirmation">
+						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
+					</Modal.Window>
 				</Modal>
-			</EllipsisDropdown>
+			</Dropdown>
 		</Table.Row>
 	);
 }

@@ -3,7 +3,7 @@ import { HiEllipsisVertical } from 'react-icons/hi2';
 import styled from 'styled-components';
 import { useClickAway } from '../hooks/useClickAway';
 
-const Dropdown = styled.div`
+const StyledDropdownInner = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -63,20 +63,24 @@ const StyledItem = styled.button`
 	}
 `;
 
-const EllipsisDropdownContext = createContext();
-const useEllipsisDropdown = () => useContext(EllipsisDropdownContext);
+const DropdownContext = createContext();
+const useDropdown = () => useContext(DropdownContext);
 
-function EllipsisDropdown({ children }) {
+function Dropdown({ children }) {
 	const [openId, setOpenId] = useState('');
 
 	const openMenu = setOpenId;
 	const closeMenu = () => setOpenId('');
 
-	return <EllipsisDropdownContext.Provider value={{ openId, openMenu, closeMenu }}>{children}</EllipsisDropdownContext.Provider>;
+	return (
+		<DropdownContext.Provider value={{ openId, openMenu, closeMenu }}>
+			<StyledDropdownInner>{children}</StyledDropdownInner>
+		</DropdownContext.Provider>
+	);
 }
 
 function Toggle({ id }) {
-	const { openId, openMenu, closeMenu } = useEllipsisDropdown();
+	const { openId, openMenu, closeMenu } = useDropdown();
 
 	const handleClick = (e) => {
 		e.stopPropagation();
@@ -91,7 +95,7 @@ function Toggle({ id }) {
 }
 
 function Menu({ id, children }) {
-	const { openId, closeMenu } = useEllipsisDropdown();
+	const { openId, closeMenu } = useDropdown();
 	const ref = useClickAway(closeMenu, false);
 
 	if (openId !== id) return;
@@ -99,7 +103,7 @@ function Menu({ id, children }) {
 }
 
 function Item({ children, icon, onClick }) {
-	const { closeMenu } = useEllipsisDropdown();
+	const { closeMenu } = useDropdown();
 
 	const handleClick = () => {
 		onClick?.();
@@ -116,9 +120,8 @@ function Item({ children, icon, onClick }) {
 	);
 }
 
-EllipsisDropdown.Dropdown = Dropdown;
-EllipsisDropdown.Toggle = Toggle;
-EllipsisDropdown.Menu = Menu;
-EllipsisDropdown.Item = Item;
+Dropdown.Toggle = Toggle;
+Dropdown.Menu = Menu;
+Dropdown.Item = Item;
 
-export default EllipsisDropdown;
+export default Dropdown;
