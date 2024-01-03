@@ -6,9 +6,9 @@ export default function AddCabin() {
 	return (
 		<div>
 			<Modal>
-				<Modal.OpenTrigger type="cabin-form">
+				<Modal.Trigger type="cabin-form">
 					<Button>Add new cabin</Button>
-				</Modal.OpenTrigger>
+				</Modal.Trigger>
 				<Modal.Window type="cabin-form">
 					<CreateCabinForm />
 				</Modal.Window>

@@ -1,12 +1,24 @@
 import { createContext, useContext } from 'react';
 import styled from 'styled-components';
+import { Media } from '../styles/Breakpoints';
+
+const StyledTableContainer = styled.div`
+	width: 100%;
+
+	${Media.lg`
+		width: 95rem;
+	`}
+`;
 
 const StyledTable = styled.div`
 	background-color: var(--color-grey-0);
 	border: 1px solid var(--color-grey-200);
 	border-radius: 7px;
 	font-size: 1.4rem;
-	overflow: hidden;
+
+	${Media.lg`
+		margin-right: 4.8rem;
+	`}
 `;
 
 const CommonRow = styled.div`
@@ -25,6 +37,7 @@ const StyledHeader = styled(CommonRow)`
 	text-transform: uppercase;
 	letter-spacing: 0.4px;
 	font-weight: 600;
+	border-radius: inherit;
 `;
 
 const StyledRow = styled(CommonRow)`
@@ -63,7 +76,9 @@ const useTable = () => useContext(TableContext);
 function Table({ children, columns }) {
 	return (
 		<TableContext.Provider value={{ columns }}>
-			<StyledTable role="table">{children}</StyledTable>
+			<StyledTableContainer>
+				<StyledTable role="table">{children}</StyledTable>
+			</StyledTableContainer>
 		</TableContext.Provider>
 	);
 }

@@ -67,7 +67,7 @@ function Modal({ children }) {
 	return <ModalContext.Provider value={{ typeName, closeModal, openModal }}>{children}</ModalContext.Provider>;
 }
 
-function OpenTrigger({ children, type }) {
+function Trigger({ children, type }) {
 	const { openModal } = useModal();
 
 	return cloneElement(children, { onClick: () => openModal(type) });
@@ -75,14 +75,14 @@ function OpenTrigger({ children, type }) {
 
 function Window({ children, type, customEvent = true }) {
 	const { typeName, closeModal } = useModal();
-	const { ref } = useClickAway(closeModal);
+	const ref = useClickAway(closeModal);
 
 	if (type !== typeName) return null;
 
 	return createPortal(
 		<Overlay>
 			<StyledModal ref={ref}>
-				<Button onClick={closeModal}>
+				<Button onClick={closeModal()}>
 					<HiXMark />
 				</Button>
 
@@ -93,7 +93,7 @@ function Window({ children, type, customEvent = true }) {
 	);
 }
 
-Modal.OpenTrigger = OpenTrigger;
+Modal.Trigger = Trigger;
 Modal.Window = Window;
 
 export default Modal;

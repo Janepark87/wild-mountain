@@ -5,12 +5,12 @@ export function useClickAway(handlerFunction, listenerOption = true) {
 
 	useEffect(() => {
 		const handlerClickAway = (e) => {
-			if (ref.current && !ref.current.contains(e.target)) handlerFunction();
+			if (ref.current && !ref.current?.contains(e.target)) handlerFunction();
 		};
 
 		document.addEventListener('click', handlerClickAway, listenerOption);
 		return () => document.removeEventListener('click', handlerClickAway, listenerOption);
-	}, [handlerFunction]);
+	}, [handlerFunction, listenerOption]);
 
-	return { ref };
+	return ref;
 }
