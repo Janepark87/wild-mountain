@@ -11,7 +11,7 @@ export default function Cabins() {
 				<p>Filter / sort</p>
 			</Row>
 
-			<CabinTable dir="rtl" />
+			<CabinTable />
 
 			<AddCabin />
 		</>

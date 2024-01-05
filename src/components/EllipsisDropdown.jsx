@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useClickAway } from '../hooks/useClickAway';
 
-const StyledDropdownInner = styled.div`
+const StyledEllipsisDropdownInner = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -62,19 +62,19 @@ const StyledItem = styled.button`
 	}
 `;
 
-const DropdownContext = createContext();
-const useDropdown = () => useContext(DropdownContext);
+const EllipsisDropdownContext = createContext();
+const useDropdown = () => useContext(EllipsisDropdownContext);
 
-function Dropdown({ children }) {
+function EllipsisDropdown({ children }) {
 	const [openId, setOpenId] = useState('');
 
 	const openMenu = setOpenId;
 	const closeMenu = () => setOpenId('');
 
 	return (
-		<DropdownContext.Provider value={{ openId, openMenu, closeMenu }}>
-			<StyledDropdownInner>{children}</StyledDropdownInner>
-		</DropdownContext.Provider>
+		<EllipsisDropdownContext.Provider value={{ openId, openMenu, closeMenu }}>
+			<StyledEllipsisDropdownInner>{children}</StyledEllipsisDropdownInner>
+		</EllipsisDropdownContext.Provider>
 	);
 }
 
@@ -115,8 +115,8 @@ function Item({ children, icon, onClick }) {
 	);
 }
 
-Dropdown.Toggle = Toggle;
-Dropdown.Menu = Menu;
-Dropdown.Item = Item;
+EllipsisDropdown.Toggle = Toggle;
+EllipsisDropdown.Menu = Menu;
+EllipsisDropdown.Item = Item;
 
-export default Dropdown;
+export default EllipsisDropdown;

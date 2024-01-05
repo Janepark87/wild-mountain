@@ -6,7 +6,7 @@ import Table from '../../components/Table';
 import CreateCabinForm from './CreateCabinForm';
 import Modal from '../../components/Modal';
 import ConfirmDelete from '../../components/ConfirmDelete';
-import Dropdown from '../../components/Dropdown';
+import EllipsisDropdown from '../../components/EllipsisDropdown';
 
 const Img = styled.img`
 	display: block;
@@ -63,25 +63,25 @@ export default function CabinRow({ cabin }) {
 			<Price>{formatCurrency(regularPrice)}</Price>
 			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
-			<Dropdown>
+			<EllipsisDropdown>
 				<Modal>
-					<Dropdown.Toggle id={cabinId}>
+					<EllipsisDropdown.Toggle id={cabinId}>
 						<HiEllipsisVertical />
-					</Dropdown.Toggle>
+					</EllipsisDropdown.Toggle>
 
-					<Dropdown.Menu id={cabinId}>
-						<Dropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
+					<EllipsisDropdown.Menu id={cabinId}>
+						<EllipsisDropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
 							Copy
-						</Dropdown.Item>
+						</EllipsisDropdown.Item>
 
 						<Modal.Trigger type="cabin-form-edit">
-							<Dropdown.Item icon={<HiPencil />}>Edit</Dropdown.Item>
+							<EllipsisDropdown.Item icon={<HiPencil />}>Edit</EllipsisDropdown.Item>
 						</Modal.Trigger>
 
 						<Modal.Trigger type="cabin-delete-confirmation">
-							<Dropdown.Item icon={<HiTrash />}>Delete</Dropdown.Item>
+							<EllipsisDropdown.Item icon={<HiTrash />}>Delete</EllipsisDropdown.Item>
 						</Modal.Trigger>
-					</Dropdown.Menu>
+					</EllipsisDropdown.Menu>
 
 					<Modal.Window type="cabin-form-edit">
 						<CreateCabinForm updateCabin={cabin} />
@@ -91,7 +91,7 @@ export default function CabinRow({ cabin }) {
 						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
 					</Modal.Window>
 				</Modal>
-			</Dropdown>
+			</EllipsisDropdown>
 		</Table.Row>
 	);
 }
