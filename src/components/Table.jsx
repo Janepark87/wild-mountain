@@ -1,24 +1,11 @@
 import { createContext, useContext } from 'react';
 import styled from 'styled-components';
-import { Media } from '../styles/Breakpoints';
-
-const StyledTableContainer = styled.div`
-	width: 100%;
-
-	${Media.lg`
-		width: 95rem;
-	`}
-`;
 
 const StyledTable = styled.div`
 	background-color: var(--color-grey-0);
 	border: 1px solid var(--color-grey-200);
 	border-radius: 7px;
 	font-size: 1.4rem;
-
-	${Media.lg`
-		margin-right: 4.8rem;
-	`}
 `;
 
 const CommonRow = styled.div`
@@ -76,9 +63,7 @@ const useTable = () => useContext(TableContext);
 function Table({ children, columns }) {
 	return (
 		<TableContext.Provider value={{ columns }}>
-			<StyledTableContainer>
-				<StyledTable role="table">{children}</StyledTable>
-			</StyledTableContainer>
+			<StyledTable role="table">{children}</StyledTable>
 		</TableContext.Provider>
 	);
 }

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import { Media } from '../styles/Breakpoints';
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -22,6 +23,10 @@ const Container = styled.div`
 	gap: 3.2rem;
 	max-width: 120rem;
 	margin: 0 auto;
+
+	${Media.lg`
+		width: 95rem;
+	`}
 `;
 
 export default function AppLayout() {
