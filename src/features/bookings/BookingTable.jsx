@@ -6,7 +6,6 @@ import Empty from '../../components/Empty';
 
 export default function BookingTable() {
 	const { bookings, isBookingLoading } = useBookingQuery();
-	console.log(bookings);
 
 	if (isBookingLoading) return <Spinner />;
 	if (!bookings.length) return <Empty resource={'bookings'} />;

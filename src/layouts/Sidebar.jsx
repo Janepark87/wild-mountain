@@ -19,7 +19,7 @@ export default function Sidebar() {
 			<Logo />
 			<Navbar />
 
-			<Uploader />
+			{import.meta.env.DEV && <Uploader />}
 		</StyledSidebar>
 	);
 }
