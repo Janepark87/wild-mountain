@@ -25,7 +25,7 @@ const Container = styled.div`
 	margin: 0 auto;
 
 	${Media.lg`
-		width: 95rem;
+		width: 100rem;
 	`}
 `;
 
