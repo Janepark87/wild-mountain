@@ -1,8 +1,11 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { format, isToday } from 'date-fns';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
+import EllipsisDropdown from '../../components/EllipsisDropdown';
+import { HiEllipsisVertical, HiEye } from 'react-icons/hi2';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);
@@ -32,6 +35,8 @@ const Amount = styled.div`
 `;
 
 export default function BookingRow({ booking }) {
+	const navigate = useNavigate();
+
 	const {
 		id: bookingId,
 		created_at,
@@ -79,6 +84,18 @@ export default function BookingRow({ booking }) {
 			<Badge type={statusBadgeType[status]}>{status.replace('-', ' ')}</Badge>
 
 			<Amount>{formatCurrency(totalPrice)}</Amount>
+
+			<EllipsisDropdown>
+				<EllipsisDropdown.Toggle id={bookingId}>
+					<HiEllipsisVertical />
+				</EllipsisDropdown.Toggle>
+
+				<EllipsisDropdown.Menu id={bookingId}>
+					<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
+						See details
+					</EllipsisDropdown.Item>
+				</EllipsisDropdown.Menu>
+			</EllipsisDropdown>
 		</Table.Row>
 	);
 }

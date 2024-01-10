@@ -146,14 +146,22 @@ img {
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
-
+.container,
 .table-container{
   display: flex;
 	flex-direction: column;
 	gap: 3.2rem;
-	max-width: 120rem;
 	margin: 0 auto;
+  max-width: 120rem;
+}
 
+.container{
+  ${Media.md`
+		width: 75rem;
+	`}
+}
+
+.table-container{
 	${Media.lg`
 		width: 100rem;
 	`}

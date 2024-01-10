@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 const device = {
 	xs: '400px',
 	sm: '600px',
-	md: '900px',
+	md: '980px',
 	lg: '1280px',
 	xl: '1440px',
 	xxl: '1920px',
