@@ -3,7 +3,7 @@ import supabase from './supabase';
 export async function getBookings(filters, sortBy) {
 	let query = supabase
 		.from('bookings')
-		.select('id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)');
+		.select('id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)', { count: 'exact' });
 
 	// Filters
 	if (filters.length > 0) {
@@ -16,12 +16,12 @@ export async function getBookings(filters, sortBy) {
 	// Sort by
 	if (sortBy) query = query.order(sortBy.field, { ascending: sortBy.direction === 'asc' });
 
-	const { data, error } = await query;
+	const { data, count, error } = await query;
 
 	if (error) {
 		console.error(error);
 		throw new Error('Bookins could not be loaded.');
 	}
 
-	return data;
+	return { data, count };
 }

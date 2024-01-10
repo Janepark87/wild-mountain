@@ -26,7 +26,7 @@ export function useBookingQuery() {
 	const sortBy = { field, direction };
 
 	const {
-		data: bookings,
+		data: { data: bookings, count } = {},
 		isPending: isBookingLoading,
 		isError: isBookingError,
 	} = useQuery({
@@ -34,5 +34,5 @@ export function useBookingQuery() {
 		queryFn: () => getBookings(filters, sortBy),
 	});
 
-	return { bookings, isBookingLoading, isBookingError };
+	return { bookings, count, isBookingLoading, isBookingError };
 }

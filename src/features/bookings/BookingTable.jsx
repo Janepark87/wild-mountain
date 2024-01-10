@@ -2,9 +2,10 @@ import { useBookingQuery } from '../../hooks/useBooking';
 import Table from '../../components/Table';
 import BookingRow from './BookingRow';
 import Spinner from '../../components/Spinner';
+import Pagination from '../../components/Pagination';
 
 export default function BookingTable() {
-	const { bookings = [], isBookingLoading } = useBookingQuery();
+	const { bookings, isBookingLoading, count } = useBookingQuery();
 
 	if (isBookingLoading) return <Spinner />;
 
@@ -22,6 +23,10 @@ export default function BookingTable() {
 			</Table.Header>
 
 			<Table.Body data={bookings} render={(booking) => <BookingRow key={booking.id} booking={booking} />} />
+
+			<Table.Footer>
+				<Pagination count={count} />
+			</Table.Footer>
 		</Table>
 	);
 }
