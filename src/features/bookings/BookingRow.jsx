@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { format } from 'date-fns';
-import { formatCurrency } from '../../utils/helpers';
+import { format, isToday } from 'date-fns';
+import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
 
@@ -60,8 +60,12 @@ export default function BookingRow({ booking }) {
 				<span>{guestEmail}</span>
 			</Stacked>
 
-			<span>{format(new Date(startDate), 'MMM dd, yyyy')}</span>
-			<span>{format(new Date(endDate), 'MMM dd, yyyy')}</span>
+			<Stacked>
+				<span>{format(new Date(startDate), 'MMM dd, yyyy')}</span>
+				<span>{isToday(new Date(startDate)) ? `${formatDistanceFromNow(startDate)}(today)` : formatDistanceFromNow(startDate)}</span>
+			</Stacked>
+
+			<span style={{ fontWeight: '500' }}>{format(new Date(endDate), 'MMM dd, yyyy')}</span>
 
 			<Stacked>
 				<span>

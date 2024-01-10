@@ -9,7 +9,6 @@ export function useBookingQuery() {
 	// Filter
 	const filterFields = ['status', 'numNights', 'totalPrice'];
 	const operatorName = { status: 'eq' };
-
 	const filters = filterFields
 		.map((field) => {
 			const value = searchParams.get(field);
@@ -21,13 +20,18 @@ export function useBookingQuery() {
 		})
 		.filter(Boolean);
 
+	// Sort
+	const sortByField = searchParams.get('sortBy') || 'startDate-desc';
+	const [field, direction] = sortByField.split('-');
+	const sortBy = { field, direction };
+
 	const {
 		data: bookings,
 		isPending: isBookingLoading,
 		isError: isBookingError,
 	} = useQuery({
-		queryKey: ['bookings', filters],
-		queryFn: () => getBookings(filters),
+		queryKey: ['bookings', filters, sortBy],
+		queryFn: () => getBookings(filters, sortBy),
 	});
 
 	return { bookings, isBookingLoading, isBookingError };

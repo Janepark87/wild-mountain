@@ -11,5 +11,14 @@ export const formatDistanceFromNow = (dateStr) =>
 		addSuffix: true,
 	}).replace('about ', '');
 
+export const getToday = (options = {}) => {
+	const today = new Date();
+
+	if (options?.end) today.setUTCHours(23, 59, 59, 999);
+	else today.setUTCHours(0, 0, 0, 0);
+
+	return today.toISOString();
+};
+
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) => differenceInDays(parseISO(String(dateStr1)), parseISO(String(dateStr2)));

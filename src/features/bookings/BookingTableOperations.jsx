@@ -17,8 +17,6 @@ export default function CabinTableOperations() {
 
 			<SortBy
 				options={[
-					{ value: 'name-asc', label: 'Name (a-z)' },
-					{ value: 'name-desc', label: 'Name (z-a)' },
 					{ value: 'totalPrice-asc', label: 'Amount (low first)' },
 					{ value: 'totalPrice-desc', label: 'Amount (high first)' },
 					{ value: 'startDate-asc', label: 'Date (earlier first)' },
