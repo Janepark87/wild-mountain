@@ -1,6 +1,7 @@
+import { PAGE_SIZE } from '../utils/constants';
 import supabase from './supabase';
 
-export async function getBookings(filters, sortBy) {
+export async function getBookings({ filters, sortBy, page }) {
 	let query = supabase
 		.from('bookings')
 		.select('id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)', { count: 'exact' });
@@ -15,6 +16,13 @@ export async function getBookings(filters, sortBy) {
 
 	// Sort by
 	if (sortBy) query = query.order(sortBy.field, { ascending: sortBy.direction === 'asc' });
+
+	// Pagination
+	if (page) {
+		const from = (page - 1) * PAGE_SIZE;
+		const to = from + PAGE_SIZE - 1;
+		query = query.range(from, to);
+	}
 
 	const { data, count, error } = await query;
 

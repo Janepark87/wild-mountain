@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import { useSearchParams } from 'react-router-dom';
+import { PAGE_SIZE } from '../utils/constants';
 
 const StyledPagination = styled.div`
 	display: flex;
@@ -56,15 +57,23 @@ const PaginationButton = styled.button`
 	}
 `;
 
-const PAGE_SIZE = 10;
+const PageNumber = styled.span`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.3rem;
+	font-weight: 500;
+	font-size: 1.4rem;
+`;
+
 export default function Pagination({ count }) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const pageValue = searchParams.get('page');
 	const currentPage = !pageValue ? 1 : Number(pageValue);
-	const pageCount = Math.ceil(count / PAGE_SIZE);
+	const totalPageNumber = Math.ceil(count / PAGE_SIZE);
 
 	const nextPage = () => {
-		const next = currentPage === pageCount ? currentPage : currentPage + 1;
+		const next = currentPage === totalPageNumber ? currentPage : currentPage + 1;
 		searchParams.set('page', next);
 		setSearchParams(searchParams);
 	};
@@ -74,11 +83,11 @@ export default function Pagination({ count }) {
 		setSearchParams(searchParams);
 	};
 
-	if (pageCount <= 1) return;
+	if (totalPageNumber <= 1) return;
 	return (
 		<StyledPagination>
 			<P>
-				Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span> of{' '}
+				Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to <span>{currentPage === totalPageNumber ? count : currentPage * PAGE_SIZE}</span> of{' '}
 				<span>{count}</span> results
 			</P>
 
@@ -87,7 +96,9 @@ export default function Pagination({ count }) {
 					<HiChevronLeft /> <span>Previouse</span>
 				</PaginationButton>
 
-				<PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
+				<PageNumber>{currentPage}</PageNumber>
+
+				<PaginationButton onClick={nextPage} disabled={currentPage === totalPageNumber}>
 					<span>Next</span>
 					<HiChevronRight />
 				</PaginationButton>
