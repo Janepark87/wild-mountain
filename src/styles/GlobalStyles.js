@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { Media } from './Breakpoints';
 
 export const GlobalStyles = createGlobalStyle`
 :root {
@@ -106,13 +107,13 @@ textarea:disabled {
   color: var(--color-grey-500) !important;
 }
 
-input:focus,
+/* input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--color-brand-600);
+  outline: 1px solid var(--color-brand-500);
   outline-offset: -1px;
-}
+} */
 
 /* Parent selector, finally 😃 */
 button:has(svg) {
@@ -144,5 +145,17 @@ img {
 
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+}
+
+.table-container{
+  display: flex;
+	flex-direction: column;
+	gap: 3.2rem;
+	max-width: 120rem;
+	margin: 0 auto;
+
+	${Media.lg`
+		width: 100rem;
+	`}
 }
 `;

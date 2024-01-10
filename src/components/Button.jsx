@@ -47,13 +47,32 @@ const variations = {
 			background-color: var(--color-red-800);
 		}
 	`,
+	ghost: css`
+		color: var(--color-brand-600);
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+		font-weight: 500;
+		text-align: center;
+
+		&:hover,
+		&:active {
+			color: var(--color-brand-700);
+		}
+	`,
 };
 
 const Button = styled.button`
-	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 	border-radius: var(--border-radius-sm);
 	box-shadow: var(--shadow-sm);
+	border: 0;
+	outline: none;
 	cursor: pointer;
+	transition: all 0.3s;
 
 	${(props) => sizes[props.size]}
 	${(props) => variations[props.variation]}

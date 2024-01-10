@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import { Media } from '../styles/Breakpoints';
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -17,27 +16,13 @@ const Main = styled.main`
 	overflow-y: auto;
 `;
 
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 3.2rem;
-	max-width: 120rem;
-	margin: 0 auto;
-
-	${Media.lg`
-		width: 100rem;
-	`}
-`;
-
 export default function AppLayout() {
 	return (
 		<StyledAppLayout>
 			<Sidebar />
 			<Header />
 			<Main>
-				<Container>
-					<Outlet />
-				</Container>
+				<Outlet />
 			</Main>
 		</StyledAppLayout>
 	);
