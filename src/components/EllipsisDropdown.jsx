@@ -32,6 +32,7 @@ const StyledMenu = styled.ul`
 	position: absolute;
 	top: 2rem;
 	right: 2rem;
+	min-width: max-content;
 	background-color: var(--color-grey-0);
 	box-shadow: var(--shadow-md);
 	border-radius: var(--border-radius-md);

@@ -6,7 +6,7 @@ import CabinTableOperations from '../features/cabins/CabinTableOperations';
 
 export default function Cabins() {
 	return (
-		<>
+		<div className="table-container">
 			<Row type="horizontal">
 				<Heading as="h1">Cabins</Heading>
 				<CabinTableOperations />
@@ -15,6 +15,6 @@ export default function Cabins() {
 			<CabinTable />
 
 			<AddCabin />
-		</>
+		</div>
 	);
 }
