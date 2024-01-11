@@ -112,11 +112,11 @@ const Price = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	gap: 1.6rem;
-	padding: 1.6rem 2.5rem;
+	padding: 2rem 2.5rem;
 	margin-top: 1.5rem;
 	border-radius: var(--border-radius-sm);
-	color: ${(props) => (props.isPaid ? 'var(--color-green-700)' : 'var(--color-yellow-700)')};
-	background-color: ${(props) => (props.isPaid ? 'var(--color-green-100)' : 'var(--color-yellow-100)')};
+	color: ${(props) => (props.$isPaid ? 'var(--color-green-700)' : 'var(--color-yellow-700)')};
+	background-color: ${(props) => (props.$isPaid ? 'var(--color-green-100)' : 'var(--color-yellow-100)')};
 
 	& > div:first-child {
 		align-items: center;
@@ -217,7 +217,7 @@ export default function BookingDetailDataBlock({ booking }) {
 					{hasBreakfast ? 'Yes' : 'No'}
 				</DataItem>
 
-				<Price isPaid={isPaid}>
+				<Price $isPaid={isPaid}>
 					<DataItem icon={<HiOutlineCurrencyDollar />} label="Total price">
 						<span>{formatCurrency(totalPrice)}</span>
 						{hasBreakfast && ` (${formatCurrency(cabinPrice)} cabin + ${formatCurrency(extrasPrice)} breakfast)`}

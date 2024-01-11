@@ -1,8 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking } from '../../hooks/useBooking';
 import { useGoback } from '../../hooks/useGoback';
-
 import Row from '../../components/Row';
 import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
@@ -18,6 +18,7 @@ const HeadingGroup = styled.div`
 `;
 
 export default function BookingDetail() {
+	const navigate = useNavigate();
 	const goback = useGoback();
 	const { booking, isBookingLoading } = useBooking();
 	const { id: bookingId, status } = booking;
@@ -27,8 +28,6 @@ export default function BookingDetail() {
 		'checked-in': 'green',
 		'checked-out': 'silver',
 	};
-
-	console.log(booking);
 
 	if (isBookingLoading) return <Spinner />;
 	return (
@@ -46,6 +45,7 @@ export default function BookingDetail() {
 			<BookingDetailDataBlock booking={booking} />
 
 			<ButtonGroup>
+				{status === 'unconfirmed' && <Button onClick={() => navigate(`/checkin/${bookingId}`)}>Check in</Button>}
 				<Button variation="secondary" onClick={goback}>
 					Back
 				</Button>

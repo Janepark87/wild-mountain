@@ -5,7 +5,7 @@ import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
 import EllipsisDropdown from '../../components/EllipsisDropdown';
-import { HiEllipsisVertical, HiEye } from 'react-icons/hi2';
+import { HiArrowDownOnSquare, HiEllipsisVertical, HiEye } from 'react-icons/hi2';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);
@@ -94,6 +94,12 @@ export default function BookingRow({ booking }) {
 					<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
 						See details
 					</EllipsisDropdown.Item>
+
+					{status === 'unconfirmed' && (
+						<EllipsisDropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
+							Check in
+						</EllipsisDropdown.Item>
+					)}
 				</EllipsisDropdown.Menu>
 			</EllipsisDropdown>
 		</Table.Row>
