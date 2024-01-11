@@ -10,7 +10,7 @@ export default function BookingTable() {
 	if (isBookingLoading) return <Spinner />;
 
 	return (
-		<Table columns="0.6fr 2.5fr repeat(4, 1.5fr) 1.25fr 3.2rem">
+		<Table columns="0.6fr 2.5fr repeat(3, 1.5fr) repeat(2, 2fr) repeat(2, 1fr)">
 			<Table.Header>
 				<span>Cabin</span>
 				<span>Guest</span>
@@ -19,6 +19,7 @@ export default function BookingTable() {
 				<span>Details</span>
 				<span>Status</span>
 				<span>Amount</span>
+				<span>Paid</span>
 				<span></span>
 			</Table.Header>
 

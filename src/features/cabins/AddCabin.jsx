@@ -1,10 +1,11 @@
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import CreateCabinForm from './CreateCabinForm';
+import ButtonGroup from '../../components/ButtonGroup';
 
 export default function AddCabin() {
 	return (
-		<div>
+		<ButtonGroup>
 			<Modal>
 				<Modal.Trigger type="cabin-form">
 					<Button>Add new cabin</Button>
@@ -13,6 +14,6 @@ export default function AddCabin() {
 					<CreateCabinForm />
 				</Modal.Window>
 			</Modal>
-		</div>
+		</ButtonGroup>
 	);
 }

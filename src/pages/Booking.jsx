@@ -1,9 +1,10 @@
+import Container from '../components/Container';
 import BookingDetail from '../features/bookings/BookingDetail';
 
 export default function Booking() {
 	return (
-		<div className="container">
+		<Container>
 			<BookingDetail />
-		</div>
+		</Container>
 	);
 }

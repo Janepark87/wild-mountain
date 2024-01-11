@@ -46,6 +46,7 @@ export default function BookingRow({ booking }) {
 		numGuests,
 		totalPrice,
 		status,
+		isPaid,
 		guests: { fullName: guestName, email: guestEmail },
 		cabins: { name: cabinName },
 	} = booking;
@@ -54,7 +55,12 @@ export default function BookingRow({ booking }) {
 		unconfirmed: 'blue',
 		'checked-in': 'green',
 		'checked-out': 'silver',
+		true: 'green',
+		false: 'grey',
 	};
+
+	console.log(booking);
+	console.log(statusBadgeType[isPaid]);
 
 	return (
 		<Table.Row role="row">
@@ -84,6 +90,8 @@ export default function BookingRow({ booking }) {
 			<Badge type={statusBadgeType[status]}>{status.replace('-', ' ')}</Badge>
 
 			<Amount>{formatCurrency(totalPrice)}</Amount>
+
+			<Badge type={statusBadgeType[isPaid]}>{isPaid ? 'Paid' : 'Not yet'}</Badge>
 
 			<EllipsisDropdown>
 				<EllipsisDropdown.Toggle id={bookingId}>

@@ -10,13 +10,10 @@ import EllipsisDropdown from '../../components/EllipsisDropdown';
 
 const Img = styled.img`
 	display: block;
-	width: 6.4rem;
-	aspect-ratio: 3 / 2;
+	width: 100%;
+	max-width: 9rem;
 	object-fit: cover;
-	object-position: center;
-	font-size: 10px;
-	/* transform: scale(1.66666) translateX(-2px); */
-	transform: scale(1.5) translateX(-7px);
+	border-radius: var(--border-radius-sm);
 `;
 
 const Cabin = styled.div`

@@ -1,3 +1,5 @@
+import Container from '../components/Container';
+
 export default function Login() {
-	return <div>Login</div>;
+	return <Container>Login</Container>;
 }

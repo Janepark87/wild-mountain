@@ -1,8 +1,9 @@
+import { useSearchParams } from 'react-router-dom';
 import { useCabinQuery } from '../../hooks/useCabin';
 import Table from '../../components/Table';
 import CabinRow from './CabinRow';
+import AddCabin from './AddCabin';
 import Spinner from '../../components/Spinner';
-import { useSearchParams } from 'react-router-dom';
 
 export default function CabinTable() {
 	const { cabins, isCabinsLoading } = useCabinQuery();
@@ -36,17 +37,21 @@ export default function CabinTable() {
 	});
 
 	return (
-		<Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-			<Table.Header>
-				<span>Image</span>
-				<span>Cabin</span>
-				<span>Capacity</span>
-				<span>Price</span>
-				<span>Discount</span>
-				<span></span>
-			</Table.Header>
+		<>
+			<Table columns=".8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr">
+				<Table.Header>
+					<span>Image</span>
+					<span>Cabin</span>
+					<span>Capacity</span>
+					<span>Price</span>
+					<span>Discount</span>
+					<span></span>
+				</Table.Header>
 
-			<Table.Body data={sortedCabins} render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />} />
-		</Table>
+				<Table.Body data={sortedCabins} render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />} />
+			</Table>
+
+			<AddCabin />
+		</>
 	);
 }
