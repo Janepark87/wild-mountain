@@ -2,7 +2,7 @@ import TableOperations from '../../components/TableOperations';
 import Filter from '../../components/Filter';
 import SortBy from '../../components/SortBy';
 
-export default function CabinTableOperations() {
+export default function BookingTableOperations() {
 	return (
 		<TableOperations>
 			<Filter
