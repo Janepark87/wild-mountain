@@ -41,7 +41,18 @@ export async function getBooking(bookingId) {
 
 	if (error) {
 		console.log(error);
-		throw new Error('Bookins not found.');
+		throw new Error('Bookins could not get loaded.');
+	}
+
+	return data;
+}
+
+export async function updateBooking(bookingId, obj) {
+	const { data, error } = await supabase.from('bookings').update(obj).eq('id', bookingId).select().single();
+
+	if (error) {
+		console.log(error);
+		throw new Error('Bookins could not be updated.');
 	}
 
 	return data;

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { Media } from './Breakpoints';
 
 export const GlobalStyles = createGlobalStyle`
 :root {
