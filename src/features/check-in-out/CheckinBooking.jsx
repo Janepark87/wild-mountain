@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking } from '../../hooks/useBooking';
 import { useGoback } from '../../hooks/useGoback';
-import { useUpdatingCheckin } from '../../hooks/useCheckin';
+import { useUpdatingCheckin } from '../../hooks/useCheckBooking';
 import { useSettingQuery } from '../../hooks/useSetting';
 import { formatCurrency } from '../../utils/helpers';
 import Row from '../../components/Row';

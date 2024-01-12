@@ -1,11 +1,12 @@
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEllipsisVertical, HiEye } from 'react-icons/hi2';
 import { format, isToday } from 'date-fns';
+import { useUpdatingCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
 import EllipsisDropdown from '../../components/EllipsisDropdown';
-import { HiArrowDownOnSquare, HiEllipsisVertical, HiEye } from 'react-icons/hi2';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);
@@ -36,6 +37,7 @@ const Amount = styled.div`
 
 export default function BookingRow({ booking }) {
 	const navigate = useNavigate();
+	const { updateCheckoutMutate, isCheckoutUpdating } = useUpdatingCheckout();
 
 	const {
 		id: bookingId,
@@ -103,6 +105,12 @@ export default function BookingRow({ booking }) {
 					{status === 'unconfirmed' && (
 						<EllipsisDropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
 							Check in
+						</EllipsisDropdown.Item>
+					)}
+
+					{status === 'checked-in' && (
+						<EllipsisDropdown.Item icon={<HiArrowUpOnSquare />} onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
+							Check out
 						</EllipsisDropdown.Item>
 					)}
 				</EllipsisDropdown.Menu>

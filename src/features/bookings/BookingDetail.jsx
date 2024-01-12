@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking } from '../../hooks/useBooking';
+import { useUpdatingCheckout } from '../../hooks/useCheckBooking';
 import { useGoback } from '../../hooks/useGoback';
 import Row from '../../components/Row';
 import Heading from '../../components/Heading';
@@ -19,9 +20,10 @@ const HeadingGroup = styled.div`
 
 export default function BookingDetail() {
 	const navigate = useNavigate();
-	const goback = useGoback();
 	const { booking, isBookingLoading } = useBooking();
 	const { id: bookingId, status } = booking;
+	const { updateCheckoutMutate, isCheckoutUpdating } = useUpdatingCheckout();
+	const goback = useGoback();
 
 	const statusBadgeType = {
 		unconfirmed: 'blue',
@@ -46,6 +48,13 @@ export default function BookingDetail() {
 
 			<ButtonGroup>
 				{status === 'unconfirmed' && <Button onClick={() => navigate(`/checkin/${bookingId}`)}>Check in</Button>}
+
+				{status === 'checked-in' && (
+					<Button onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
+						Check out
+					</Button>
+				)}
+
 				<Button variation="secondary" onClick={goback}>
 					Back
 				</Button>
