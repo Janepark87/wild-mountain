@@ -59,9 +59,6 @@ export default function BookingRow({ booking }) {
 		false: 'grey',
 	};
 
-	console.log(booking);
-	console.log(statusBadgeType[isPaid]);
-
 	return (
 		<Table.Row role="row">
 			<Cabin>{cabinName}</Cabin>
