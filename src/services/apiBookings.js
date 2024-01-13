@@ -37,7 +37,7 @@ export async function getBookings({ filters, sortBy, page }) {
 }
 
 export async function getBooking(bookingId) {
-	const { data, error } = await supabase.from('bookings').select('*, cabins(*), guests(*)').eq('id', bookingId).single();
+	const { data, error } = await supabase.from('bookings').select('*, cabins(*), guests(*)').eq('id', bookingId).maybeSingle();
 
 	if (error) {
 		console.log(error);
@@ -53,6 +53,17 @@ export async function updateBooking(bookingId, obj) {
 	if (error) {
 		console.log(error);
 		throw new Error('Bookins could not be updated.');
+	}
+
+	return data;
+}
+
+export async function deleteBooking(bookingId) {
+	const { data, error } = await supabase.from('bookings').delete().eq('id', bookingId);
+
+	if (error) {
+		console.error(error);
+		throw new Error('Booking could not be deleted.');
 	}
 
 	return data;

@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEllipsisVertical, HiEye } from 'react-icons/hi2';
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEllipsisVertical, HiEye, HiTrash } from 'react-icons/hi2';
 import { format, isToday } from 'date-fns';
 import { useUpdatingCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
 import EllipsisDropdown from '../../components/EllipsisDropdown';
+import { useDeleteBooking } from '../../hooks/useBooking';
+import Modal from '../../components/Modal';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);
@@ -38,6 +41,7 @@ const Amount = styled.div`
 export default function BookingRow({ booking }) {
 	const navigate = useNavigate();
 	const { updateCheckoutMutate, isCheckoutUpdating } = useUpdatingCheckout();
+	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 
 	const {
 		id: bookingId,
@@ -93,27 +97,39 @@ export default function BookingRow({ booking }) {
 			<Badge type={statusBadgeType[isPaid]}>{isPaid ? 'Paid' : 'Not yet'}</Badge>
 
 			<EllipsisDropdown>
-				<EllipsisDropdown.Toggle id={bookingId}>
-					<HiEllipsisVertical />
-				</EllipsisDropdown.Toggle>
+				<Modal>
+					<EllipsisDropdown.Toggle id={bookingId}>
+						<HiEllipsisVertical />
+					</EllipsisDropdown.Toggle>
 
-				<EllipsisDropdown.Menu id={bookingId}>
-					<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
-						See details
-					</EllipsisDropdown.Item>
-
-					{status === 'unconfirmed' && (
-						<EllipsisDropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
-							Check in
+					<EllipsisDropdown.Menu id={bookingId}>
+						<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
+							See details
 						</EllipsisDropdown.Item>
-					)}
 
-					{status === 'checked-in' && (
-						<EllipsisDropdown.Item icon={<HiArrowUpOnSquare />} onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
-							Check out
-						</EllipsisDropdown.Item>
-					)}
-				</EllipsisDropdown.Menu>
+						{status === 'unconfirmed' && (
+							<EllipsisDropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
+								Check in
+							</EllipsisDropdown.Item>
+						)}
+
+						{status === 'checked-in' && (
+							<EllipsisDropdown.Item icon={<HiArrowUpOnSquare />} onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
+								Check out
+							</EllipsisDropdown.Item>
+						)}
+
+						<Modal.Trigger type="booking-delete-confirmation">
+							<EllipsisDropdown.Item icon={<HiTrash />} onClick={() => deleteBookingMutate(bookingId)} disabled={isBookingDeleting}>
+								Delete
+							</EllipsisDropdown.Item>
+						</Modal.Trigger>
+					</EllipsisDropdown.Menu>
+
+					<Modal.Window type="booking-delete-confirmation">
+						<ConfirmDelete resource={`Booking #${bookingId}`} disabled={isBookingDeleting} onConfirm={() => deleteBookingMutate(bookingId)} />
+					</Modal.Window>
+				</Modal>
 			</EllipsisDropdown>
 		</Table.Row>
 	);
