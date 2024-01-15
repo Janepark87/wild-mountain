@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 const rotate = keyframes`
   to {
@@ -6,7 +7,7 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled.div`
+const Loader = styled.div`
 	width: 6.4rem;
 	margin: 4.8rem auto;
 	aspect-ratio: 1;
@@ -16,4 +17,11 @@ const Spinner = styled.div`
 	animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default Spinner;
+const LoaderMini = styled(BiLoaderAlt)`
+	width: 2.4rem;
+	animation: ${rotate} 1.5s infinite linear;
+`;
+
+export default function Spinner({ size = '' }) {
+	return <>{size === 'mini' ? <LoaderMini /> : <Loader />}</>;
+}

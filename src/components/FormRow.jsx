@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledFormRow = styled.div`
 	display: grid;
 	align-items: center;
-	grid-template-columns: 24rem repeat(2, 1fr);
-	gap: 2.4rem;
+	grid-template-columns: ${(props) => (props.orientation === 'vertical' ? '1fr' : '24rem repeat(2, 1fr)')};
+	gap: ${(props) => (props.orientation === 'vertical' ? '0.8rem' : '2.4rem')};
 	padding: 1.2rem 0;
 
 	&:first-child {
@@ -19,11 +19,16 @@ const StyledFormRow = styled.div`
 		border-bottom: ${(props) => (props.orientation === 'vertical' ? 'none' : '1px solid var(--color-grey-100)')};
 	}
 
-	&:has(button) {
-		display: flex;
-		justify-content: flex-end;
-		gap: 1.2rem;
-	}
+	/* Special treatment if the row contains buttons, and if it's NOT a vertical row */
+	${(props) =>
+		props.orientation !== 'vertical' &&
+		css`
+			&:has(button) {
+				display: flex;
+				justify-content: flex-end;
+				gap: 1.2rem;
+			}
+		`}
 `;
 
 const Label = styled.label`
@@ -41,9 +46,9 @@ const PreviewImg = styled.img`
 	width: 100%;
 `;
 
-export default function FormRow({ label, error, children, updateMode, updateValues }) {
+export default function FormRow({ label, error, children, updateMode, updateValues, orientation }) {
 	return (
-		<StyledFormRow>
+		<StyledFormRow orientation={orientation}>
 			{label && <Label htmlFor={children.props.id}>{label}</Label>}
 			{children}
 			{error && <FormError>{error}</FormError>}

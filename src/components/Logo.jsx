@@ -11,7 +11,7 @@ const Img = styled.img`
 `;
 
 const StyledSpan = styled.span`
-	display: inline-block;
+	display: block;
 	font-size: 1.6rem;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
