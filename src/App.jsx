@@ -10,12 +10,18 @@ import Account from './pages/Account';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Checkin from './pages/Checkin';
+import ProtectedRoute from './layouts/ProtectedRoute';
 
 export default function App() {
 	return (
 		<BrowserRouter basename={import.meta.env.DEV ? '/' : '/the-nature-oasis/'}>
 			<Routes>
-				<Route element={<AppLayout />}>
+				<Route
+					element={
+						<ProtectedRoute>
+							<AppLayout />
+						</ProtectedRoute>
+					}>
 					<Route index element={<Navigate to="dashboard" replace />} />
 					<Route path="dashboard" element={<Dashboard />} />
 					<Route path="bookings" element={<Bookings />} />

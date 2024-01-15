@@ -1,15 +1,12 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useUser } from '../hooks/useAuth';
 import Logo from '../components/Logo';
 import Heading from '../components/Heading';
 import LoginForm from '../features/Authentication/LoginForm';
-
-const LoginLayout = styled.main`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	background-color: var(--color-grey-50);
-`;
+import LoginLayout from '../layouts/LoginLayout';
+import Spinner from '../components/Spinner';
 
 const InnerWrap = styled.div`
 	display: flex;
@@ -20,6 +17,20 @@ const InnerWrap = styled.div`
 `;
 
 export default function Login() {
+	const navigate = useNavigate();
+	const { isUserLoading, isAuthenticated } = useUser();
+
+	useEffect(() => {
+		if (isAuthenticated && !isUserLoading) navigate('/');
+	}, [isAuthenticated, isUserLoading, navigate]);
+
+	if (isUserLoading)
+		return (
+			<LoginLayout>
+				<Spinner />;
+			</LoginLayout>
+		);
+
 	return (
 		<LoginLayout>
 			<InnerWrap>

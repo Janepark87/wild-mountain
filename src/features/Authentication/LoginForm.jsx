@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { useLogin } from '../../hooks/useAuth';
 import Form from '../../components/Form';
 import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { useLogin } from '../../hooks/useAuth';
 import Spinner from '../../components/Spinner';
 
 export default function LoginForm() {
@@ -15,7 +15,15 @@ export default function LoginForm() {
 		e.preventDefault();
 
 		if (!email || !password) return;
-		loginMutate({ email, password });
+		loginMutate(
+			{ email, password },
+			{
+				onError: () => {
+					setEmail('');
+					setPassword('');
+				},
+			}
+		);
 	};
 
 	return (
