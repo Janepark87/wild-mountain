@@ -26,7 +26,7 @@ const Container = styled.div`
 	${(props) =>
 		props.type === 'default' &&
 		css`
-			${Media.lg`
+			${Media.md`
 				${(props) => sizes[props.size]}
 			`}
 		`}

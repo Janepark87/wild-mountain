@@ -13,6 +13,7 @@ const StyledSidebar = styled.aside`
 	border-right: 1px solid var(--color-grey-100);
 	overflow-y: auto;
 `;
+
 export default function Sidebar() {
 	return (
 		<StyledSidebar>
