@@ -1,7 +1,25 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { getCurrentUser, login, logout } from '../services/apiAuth';
+import { getCurrentUser, login, logout, signup } from '../services/apiAuth';
+
+export function useSingup() {
+	const navigate = useNavigate();
+
+	const { mutate: signupMutate, isPending: isSignupLoading } = useMutation({
+		mutationFn: ({ fullname, email, password }) => signup({ fullname, email, password }),
+		onSuccess: () => {
+			toast.success("Account successfully created! Please verify the new account from the user's email address.");
+			navigate('/login', { replace: true });
+		},
+		onError: (err) => {
+			console.log(err.message);
+			toast.success('You are unable to create an account at the moment!');
+		},
+	});
+
+	return { signupMutate, isSignupLoading };
+}
 
 export function useLogin() {
 	const queryClient = useQueryClient();
@@ -12,8 +30,8 @@ export function useLogin() {
 		onSuccess: (user) => {
 			// retrieve the user from the cache to avoid unnecessary data fetching
 			queryClient.setQueryData(['user'], user.user);
-			navigate('/dashboard', { replace: true });
 			toast.success('You have Succesfully logged in!');
+			navigate('/dashboard', { replace: true });
 		},
 		onError: (err) => {
 			console.log(err.message);
