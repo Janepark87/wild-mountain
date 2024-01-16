@@ -102,22 +102,14 @@ button:disabled:hover
 select:disabled,
 input:disabled,
 textarea:disabled {
-  background-color: var(--color-grey-200) !important;
-  color: var(--color-grey-500) !important;
+  color: var(--color-grey-400) !important;
+  background-color: var(--color-grey-100) !important;
 }
 
-/* input:focus,
-button:focus,
-textarea:focus,
-select:focus {
-  outline: 1px solid var(--color-brand-500);
-  outline-offset: -1px;
-} */
-
-/* Parent selector, finally 😃 */
-button:has(svg) {
+/* Parent selector: has only an SVG as child*/
+/* button:has(> svg:first-child) {
   line-height: 0;
-}
+} */
 
 a {
   color: inherit;

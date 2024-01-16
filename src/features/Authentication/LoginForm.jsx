@@ -5,6 +5,7 @@ import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
+import { HiArrowRightOnRectangle } from 'react-icons/hi2';
 
 export default function LoginForm() {
 	const [email, setEmail] = useState('web.jpark@gmail.com');
@@ -43,14 +44,7 @@ export default function LoginForm() {
 			</FormRow>
 			<FormRow orientation="vertical">
 				<Button size="lg" disabled={isLoginLoading}>
-					{!isLoginLoading ? (
-						'Log in'
-					) : (
-						<em>
-							Loding...
-							<Spinner size="mini" />
-						</em>
-					)}
+					Log in {isLoginLoading && <Spinner size="mini" />}
 				</Button>
 			</FormRow>
 		</Form>

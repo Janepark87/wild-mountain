@@ -58,6 +58,7 @@ const variations = {
 		&:hover,
 		&:active {
 			color: var(--color-brand-700);
+			background-color: var(--color-brand-50);
 		}
 	`,
 };
