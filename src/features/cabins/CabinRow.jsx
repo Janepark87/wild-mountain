@@ -9,9 +9,9 @@ import ConfirmDelete from '../../components/ConfirmDelete';
 import EllipsisDropdown from '../../components/EllipsisDropdown';
 
 const Img = styled.img`
-	display: block;
 	width: 100%;
-	max-width: 9rem;
+	max-width: 7rem;
+	aspect-ratio: 1;
 	object-fit: cover;
 	border-radius: var(--border-radius-sm);
 `;

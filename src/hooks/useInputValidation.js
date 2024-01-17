@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function useInputValidation(initialValues) {
-	const [btnDisable, setBtnDisable] = useState(true);
+	const [disabled, setDisabled] = useState(true);
 
 	const handleInputValidation = (values) => {
 		// if there is at least one field change, then return true
@@ -10,8 +10,8 @@ export default function useInputValidation(initialValues) {
 			return currentValue !== Number(value) && currentValue !== value;
 		});
 
-		setBtnDisable(!isAnyFieldDiff);
+		setDisabled(!isAnyFieldDiff);
 	};
 
-	return { btnDisable, setBtnDisable, handleInputValidation };
+	return { disabled, setDisabled, handleInputValidation };
 }

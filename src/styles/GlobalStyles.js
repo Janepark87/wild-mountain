@@ -59,42 +59,42 @@ export const GlobalStyles = createGlobalStyle`
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 
-  /* Creating animations for dark mode */
-  transition: background-color 0.3s, border 0.3s;
+	/* Creating animations for dark mode */
+	transition: background-color 0.3s, border 0.3s;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  color: var(--color-grey-700);
+	font-family: "Poppins", sans-serif;
+	color: var(--color-grey-700);
 
-  transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
-  line-height: 1.5;
-  font-size: 1.6rem;
+	transition: color 0.3s, background-color 0.3s;
+	min-height: 100vh;
+	line-height: 1.5;
+	font-size: 1.6rem;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
-  color: inherit;
+	font: inherit;
+	color: inherit;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 *:disabled {
-  cursor: not-allowed;
+  	cursor: not-allowed;
 }
 
 button:disabled, 
@@ -102,8 +102,8 @@ button:disabled:hover
 select:disabled,
 input:disabled,
 textarea:disabled {
-  color: var(--color-grey-400) !important;
-  background-color: var(--color-grey-100) !important;
+	color: var(--color-grey-400) !important;
+	background-color: var(--color-grey-100) !important;
 }
 
 /* Parent selector: has only an SVG as child*/
@@ -112,12 +112,12 @@ textarea:disabled {
 } */
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 ul {
-  list-style: none;
+  	list-style: none;
 }
 
 p,
@@ -127,19 +127,34 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
-  hyphens: auto;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 img {
-  max-width: 100%;
+	max-width: 100%;
 
-  /* For dark mode */
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+	/* For dark mode */
+	filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
 /* Utilities */
 .text-center{
-  text-align: center;
+  	text-align: center;
+}
+
+/* custom */
+input#avatar{
+  & + div > img{
+    width: 3.75rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+
+	& + svg{
+    justify-self: center;
+    color: var(--color-grey-400);
+    font-size: 2rem;
+  }
 }
 `;

@@ -5,11 +5,10 @@ import FormRow from '../../components/FormRow';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
-import { HiArrowRightOnRectangle } from 'react-icons/hi2';
 
 export default function LoginForm() {
-	const [email, setEmail] = useState('web.jpark@gmail.com');
-	const [password, setPassword] = useState('green2024');
+	const [email, setEmail] = useState(import.meta.env.VITE_LOGIN_EMAIL);
+	const [password, setPassword] = useState(import.meta.env.VITE_LOGIN_PW);
 	const { loginMutate, isLoginLoading } = useLogin();
 
 	const handleSubmit = (e) => {

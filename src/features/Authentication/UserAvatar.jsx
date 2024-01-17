@@ -17,7 +17,7 @@ const Avatar = styled.img`
 	aspect-ratio: 1;
 	object-fit: cover;
 	border-radius: 50%;
-	outline: 2px solid var(--color-grey-100);
+	outline: 1px solid var(--color-grey-50);
 
 	${Media.sm`
         display: none;

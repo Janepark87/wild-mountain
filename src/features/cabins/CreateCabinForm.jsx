@@ -7,12 +7,15 @@ import FileInput from '../../components/FileInput';
 import Button from '../../components/Button';
 import { useCreateUpdateCabin } from '../../hooks/useCabin';
 import useInputValidation from '../../hooks/useInputValidation';
+import { useState } from 'react';
 
 export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 	const { id: updateId, ...updateValues } = updateCabin;
 	const updateMode = Boolean(updateId);
 	const { careateUpdateCabinMutate, isCabinCreatingUpdating } = useCreateUpdateCabin(updateMode);
-	const { btnDisable, setBtnDisable, handleInputValidation } = useInputValidation(updateCabin);
+	const { disabled: btnDisable, setDisabled: setBtnDisable, handleInputValidation } = useInputValidation(updateCabin);
+
+	const [previewCabinImage, setPreviewCabinImage] = useState(updateValues.image);
 
 	const {
 		register,
@@ -25,6 +28,12 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 	});
 
 	const inputValidation = () => handleInputValidation(getValues());
+	const previewImage =
+		!updateMode || updateValues.image !== getValues().image
+			? previewCabinImage instanceof Blob
+				? URL.createObjectURL(previewCabinImage)
+				: null // Handle the case where previewCabinImage is not a Blob
+			: updateValues.image;
 
 	const onSubmit = (data) => {
 		let image = typeof data.image === 'object' && data.image?.length > 0 ? data.image[0] : updateCabin.image;
@@ -100,17 +109,34 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 					{...register('description', { onChange: inputValidation, required: 'A brief description is required.' })}
 				/>
 			</FormRow>
-			<FormRow label="Cabin photo" updateMode={updateMode} updateValues={updateValues} error={errors?.image?.message}>
+			<FormRow
+				label="Cabin photo"
+				defaultValue={updateMode && updateValues.image}
+				updateValues={{ image: previewImage, name: updateValues.name }}
+				error={errors?.image?.message}>
 				<FileInput
 					id="image"
 					accept="image/*"
-					{...register('image', { onChange: inputValidation, required: updateMode ? false : 'Upload an image for your cabin.' })}
+					{...register('image', {
+						onChange: (e) => {
+							setPreviewCabinImage(e.target.files[0]);
+							inputValidation();
+						},
+						required: updateMode ? false : 'Upload an image for your cabin.',
+					})}
 					disabled={isCabinCreatingUpdating}
 				/>
 			</FormRow>
 
 			<FormRow>
-				<Button type="reset" variation="secondary" disabled={updateMode ? !btnDisable : btnDisable}>
+				<Button
+					type="reset"
+					variation="secondary"
+					disabled={isCabinCreatingUpdating}
+					onClick={() => {
+						reset();
+						!updateMode && setPreviewCabinImage(null);
+					}}>
 					Clear
 				</Button>
 				<Button disabled={btnDisable}>{updateMode ? 'Edit cabin' : 'Create a new cabin'}</Button>

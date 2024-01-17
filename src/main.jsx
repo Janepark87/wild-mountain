@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 				containerStyle={{ margin: '8px' }}
 				toastOptions={{
 					suceess: { duration: 3000 },
-					error: { duration: 5000 },
+					error: { duration: 4000 },
 					style: {
 						fontSize: '16px',
 						maxWidth: '500px',

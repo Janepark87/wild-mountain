@@ -1,6 +1,8 @@
 import Container from '../components/Container';
 import Heading from '../components/Heading';
 import Row from '../components/Row';
+import UpdateUserDataForm from '../features/Authentication/UpdateUserDataForm';
+import UpdateUserPasswordForm from '../features/Authentication/UpdateUserPasswordForm';
 
 export default function Account() {
 	return (
@@ -9,12 +11,12 @@ export default function Account() {
 
 			<Row>
 				<Heading as="h3">Update user data</Heading>
-				<p>Update user data form</p>
+				<UpdateUserDataForm />
 			</Row>
 
 			<Row>
 				<Heading as="h3">Update password</Heading>
-				<p>Update user password form</p>
+				<UpdateUserPasswordForm />
 			</Row>
 		</Container>
 	);

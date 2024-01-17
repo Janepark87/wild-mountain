@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Spinner from '../components/Spinner';
 
 const StyledFormRow = styled.div`
 	display: grid;
@@ -36,23 +37,38 @@ const Label = styled.label`
 `;
 
 const FormError = styled.span`
-	font-size: 1.4rem;
 	color: var(--color-red-700);
+	font-size: 1.4rem;
+	line-height: 1;
 `;
 
-const PreviewImg = styled.img`
-	object-fit: cover;
-	height: 15rem;
+const PreviewImgWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 `;
 
-export default function FormRow({ label, error, children, updateMode, updateValues, orientation }) {
+const PreviewImg = styled.img`
+	width: 100%;
+	max-width: 18rem;
+	aspect-ratio: 4/3;
+	object-fit: cover;
+	border-radius: var(--border-radius-sm);
+`;
+
+export default function FormRow({ label, error, children, updateValues = {}, previewLoading = false, orientation }) {
 	return (
 		<StyledFormRow orientation={orientation}>
 			{label && <Label htmlFor={children.props.id}>{label}</Label>}
 			{children}
 			{error && <FormError>{error}</FormError>}
-			{updateMode && updateValues.image && <PreviewImg src={updateValues.image} alt={updateValues.name} />}
+			{!previewLoading && updateValues.image && (
+				<PreviewImgWrapper>
+					<PreviewImg src={updateValues.image} alt={updateValues.name} />
+				</PreviewImgWrapper>
+			)}
+			{previewLoading && updateValues.image && <Spinner size="mini" />}
 		</StyledFormRow>
 	);
 }
