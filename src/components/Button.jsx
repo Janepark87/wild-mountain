@@ -60,6 +60,11 @@ const variations = {
 			color: var(--color-brand-700);
 			background-color: var(--color-brand-50);
 		}
+
+		.dark-mode &:hover,
+		.dark-mode &:active {
+			background-color: var(--color-grey-50);
+		}
 	`,
 };
 

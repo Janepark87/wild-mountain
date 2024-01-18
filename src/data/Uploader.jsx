@@ -1,18 +1,24 @@
 import { useState } from 'react';
-import { isFuture, isPast, isToday } from 'date-fns';
 import supabase from '../services/supabase';
-import { subtractDates } from '../utils/helpers';
+import styled from 'styled-components';
+import { isFuture, isPast, isToday } from 'date-fns';
 import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
+import { subtractDates } from '../utils/helpers';
 import Button from '../components/Button';
+import Heading from '../components/Heading';
 
-// const originalSettings = {
-//   minBookingLength: 3,
-//   maxBookingLength: 30,
-//   maxGuestsPerBooking: 10,
-//   breakfastPrice: 15,
-// };
+const StylesUploader = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: auto;
+	padding: 8px;
+	background-color: var(--color-indigo-100);
+	border-radius: var(--border-radius-sm);
+	text-align: center;
+`;
 
 async function deleteGuests() {
 	const { error } = await supabase.from('guests').delete().gt('id', 0);
@@ -107,18 +113,8 @@ export function Uploader() {
 	}
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				gap: '1rem',
-				marginTop: 'auto',
-				backgroundColor: '#e0e7ff',
-				padding: '8px',
-				borderRadius: '5px',
-				textAlign: 'center',
-			}}>
-			<h3>DEV AREA</h3>
+		<StylesUploader>
+			<Heading as="h4">Dev Area</Heading>
 
 			{/* Only run this only once! Cabin images need to be uploaded manually */}
 			<Button onClick={uploadAll} disabled={isLoading}>
@@ -129,6 +125,6 @@ export function Uploader() {
 			<Button onClick={uploadBookings} disabled={isLoading}>
 				Upload CURRENT bookings
 			</Button>
-		</div>
+		</StylesUploader>
 	);
 }
