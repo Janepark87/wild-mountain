@@ -6,7 +6,7 @@ import DashboardFilter from '../features/dashboard/DashboardFilter';
 
 export default function Dashboard() {
 	return (
-		<Container>
+		<Container type="table-container" size="xl">
 			<Row type="horizontal">
 				<Heading as="h1">Dashboard</Heading>
 				<DashboardFilter />

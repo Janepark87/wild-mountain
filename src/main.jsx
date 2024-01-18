@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<DarkModeProvider>
 			<QueryClientProvider client={queryClient}>
-				<ReactQueryDevtools initialIsOpen={false} />
+				{import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
 				<GlobalStyles />
 				<App />
 				<Toaster

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useRecentBookings, useRecentStays } from '../../hooks/useDashboard';
 import Spinner from '../../components/Spinner';
+import Statistics from './Statistics';
+import { useCabinQuery } from '../../hooks/useCabin';
 
 const StyledDashboardContent = styled.div`
 	display: grid;
@@ -11,9 +13,14 @@ const StyledDashboardContent = styled.div`
 
 export default function DashboardContent() {
 	const { bookings, isBookingsLoading } = useRecentBookings();
-	const { stays, confirmedStays, isStaysLoading } = useRecentStays();
+	const { confirmedStays, numDays, isStaysLoading } = useRecentStays();
+	const { cabins, isCabinsLoading } = useCabinQuery();
 
-	if (isBookingsLoading || isStaysLoading) return <Spinner />;
+	if (isBookingsLoading || isStaysLoading || isCabinsLoading) return <Spinner />;
 
-	return <StyledDashboardContent>Content</StyledDashboardContent>;
+	return (
+		<StyledDashboardContent>
+			<Statistics bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} totalCabins={cabins.length} />
+		</StyledDashboardContent>
+	);
 }

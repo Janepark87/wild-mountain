@@ -29,5 +29,5 @@ export function useRecentStays() {
 	// it's a list of current or completed stays, we should extract info only for customers who have checked in or checked out.
 	const confirmedStays = stays?.filter((stay) => stay.status === 'checked-in' || stay.status === 'checked-out');
 
-	return { stays, confirmedStays, isStaysLoading };
+	return { stays, confirmedStays, numDays, isStaysLoading };
 }
