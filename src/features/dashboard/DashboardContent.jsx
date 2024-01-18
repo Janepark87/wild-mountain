@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useRecentBookings, useRecentStays } from '../../hooks/useDashboard';
+import Spinner from '../../components/Spinner';
 
 const StyledDashboardContent = styled.div`
 	display: grid;
@@ -8,5 +10,10 @@ const StyledDashboardContent = styled.div`
 `;
 
 export default function DashboardContent() {
+	const { bookings, isBookingsLoading } = useRecentBookings();
+	const { stays, confirmedStays, isStaysLoading } = useRecentStays();
+
+	if (isBookingsLoading || isStaysLoading) return <Spinner />;
+
 	return <StyledDashboardContent>Content</StyledDashboardContent>;
 }
