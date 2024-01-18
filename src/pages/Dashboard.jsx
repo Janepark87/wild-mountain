@@ -1,14 +1,18 @@
 import Container from '../components/Container';
 import Heading from '../components/Heading';
 import Row from '../components/Row';
+import DashboardContent from '../features/dashboard/DashboardContent';
+import DashboardFilter from '../features/dashboard/DashboardFilter';
 
 export default function Dashboard() {
 	return (
 		<Container>
 			<Row type="horizontal">
 				<Heading as="h1">Dashboard</Heading>
-				<p>dashboard page..</p>
+				<DashboardFilter />
 			</Row>
+
+			<DashboardContent />
 		</Container>
 	);
 }
