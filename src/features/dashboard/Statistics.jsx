@@ -10,8 +10,6 @@ export default function Statistics({ bookings, confirmedStays, numDays, totalCab
 	const checkinTotalNights = confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0);
 	const occupancyRate = Math.round((checkinTotalNights / (numDays * totalCabins)) * 100);
 
-	console.log(checkinTotalNights);
-
 	return (
 		<>
 			<Statistic title="Bookings" color="blue" icon={<HiOutlineBriefcase />} value={numBookings} />
