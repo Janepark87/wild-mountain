@@ -1,3 +1,4 @@
+/*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/
 export const lineChartColorScheme = (isDarkMode) => {
 	return isDarkMode
 		? {
