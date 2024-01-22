@@ -95,3 +95,19 @@ export async function getStaysAfterDate(date) {
 
 	return data;
 }
+
+// Activity means that there is a check in or a check out today
+export async function getStaysTodayCheckInOutActivity() {
+	const { data, error } = await supabase
+		.from('bookings')
+		.select('*, guests(fullName, nationality, countryFlag)')
+		.or(`and(status.eq.unconfirmed, startDate.eq.${getToday()}), and(status.eq.checked-in, endDate.eq.${getToday()})`)
+		.order('created_at');
+
+	if (error) {
+		console.log(error);
+		throw new Error('Bookings could not get loaded.');
+	}
+
+	return data;
+}

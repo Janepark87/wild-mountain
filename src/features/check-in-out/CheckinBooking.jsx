@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking } from '../../hooks/useBooking';
 import { useGoback } from '../../hooks/useGoback';
-import { useUpdateCheckin } from '../../hooks/useCheckBooking';
+import { useCheckin } from '../../hooks/useCheckBooking';
 import { useSettingQuery } from '../../hooks/useSetting';
 import { formatCurrency } from '../../utils/helpers';
 import Row from '../../components/Row';
@@ -27,7 +27,7 @@ export default function CheckinBooking() {
 	const { booking, isBookingLoading } = useBooking();
 	const { settings, isSettingLoading } = useSettingQuery();
 	const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights } = booking;
-	const { updateCheckinMutate, isCheckinUpdating } = useUpdateCheckin();
+	const { updateCheckinMutate, isCheckinUpdating } = useCheckin();
 	const goback = useGoback();
 
 	useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking.isPaid]);

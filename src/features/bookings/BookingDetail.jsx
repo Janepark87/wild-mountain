@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking, useDeleteBooking } from '../../hooks/useBooking';
-import { useUpdatingCheckout } from '../../hooks/useCheckBooking';
 import { useGoback } from '../../hooks/useGoback';
 import Row from '../../components/Row';
 import Heading from '../../components/Heading';
@@ -13,6 +12,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import BookingDetailDataBlock from './BookingDetailDataBlock';
 import ConfirmDelete from '../../components/ConfirmDelete';
+import CheckoutButton from '../check-in-out/CheckOutButton';
 
 const HeadingGroup = styled.div`
 	display: flex;
@@ -24,7 +24,6 @@ export default function BookingDetail() {
 	const navigate = useNavigate();
 	const { booking, isBookingLoading } = useBooking();
 	const { id: bookingId, status } = booking;
-	const { updateCheckoutMutate, isCheckoutUpdating } = useUpdatingCheckout();
 	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 	const goback = useGoback();
 
@@ -70,11 +69,7 @@ export default function BookingDetail() {
 
 				{status === 'unconfirmed' && <Button onClick={() => navigate(`/checkin/${bookingId}`)}>Check in</Button>}
 
-				{status === 'checked-in' && (
-					<Button onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
-						Check out
-					</Button>
-				)}
+				{status === 'checked-in' && <CheckoutButton bookingId={bookingId} />}
 
 				<Button variation="secondary" onClick={goback}>
 					Back

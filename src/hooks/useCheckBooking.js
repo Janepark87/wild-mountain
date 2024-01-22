@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { updateBooking } from '../services/apiBookings';
+import { getStaysTodayCheckInOutActivity, updateBooking } from '../services/apiBookings';
 import { useNavigate } from 'react-router-dom';
 
-export const useUpdateCheckin = () => {
+export const useCheckin = () => {
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export const useUpdateCheckin = () => {
 			}),
 		onSuccess: (data) => {
 			toast.success(`Booking #${data.id} succesfully checked in.`);
-			queryClient.invalidateQueries({ queryKey: ['bookings'] });
+			queryClient.invalidateQueries({ active: true });
 			navigate('/');
 		},
 		onError: (err) => toast.error('There was an error while checking in: ' + err.message),
@@ -25,7 +25,7 @@ export const useUpdateCheckin = () => {
 	return { updateCheckinMutate, isCheckinUpdating };
 };
 
-export const useUpdatingCheckout = () => {
+export const useCheckout = () => {
 	const queryClient = useQueryClient();
 
 	const { mutate: updateCheckoutMutate, isPending: isCheckoutUpdating } = useMutation({
@@ -35,10 +35,19 @@ export const useUpdatingCheckout = () => {
 			}),
 		onSuccess: (data) => {
 			toast.success(`Booking #${data.id} succesfully checked out.`);
-			queryClient.invalidateQueries({ queryKey: ['bookings'] });
+			queryClient.invalidateQueries({ active: true });
 		},
 		onError: (err) => toast.error('There was an error while checking out: ' + err.message),
 	});
 
 	return { updateCheckoutMutate, isCheckoutUpdating };
 };
+
+export function useTodayCheckInOutActivity() {
+	const { data: todayActivities, isPending: isTodayStaysLoading } = useQuery({
+		queryFn: getStaysTodayCheckInOutActivity,
+		queryKey: ['today-check-in-out-activity'],
+	});
+
+	return { todayActivities, isTodayStaysLoading };
+}

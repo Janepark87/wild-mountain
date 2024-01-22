@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEllipsisVertical, HiEye, HiTrash } from 'react-icons/hi2';
 import { format, isToday } from 'date-fns';
-import { useUpdatingCheckout } from '../../hooks/useCheckBooking';
+import { useCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
@@ -40,12 +40,11 @@ const Amount = styled.div`
 
 export default function BookingRow({ booking }) {
 	const navigate = useNavigate();
-	const { updateCheckoutMutate, isCheckoutUpdating } = useUpdatingCheckout();
+	const { updateCheckoutMutate, isCheckoutUpdating } = useCheckout();
 	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 
 	const {
 		id: bookingId,
-		created_at,
 		startDate,
 		endDate,
 		numNights,
