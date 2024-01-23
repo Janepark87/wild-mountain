@@ -13,6 +13,7 @@ import Modal from '../../components/Modal';
 import BookingDetailDataBlock from './BookingDetailDataBlock';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import CheckoutButton from '../check-in-out/CheckOutButton';
+import Empty from '../../components/Empty';
 
 const HeadingGroup = styled.div`
 	display: flex;
@@ -23,17 +24,19 @@ const HeadingGroup = styled.div`
 export default function BookingDetail() {
 	const navigate = useNavigate();
 	const { booking, isBookingLoading } = useBooking();
-	const { id: bookingId, status } = booking;
 	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 	const goback = useGoback();
 
+	if (isBookingLoading) return <Spinner />;
+	if (!booking) return <Empty resource="booking" />;
+
+	const { id: bookingId, status } = booking;
 	const statusBadgeType = {
 		unconfirmed: 'blue',
 		'checked-in': 'green',
 		'checked-out': 'silver',
 	};
 
-	if (isBookingLoading) return <Spinner />;
 	return (
 		<>
 			<Row type="horizontal">

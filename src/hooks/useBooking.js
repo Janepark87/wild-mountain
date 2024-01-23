@@ -65,7 +65,7 @@ export function useBooking() {
 	const { bookingId } = useParams();
 
 	const {
-		data: booking = {},
+		data: booking,
 		isPending: isBookingLoading,
 		isError: isBookingError,
 	} = useQuery({
