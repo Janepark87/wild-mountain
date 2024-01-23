@@ -1,14 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Media } from '../../styles/Breakpoints';
 import { useUser } from '../../hooks/useAuth';
 
 const StyledUserAvatar = styled.div`
 	display: flex;
-	align-items: center;
-	gap: 1.2rem;
+	padding: 0 1.25rem;
 	color: var(--color-grey-600);
+	align-items: center;
 	font-size: 1.4rem;
 	font-weight: 500;
+	cursor: pointer;
+
+	> span {
+		margin-left: 1.25rem;
+
+		${Media.sm`
+			display: none;		
+		`}
+	}
 `;
 
 const Avatar = styled.img`
@@ -18,13 +28,10 @@ const Avatar = styled.img`
 	object-fit: cover;
 	border-radius: 50%;
 	outline: 1px solid var(--color-grey-50);
-
-	${Media.sm`
-        display: none;
-    `}
 `;
 
 export default function UserAvatar() {
+	const navigate = useNavigate();
 	const {
 		user: {
 			user_metadata: { fullname, avatar },
@@ -32,9 +39,9 @@ export default function UserAvatar() {
 	} = useUser();
 
 	return (
-		<StyledUserAvatar>
-			<Avatar src={avatar || 'default-user.jpg'} alt={`Avatar of ${fullname}`} />
-			<span>{fullname}</span>
+		<StyledUserAvatar onClick={() => navigate('/account')}>
+			<Avatar src={avatar || 'default-user.jpg'} alt={`Avatar${fullname ? ` of ${fullname}` : ''}`} />
+			{fullname && <span>{fullname}</span>}
 		</StyledUserAvatar>
 	);
 }

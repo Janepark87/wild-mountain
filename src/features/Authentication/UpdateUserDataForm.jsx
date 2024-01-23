@@ -14,24 +14,26 @@ export default function UpdateUserDataForm() {
 			user_metadata: { fullname: currentFullname, avatar: currentAvatar },
 		},
 	} = useUser();
-	const [fullname, setFullname] = useState(currentFullname);
+	const [fullname, setFullname] = useState(currentFullname || 'Unknown');
 	const [avatar, setAvatar] = useState(currentAvatar || 'default-user.jpg');
 	const [errorName, setErrorName] = useState('');
 	const { updateUserMutate, isUserUpdating } = useUpdateUser();
-	const previewAvatar = !avatar || avatar === currentAvatar ? currentAvatar : URL.createObjectURL(avatar);
+	const previewAvatar =
+		avatar === 'default-user.jpg' ? avatar : !avatar || avatar === currentAvatar ? currentAvatar ?? 'default-user.jpg' : URL.createObjectURL(avatar);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		// Validate name or avatar before submitting
 		const trimmedFullname = fullname.trim();
-		if (!trimmedFullname) return setErrorName('Full name cannot be empty');
+		if (!trimmedFullname || trimmedFullname === 'Unknown') return setErrorName('Please update your full name.');
 
 		// this checks for unchanged values and a null avatar
-		if (trimmedFullname === currentFullname && (!avatar || avatar === currentAvatar)) return toast.error('No changes to name or avatar. Please try again!');
+		if (trimmedFullname === currentFullname && (!avatar || avatar === currentAvatar || avatar === 'default-user.jpg'))
+			return toast.error('There are no changes. Please update your name or avatar.');
 
 		updateUserMutate(
-			{ fullname: trimmedFullname, avatar },
+			{ fullname: trimmedFullname, avatar: avatar === 'default-user.jpg' ? null : avatar },
 			{
 				onSuccess: () => {
 					setAvatar(null);
@@ -58,7 +60,7 @@ export default function UpdateUserDataForm() {
 				<Input
 					id="fullname"
 					type="text"
-					value={fullname}
+					defaultValue={fullname ? fullname : 'Unknown'}
 					onChange={(e) => {
 						setFullname(e.target.value);
 						setErrorName('');

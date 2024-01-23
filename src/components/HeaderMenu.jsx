@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiOutlineUser } from 'react-icons/hi2';
 import { Media } from '../styles/Breakpoints';
-import Button from './Button';
 import DarkModeToggle from './DarkModeToggle';
 import Logout from '../features/Authentication/Logout';
+import UserAvatar from '../features/Authentication/UserAvatar';
 
 const StyledHeaderMenu = styled.ul`
 	display: flex;
@@ -23,14 +21,10 @@ const StyledHeaderMenu = styled.ul`
 `;
 
 export default function HeaderMenu() {
-	const navigate = useNavigate();
-
 	return (
 		<StyledHeaderMenu>
 			<li>
-				<Button size="lg" variation="ghost" onClick={() => navigate('/account')}>
-					<HiOutlineUser />
-				</Button>
+				<UserAvatar />
 			</li>
 			<li>
 				<DarkModeToggle />
