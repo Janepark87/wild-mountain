@@ -1,8 +1,9 @@
 import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { HiEllipsisVertical } from 'react-icons/hi2';
 import { useClickAway } from '../hooks/useClickAway';
 
-const StyledEllipsisDropdownInner = styled.div`
+const Inner = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -69,17 +70,13 @@ const useDropdown = () => useContext(EllipsisDropdownContext);
 function EllipsisDropdown({ children }) {
 	const [openId, setOpenId] = useState('');
 
-	const openMenu = setOpenId;
+	const openMenu = (id) => setOpenId(id);
 	const closeMenu = () => setOpenId('');
 
-	return (
-		<EllipsisDropdownContext.Provider value={{ openId, openMenu, closeMenu }}>
-			<StyledEllipsisDropdownInner>{children}</StyledEllipsisDropdownInner>
-		</EllipsisDropdownContext.Provider>
-	);
+	return <EllipsisDropdownContext.Provider value={{ openId, openMenu, closeMenu }}>{children}</EllipsisDropdownContext.Provider>;
 }
 
-function Toggle({ id, children }) {
+function Toggle({ id }) {
 	const { openId, openMenu, closeMenu } = useDropdown();
 
 	const handleClick = (e) => {
@@ -87,7 +84,11 @@ function Toggle({ id, children }) {
 		openId === '' || openId !== id ? openMenu(id) : closeMenu();
 	};
 
-	return <StyledToggle onClick={handleClick}>{children}</StyledToggle>;
+	return (
+		<StyledToggle onClick={handleClick}>
+			<HiEllipsisVertical />
+		</StyledToggle>
+	);
 }
 
 function Menu({ id, children }) {
@@ -116,6 +117,7 @@ function Item({ children, icon, onClick }) {
 	);
 }
 
+EllipsisDropdown.Inner = Inner;
 EllipsisDropdown.Toggle = Toggle;
 EllipsisDropdown.Menu = Menu;
 EllipsisDropdown.Item = Item;

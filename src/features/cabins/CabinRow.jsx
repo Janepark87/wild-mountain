@@ -60,7 +60,7 @@ export default function CabinRow({ cabin }) {
 			<Price>{formatCurrency(regularPrice)}</Price>
 			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
-			<EllipsisDropdown>
+			<EllipsisDropdown.Inner>
 				<Modal>
 					<EllipsisDropdown.Toggle id={cabinId}>
 						<HiEllipsisVertical />
@@ -88,7 +88,7 @@ export default function CabinRow({ cabin }) {
 						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
 					</Modal.Window>
 				</Modal>
-			</EllipsisDropdown>
+			</EllipsisDropdown.Inner>
 		</Table.Row>
 	);
 }

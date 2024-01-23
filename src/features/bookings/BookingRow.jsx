@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEllipsisVertical, HiEye, HiTrash } from 'react-icons/hi2';
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye, HiTrash } from 'react-icons/hi2';
 import { format, isToday } from 'date-fns';
+import { useDeleteBooking } from '../../hooks/useBooking';
 import { useCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
+import EllipsisDropdown from '../../components/EllipsisDropdown';
 import Table from '../../components/Table';
 import Badge from '../../components/Badge';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
-import { useDeleteBooking } from '../../hooks/useBooking';
 import Modal from '../../components/Modal';
 import ConfirmDelete from '../../components/ConfirmDelete';
 
@@ -95,11 +95,9 @@ export default function BookingRow({ booking }) {
 
 			<Badge type={statusBadgeType[isPaid]}>{isPaid ? 'Paid' : 'Not yet'}</Badge>
 
-			<EllipsisDropdown>
+			<EllipsisDropdown.Inner>
 				<Modal>
-					<EllipsisDropdown.Toggle id={bookingId}>
-						<HiEllipsisVertical />
-					</EllipsisDropdown.Toggle>
+					<EllipsisDropdown.Toggle id={bookingId} />
 
 					<EllipsisDropdown.Menu id={bookingId}>
 						<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
@@ -129,7 +127,7 @@ export default function BookingRow({ booking }) {
 						<ConfirmDelete resource={`Booking #${bookingId}`} disabled={isBookingDeleting} onConfirm={() => deleteBookingMutate(bookingId)} />
 					</Modal.Window>
 				</Modal>
-			</EllipsisDropdown>
+			</EllipsisDropdown.Inner>
 		</Table.Row>
 	);
 }

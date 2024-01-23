@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function useClickAway(handlerFunction, listenerOption = true) {
+export function useClickAway(handlerFunction, listenCapturing = true) {
 	const ref = useRef();
 
 	useEffect(() => {
@@ -8,9 +8,9 @@ export function useClickAway(handlerFunction, listenerOption = true) {
 			if (ref.current && !ref.current?.contains(e.target)) handlerFunction();
 		};
 
-		document.addEventListener('click', handlerClickAway, listenerOption);
-		return () => document.removeEventListener('click', handlerClickAway, listenerOption);
-	}, [handlerFunction, listenerOption]);
+		document.addEventListener('click', handlerClickAway, listenCapturing);
+		return () => document.removeEventListener('click', handlerClickAway, listenCapturing);
+	}, [handlerFunction, listenCapturing]);
 
 	return ref;
 }
