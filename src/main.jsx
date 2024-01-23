@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import { ErrorBoundary } from 'react-error-boundary';
 import { GlobalStyles } from './styles/GlobalStyles.js';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { DarkModeProvider } from './context/DarkModeContext.jsx';
 import { Toaster } from 'react-hot-toast';
+import ErrorFallback from './components/ErrorFallback.jsx';
 
 const queryClient = new QueryClient();
 
@@ -15,7 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			<QueryClientProvider client={queryClient}>
 				{import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
 				<GlobalStyles />
-				<App />
+
+				<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => window.location.replace('/')}>
+					<App />
+				</ErrorBoundary>
+
 				<Toaster
 					position="top-right"
 					reverseOrder={true}
