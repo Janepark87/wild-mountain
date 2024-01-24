@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledLogo = styled.div`
 	text-align: center;
@@ -19,8 +20,8 @@ const StyledSpan = styled.span`
 
 export default function Logo() {
 	return (
-		<StyledLogo>
-			<Img src="/logo.png" alt="Logo" />
+		<StyledLogo as={Link} to="/">
+			<Img src="logo.png" alt="Logo" />
 			<StyledSpan>The Nature Oasis</StyledSpan>
 		</StyledLogo>
 	);

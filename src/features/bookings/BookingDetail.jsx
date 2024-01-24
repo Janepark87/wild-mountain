@@ -27,8 +27,8 @@ export default function BookingDetail() {
 	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 	const goback = useGoback();
 
-	if (isBookingLoading) return <Spinner />;
 	if (!booking) return <Empty resource="booking" />;
+	if (isBookingLoading) return <Spinner />;
 
 	const { id: bookingId, status } = booking;
 	const statusBadgeType = {

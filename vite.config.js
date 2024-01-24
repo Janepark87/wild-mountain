@@ -5,12 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ command }) => {
 	const config = {
 		plugins: [react()],
-		base: '/',
+		base: command === 'serve' ? '/' : '/the-nature-oasis/',
 	};
-
-	if (command !== 'serve') {
-		config.base = '/the-nature-oasis/';
-	}
 
 	return config;
 });

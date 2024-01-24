@@ -13,6 +13,7 @@ import ButtonGroup from '../../components/ButtonGroup';
 import Button from '../../components/Button';
 import BookingDetailDataBlock from '../../features/bookings/BookingDetailDataBlock';
 import Checkbox from '../../components/Checkbox';
+import Empty from '../../components/Empty';
 
 const Block = styled.div`
 	padding: 2.4rem 4rem;
@@ -26,14 +27,15 @@ export default function CheckinBooking() {
 	const [addBreakfast, setAddBreakfast] = useState(false);
 	const { booking, isBookingLoading } = useBooking();
 	const { settings, isSettingLoading } = useSettingQuery();
-	const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights } = booking;
 	const { updateCheckinMutate, isCheckinUpdating } = useCheckin();
 	const goback = useGoback();
 
-	useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking.isPaid]);
+	useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking?.isPaid]);
 
+	if (!booking) return <Empty resource="booking" />;
 	if (isBookingLoading || isSettingLoading) return <Spinner />;
 
+	const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights } = booking;
 	const optionalBreakfastPrice = settings.breakfastPrice * numNights * numGuests;
 	const totalPriceIncludingBreakfast = totalPrice + optionalBreakfastPrice;
 
