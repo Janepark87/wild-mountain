@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Spinner from '../components/Spinner';
+import Spinner from './Spinner';
 
 const StyledFormRow = styled.div`
 	display: grid;

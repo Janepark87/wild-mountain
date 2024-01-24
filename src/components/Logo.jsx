@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDarkMode } from '../context/DarkModeContext';
 
 const StyledLogo = styled.div`
 	text-align: center;
 `;
 
 const Img = styled.img`
-	width: auto;
-	height: 9.6rem;
+	width: 100%;
+	max-width: 13.5rem;
 	object-fit: cover;
 `;
 
@@ -19,10 +20,12 @@ const StyledSpan = styled.span`
 `;
 
 export default function Logo() {
+	const { isDarkMode } = useDarkMode();
+
 	return (
 		<StyledLogo as={Link} to="/">
-			<Img src="logo.png" alt="Logo" />
-			<StyledSpan>The Nature Oasis</StyledSpan>
+			<Img src={`/logo-${isDarkMode ? 'light' : 'dark'}.svg`} alt="Logo" />
+			<StyledSpan>Wild Mountain</StyledSpan>
 		</StyledLogo>
 	);
 }

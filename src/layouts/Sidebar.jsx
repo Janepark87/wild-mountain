@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Logo from '../components/Logo';
-import Navbar from './Navbar';
+import Logo from '../components/Logo.jsx';
+import Navbar from './Navbar.jsx';
 import { Uploader } from '../data/Uploader.jsx';
 
 const StyledSidebar = styled.aside`

@@ -14,7 +14,7 @@ import ProtectedRoute from './layouts/ProtectedRoute';
 
 export default function App() {
 	return (
-		<BrowserRouter basename={import.meta.env.DEV ? '/' : '/the-nature-oasis/'}>
+		<BrowserRouter basename={import.meta.env.DEV ? '/' : '/wild-mountain/'}>
 			<Routes>
 				<Route
 					element={

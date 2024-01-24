@@ -11,7 +11,7 @@ import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
 import ButtonGroup from '../../components/ButtonGroup';
 import Button from '../../components/Button';
-import BookingDetailDataBlock from '../../features/bookings/BookingDetailDataBlock';
+import BookingDetailDataBlock from '../bookings/BookingDetailDataBlock';
 import Checkbox from '../../components/Checkbox';
 import Empty from '../../components/Empty';
 
