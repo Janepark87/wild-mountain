@@ -24,7 +24,7 @@ export default function Logo() {
 
 	return (
 		<StyledLogo as={Link} to="/">
-			<Img src={`../logo-${isDarkMode ? 'light' : 'dark'}.svg`} alt="Logo" />
+			<Img src={`${import.meta.env.DEV ? '/' : ''}logo-${isDarkMode ? 'light' : 'dark'}.svg`} alt="Logo" />
 			<StyledSpan>Wild Mountain</StyledSpan>
 		</StyledLogo>
 	);
