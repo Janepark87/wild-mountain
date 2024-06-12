@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import Logo from '../components/Logo.jsx';
-import Navbar from './Navbar.jsx';
 import { Uploader } from '../data/Uploader.jsx';
+import { Logo, Navbar } from './index.js';
 
 const StyledSidebar = styled.aside`
 	display: flex;

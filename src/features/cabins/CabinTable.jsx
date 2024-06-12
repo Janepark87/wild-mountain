@@ -14,12 +14,7 @@ export default function CabinTable() {
 
 	// filter by discount
 	const filterDiscount = searchParams.get('discount') || 'all';
-	const filteredDiscount =
-		filterDiscount === 'all'
-			? cabins
-			: filterDiscount === 'no-discount'
-			? cabins.filter((cabin) => cabin.discount === 0)
-			: cabins.filter((cabin) => cabin.discount > 0);
+	const filteredDiscount = filterDiscount === 'all' ? cabins : filterDiscount === 'no-discount' ? cabins.filter((cabin) => cabin.discount === 0) : cabins.filter((cabin) => cabin.discount > 0);
 
 	// sort by
 	const sortBy = searchParams.get('sortBy') || 'name-asc';
@@ -39,7 +34,7 @@ export default function CabinTable() {
 
 	return (
 		<EllipsisDropdown>
-			<Table columns=".8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr">
+			<Table columns='.8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr'>
 				<Table.Header>
 					<span>Image</span>
 					<span>Cabin</span>

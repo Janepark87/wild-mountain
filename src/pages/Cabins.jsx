@@ -1,14 +1,11 @@
-import CabinTable from '../features/cabins/CabinTable';
-import Heading from '../components/Heading';
-import Row from '../components/Row';
-import CabinTableOperations from '../features/cabins/CabinTableOperations';
-import Container from '../components/Container';
+import { Container, Heading, Row } from '../components';
+import { CabinTable, CabinTableOperations } from '../features/cabins';
 
 export default function Cabins() {
 	return (
-		<Container type="table-container" size="lg">
-			<Row type="horizontal">
-				<Heading as="h1">Cabins</Heading>
+		<Container type='table-container' size='lg'>
+			<Row type='horizontal'>
+				<Heading as='h1'>Cabins</Heading>
 				<CabinTableOperations />
 			</Row>
 

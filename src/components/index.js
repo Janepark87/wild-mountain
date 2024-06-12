@@ -19,7 +19,9 @@ export { default as ConfirmDelete } from './ConfirmDelete';
 // layout & navigation
 export { default as Container } from './Container';
 export { default as Heading } from './Heading';
-export { default as HeaderMenu } from './HeaderMenu';
+export { default as Header } from './Header';
+export { default as Navbar } from './Navbar';
+export { default as Sidebar } from './Sidebar';
 
 // inputs
 export { default as Input } from './Input';

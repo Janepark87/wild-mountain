@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useAuth';
-import Spinner from '../components/Spinner';
-import LoginLayout from './LoginLayout';
-import { useEffect } from 'react';
+import { Spinner } from '../components';
+import { LoginLayout } from './index';
 
 export default function ProtectedRoute({ children }) {
 	const navigate = useNavigate();
