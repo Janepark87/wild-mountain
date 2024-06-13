@@ -7,13 +7,13 @@ export function useCabinQuery() {
 	const {
 		data: cabins,
 		isPending: isCabinsLoading,
-		isError: isCabinError,
+		isError: isCabinsError,
 	} = useQuery({
 		queryKey: ['cabins'],
 		queryFn: getCabins,
 	});
 
-	return { cabins, isCabinsLoading, isCabinError };
+	return { cabins, isCabinsLoading, isCabinsError };
 }
 
 export function useCreateUpdateCabin(updateMode) {

@@ -1,13 +1,8 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Textarea from '../../components/Textarea';
-import FileInput from '../../components/FileInput';
-import Button from '../../components/Button';
+import { Form, FormRow, Input, Textarea, Button, FileInput } from '../../components';
 import { useCreateUpdateCabin } from '../../hooks/useCabin';
 import useInputValidation from '../../hooks/useInputValidation';
-import { useState } from 'react';
 
 export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 	const { id: updateId, ...updateValues } = updateCabin;
@@ -52,18 +47,13 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)} type={onCloseModal ? 'modal' : 'regular'}>
-			<FormRow label="Cabin name" error={errors?.name?.message}>
-				<Input
-					type="text"
-					id="name"
-					{...register('name', { onChange: inputValidation, required: 'Enter a name for your cabin.' })}
-					disabled={isCabinCreatingUpdating}
-				/>
+			<FormRow label='Cabin name' error={errors?.name?.message}>
+				<Input type='text' id='name' {...register('name', { onChange: inputValidation, required: 'Enter a name for your cabin.' })} disabled={isCabinCreatingUpdating} />
 			</FormRow>
-			<FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
+			<FormRow label='Maximum capacity' error={errors?.maxCapacity?.message}>
 				<Input
-					type="number"
-					id="maxCapacity"
+					type='number'
+					id='maxCapacity'
 					defaultValue={1}
 					disabled={isCabinCreatingUpdating}
 					{...register('maxCapacity', {
@@ -73,10 +63,10 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 					})}
 				/>
 			</FormRow>
-			<FormRow label="Regular Price" error={errors?.regularPrice?.message}>
+			<FormRow label='Regular Price' error={errors?.regularPrice?.message}>
 				<Input
-					type="number"
-					id="regularPrice"
+					type='number'
+					id='regularPrice'
 					disabled={isCabinCreatingUpdating}
 					{...register('regularPrice', {
 						onChange: inputValidation,
@@ -85,10 +75,10 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 					})}
 				/>
 			</FormRow>
-			<FormRow label="Discount" error={errors?.discount?.message}>
+			<FormRow label='Discount' error={errors?.discount?.message}>
 				<Input
-					type="number"
-					id="discount"
+					type='number'
+					id='discount'
 					defaultValue={0}
 					disabled={isCabinCreatingUpdating}
 					{...register('discount', {
@@ -101,22 +91,13 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 					})}
 				/>
 			</FormRow>
-			<FormRow label="Description for website" error={errors?.description?.message}>
-				<Textarea
-					type="text"
-					id="description"
-					disabled={isCabinCreatingUpdating}
-					{...register('description', { onChange: inputValidation, required: 'A brief description is required.' })}
-				/>
+			<FormRow label='Description for website' error={errors?.description?.message}>
+				<Textarea type='text' id='description' disabled={isCabinCreatingUpdating} {...register('description', { onChange: inputValidation, required: 'A brief description is required.' })} />
 			</FormRow>
-			<FormRow
-				label="Cabin photo"
-				defaultValue={updateMode && updateValues.image}
-				updateValues={{ image: previewImage, name: updateValues.name }}
-				error={errors?.image?.message}>
+			<FormRow label='Cabin photo' defaultValue={updateMode && updateValues.image} updateValues={{ image: previewImage, name: updateValues.name }} error={errors?.image?.message}>
 				<FileInput
-					id="image"
-					accept="image/*"
+					id='image'
+					accept='image/*'
 					{...register('image', {
 						onChange: (e) => {
 							setPreviewCabinImage(e.target.files[0]);
@@ -130,8 +111,8 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 
 			<FormRow>
 				<Button
-					type="reset"
-					variation="secondary"
+					type='reset'
+					variation='secondary'
 					disabled={isCabinCreatingUpdating}
 					onClick={() => {
 						reset();

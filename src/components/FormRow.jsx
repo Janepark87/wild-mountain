@@ -1,12 +1,19 @@
 import styled, { css } from 'styled-components';
-import Spinner from './Spinner';
+import { Media } from '../styles/Breakpoints';
+import { Spinner } from './index';
 
 const StyledFormRow = styled.div`
 	display: grid;
 	align-items: center;
-	grid-template-columns: ${(props) => (props.orientation === 'vertical' ? '1fr' : '24rem repeat(2, 1fr)')};
+	grid-template-columns: ${(props) => (props.orientation === 'vertical' ? '1fr' : '22rem repeat(2, 1fr)')};
 	gap: ${(props) => (props.orientation === 'vertical' ? '0.8rem' : '2.4rem')};
 	padding: 1.2rem 0;
+
+	${Media.md`
+		grid-template-columns: 1fr;
+		gap: .5rem;
+		border-bottom: 0 !important;
+    `}
 
 	&:first-child {
 		padding-top: 0;
@@ -28,6 +35,15 @@ const StyledFormRow = styled.div`
 				display: flex;
 				justify-content: flex-end;
 				gap: 1.2rem;
+
+				${Media.sm`
+					flex-direction: column;
+					padding-top: 2.5rem;
+
+					> button{
+						width: 100%
+					}
+				`}
 			}
 		`}
 `;
@@ -51,10 +67,19 @@ const PreviewImgWrapper = styled.div`
 
 const PreviewImg = styled.img`
 	width: 100%;
-	max-width: 18rem;
-	aspect-ratio: 4/3;
+	max-width: 20rem;
 	object-fit: cover;
 	border-radius: var(--border-radius-sm);
+
+	${Media.sm`
+		max-width: 100%;
+		max-height: 22rem;
+		margin-top: 2.5rem;
+	`}
+
+	${Media.xxs`
+		margin-top: 1.5rem;
+	`}
 `;
 
 export default function FormRow({ label, error, children, updateValues = {}, previewLoading = false, orientation }) {
@@ -68,7 +93,7 @@ export default function FormRow({ label, error, children, updateValues = {}, pre
 					<PreviewImg src={updateValues.image} alt={updateValues.name} />
 				</PreviewImgWrapper>
 			)}
-			{previewLoading && updateValues.image && <Spinner size="mini" />}
+			{previewLoading && updateValues.image && <Spinner size='mini' />}
 		</StyledFormRow>
 	);
 }

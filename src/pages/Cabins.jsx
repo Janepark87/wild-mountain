@@ -1,5 +1,5 @@
 import { Container, Heading, Row } from '../components';
-import { CabinTable, CabinTableOperations } from '../features/cabins';
+import { AddCabin, CabinTable, CabinTableOperations } from '../features/cabins';
 
 export default function Cabins() {
 	return (
@@ -9,6 +9,7 @@ export default function Cabins() {
 				<CabinTableOperations />
 			</Row>
 
+			<AddCabin />
 			<CabinTable />
 		</Container>
 	);

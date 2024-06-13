@@ -118,6 +118,14 @@ body {
 	font-size: 1.6rem;
 }
 
+body.no-scroll{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 input,
 button,
 textarea,

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Media } from '../styles/Breakpoints';
 
 const sizes = {
 	sm: css`
@@ -12,11 +13,21 @@ const sizes = {
 		font-size: 1.4rem;
 		padding: 1.2rem 1.6rem;
 		font-weight: 500;
+
+		${Media.sm`
+			font-size: 1.3rem;
+			padding: 1rem 1.5rem;
+		`}
 	`,
 	lg: css`
 		font-size: 1.6rem;
 		padding: 1.2rem 2.4rem;
 		font-weight: 500;
+
+		${Media.sm`
+			font-size: 1.4rem;
+			padding: 1.2rem 1.6rem;
+		`}
 	`,
 };
 

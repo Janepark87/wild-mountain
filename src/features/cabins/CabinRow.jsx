@@ -2,11 +2,8 @@ import styled from 'styled-components';
 import { HiEllipsisVertical, HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { formatCurrency } from '../../utils/helpers';
-import Table from '../../components/Table';
-import CreateCabinForm from './CreateCabinForm';
-import Modal from '../../components/Modal';
-import ConfirmDelete from '../../components/ConfirmDelete';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
+import { Table, Modal, EllipsisDropdown, ConfirmDelete } from '../../components';
+import { CreateCabinForm } from './index';
 
 const Img = styled.img`
 	width: 100%;
@@ -71,21 +68,21 @@ export default function CabinRow({ cabin }) {
 							Copy
 						</EllipsisDropdown.Item>
 
-						<Modal.Trigger type="cabin-form-edit">
+						<Modal.Trigger type='cabin-form-edit'>
 							<EllipsisDropdown.Item icon={<HiPencil />}>Edit</EllipsisDropdown.Item>
 						</Modal.Trigger>
 
-						<Modal.Trigger type="cabin-delete-confirmation">
+						<Modal.Trigger type='cabin-delete-confirmation'>
 							<EllipsisDropdown.Item icon={<HiTrash />}>Delete</EllipsisDropdown.Item>
 						</Modal.Trigger>
 					</EllipsisDropdown.Menu>
 
-					<Modal.Window type="cabin-form-edit">
+					<Modal.Window type='cabin-form-edit'>
 						<CreateCabinForm updateCabin={cabin} />
 					</Modal.Window>
 
-					<Modal.Window type="cabin-delete-confirmation">
-						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
+					<Modal.Window type='cabin-delete-confirmation'>
+						<ConfirmDelete resource='Cabin' disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
 					</Modal.Window>
 				</Modal>
 			</EllipsisDropdown.Inner>

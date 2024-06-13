@@ -1,10 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { useCabinQuery } from '../../hooks/useCabin';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
-import Table from '../../components/Table';
-import CabinRow from './CabinRow';
-import AddCabin from './AddCabin';
-import Spinner from '../../components/Spinner';
+import { Spinner, Table, EllipsisDropdown } from '../../components';
+import { CabinRow } from './index';
 
 export default function CabinTable() {
 	const { cabins, isCabinsLoading } = useCabinQuery();
@@ -46,8 +43,6 @@ export default function CabinTable() {
 
 				<Table.Body data={sortedCabins} render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />} />
 			</Table>
-
-			<AddCabin />
 		</EllipsisDropdown>
 	);
 }
