@@ -120,7 +120,7 @@ export default function CreateCabinForm({ updateCabin = {}, onCloseModal }) {
 					}}>
 					Clear
 				</Button>
-				<Button disabled={btnDisable}>{updateMode ? 'Edit cabin' : 'Create a new cabin'}</Button>
+				<Button disabled={btnDisable || isCabinCreatingUpdating}>{updateMode ? 'Edit cabin' : 'Create a new cabin'}</Button>
 			</FormRow>
 		</Form>
 	);

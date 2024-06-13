@@ -11,7 +11,12 @@ const Inner = styled.div`
 `;
 
 const StyledToggle = styled.button`
-	padding: 0.4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 3rem;
+	min-width: 3rem;
+	height: 3rem;
 	background: none;
 	border: none;
 	border-radius: var(--border-radius-sm);
@@ -23,8 +28,8 @@ const StyledToggle = styled.button`
 	}
 
 	& svg {
-		width: 2.4rem;
-		height: 2.4rem;
+		padding: 0.25rem;
+		font-size: 2.5rem;
 		color: var(--color-grey-700);
 	}
 `;
