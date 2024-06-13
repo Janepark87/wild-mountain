@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useUser } from '../hooks/useAuth';
-import Logo from '../components/Logo';
-import Heading from '../components/Heading';
-import LoginForm from '../features/Authentication/LoginForm';
-import LoginLayout from '../layouts/LoginLayout';
-import Spinner from '../components/Spinner';
+import { LoginLayout } from '../layouts';
+import { LoginForm } from '../features/authentication';
+import { Heading, Logo, Spinner } from '../components';
 
 const InnerWrap = styled.div`
 	display: flex;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { pieChartStartDataLight, pieChartStartDataDark } from '../../styles/chartColorScheme';
-import Heading from '../../components/Heading';
+import { Heading } from '../../components';
 
 const ChartBox = styled.div`
 	grid-column: 3 / span 2;

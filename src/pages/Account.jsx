@@ -1,8 +1,5 @@
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import Row from '../components/Row';
-import UpdateUserDataForm from '../features/Authentication/UpdateUserDataForm';
-import UpdateUserPasswordForm from '../features/Authentication/UpdateUserPasswordForm';
+import { Container, Heading, Row } from '../components';
+import { UpdateUserDataForm, UpdateUserPasswordForm } from '../features/authentication';
 
 export default function Account() {
 	return (

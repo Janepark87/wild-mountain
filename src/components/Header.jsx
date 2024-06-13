@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Media } from '../styles/Breakpoints';
-import { UserAvatar, Logout } from '../features/Authentication';
+import { UserAvatar, Logout } from '../features/authentication';
 import { DarkModeToggle } from './index';
 
 const StyledHeader = styled.header`

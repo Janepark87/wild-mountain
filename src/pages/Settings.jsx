@@ -1,6 +1,4 @@
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import Row from '../components/Row';
+import { Container, Heading, Row } from '../components';
 import UpdateSettingsForm from '../features/settings/UpdateSettingsForm2-trial';
 
 export default function Settings() {

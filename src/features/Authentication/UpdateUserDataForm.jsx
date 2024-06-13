@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import { useUpdateUser, useUser } from '../../hooks/useAuth';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import FileInput from '../../components/FileInput';
-import Button from '../../components/Button';
 import toast from 'react-hot-toast';
+import { useUpdateUser, useUser } from '../../hooks/useAuth';
+import { Form, FormRow, Input, Button, FileInput } from '../../components';
 
 export default function UpdateUserDataForm() {
 	const {
@@ -18,8 +14,7 @@ export default function UpdateUserDataForm() {
 	const [avatar, setAvatar] = useState(currentAvatar || 'default-user.jpg');
 	const [errorName, setErrorName] = useState('');
 	const { updateUserMutate, isUserUpdating } = useUpdateUser();
-	const previewAvatar =
-		avatar === 'default-user.jpg' ? avatar : !avatar || avatar === currentAvatar ? currentAvatar ?? 'default-user.jpg' : URL.createObjectURL(avatar);
+	const previewAvatar = avatar === 'default-user.jpg' ? avatar : !avatar || avatar === currentAvatar ? currentAvatar ?? 'default-user.jpg' : URL.createObjectURL(avatar);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

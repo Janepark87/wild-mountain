@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import Heading from '../../components/Heading';
-import Row from '../../components/Row';
 import { useTodayCheckInOutActivity } from '../../hooks/useCheckBooking';
-import Spinner from '../../components/Spinner';
-import TodayActivityItem from './TodayActivityItem';
+import { Heading, Row, Spinner } from '../../components';
+import { TodayActivityItem } from './index';
 
 const StyledToday = styled.div`
 	display: flex;

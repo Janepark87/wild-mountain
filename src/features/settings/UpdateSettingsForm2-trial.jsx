@@ -1,9 +1,6 @@
-import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Spinner from '../../components/Spinner';
 import { useForm } from 'react-hook-form';
+import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
+import { Form, FormRow, Input, Spinner } from '../../components';
 
 // FIXME: error handling using useForm without a submit button
 export default function UpdateSettingsForm() {

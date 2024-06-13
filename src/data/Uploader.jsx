@@ -6,8 +6,8 @@ import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
 import { subtractDates } from '../utils/helpers';
-import Button from '../components/Button';
-import Heading from '../components/Heading';
+import Button from '../components/Button.style';
+import Heading from '../components/Heading.style';
 
 const StylesUploader = styled.div`
 	display: flex;
@@ -64,12 +64,7 @@ async function createBookings() {
 		let status;
 		if (isPast(new Date(booking.endDate)) && !isToday(new Date(booking.endDate))) status = 'checked-out';
 		if (isFuture(new Date(booking.startDate)) || isToday(new Date(booking.startDate))) status = 'unconfirmed';
-		if (
-			(isFuture(new Date(booking.endDate)) || isToday(new Date(booking.endDate))) &&
-			isPast(new Date(booking.startDate)) &&
-			!isToday(new Date(booking.startDate))
-		)
-			status = 'checked-in';
+		if ((isFuture(new Date(booking.endDate)) || isToday(new Date(booking.endDate))) && isPast(new Date(booking.startDate)) && !isToday(new Date(booking.startDate))) status = 'checked-in';
 
 		return {
 			...booking,

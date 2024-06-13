@@ -1,9 +1,7 @@
-import styled from 'styled-components';
-import Badge from '../../components/Badge';
-import Flag from '../../components/Flag';
-import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
-import CheckoutButton from './CheckOutButton';
+import styled from 'styled-components';
+import { Badge, Flag, Button } from '../../components';
+import { CheckoutButton } from './index';
 
 const StyledTodayActivityItem = styled.li`
 	display: grid;

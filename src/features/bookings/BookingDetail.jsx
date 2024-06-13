@@ -3,17 +3,9 @@ import styled from 'styled-components';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking, useDeleteBooking } from '../../hooks/useBooking';
 import { useGoback } from '../../hooks/useGoback';
-import Row from '../../components/Row';
-import Heading from '../../components/Heading';
-import Spinner from '../../components/Spinner';
-import Badge from '../../components/Badge';
-import ButtonGroup from '../../components/ButtonGroup';
-import Button from '../../components/Button';
-import Modal from '../../components/Modal';
-import BookingDetailDataBlock from './BookingDetailDataBlock';
-import ConfirmDelete from '../../components/ConfirmDelete';
-import CheckoutButton from '../check-in-out/CheckOutButton';
-import Empty from '../../components/Empty';
+import { Row, Heading, Spinner, Badge, ButtonGroup, Button, Modal, ConfirmDelete, Empty } from '../../components';
+import { BookingDetailDataBlock } from './index';
+import { CheckoutButton } from '../check-in-out';
 
 const HeadingGroup = styled.div`
 	display: flex;

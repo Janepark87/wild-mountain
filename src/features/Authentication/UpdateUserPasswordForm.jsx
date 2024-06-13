@@ -1,9 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useUpdateUser } from '../../hooks/useAuth';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { Form, FormRow, Input, Button } from '../../components';
 
 export default function UpdateUserPasswordForm() {
 	const {

@@ -1,5 +1,5 @@
-import Container from '../components/Container';
-import BookingDetail from '../features/bookings/BookingDetail';
+import { Container } from '../components';
+import { BookingDetail } from '../features/bookings';
 
 export default function Booking() {
 	return (

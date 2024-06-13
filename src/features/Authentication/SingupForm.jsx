@@ -1,9 +1,5 @@
 import { useForm } from 'react-hook-form';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import ButtonGroup from '../../components/ButtonGroup';
+import { Form, FormRow, Input, Button, ButtonGroup } from '../../components';
 import { useSingup } from '../../hooks/useAuth';
 
 export default function SingupForm() {

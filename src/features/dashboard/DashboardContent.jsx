@@ -1,11 +1,9 @@
-import { useCabinQuery } from '../../hooks/useCabin';
 import styled from 'styled-components';
+import { useCabinQuery } from '../../hooks/useCabin';
 import { useRecentBookings, useRecentStays } from '../../hooks/useDashboard';
-import Spinner from '../../components/Spinner';
-import Statistics from './Statistics';
-import SalesChart from './SalesChart';
-import DurationChart from './DurationChart';
-import TodayCheckInOutActivity from '../check-in-out/TodayCheckInOutActivity';
+import { Spinner } from '../../components';
+import { Statistics, SalesChart, DurationChart } from './index';
+import { TodayCheckInOutActivity } from '../check-in-out';
 
 const StyledDashboardContent = styled.div`
 	display: grid;

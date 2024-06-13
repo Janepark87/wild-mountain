@@ -1,8 +1,5 @@
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import Row from '../components/Row';
-import DashboardContent from '../features/dashboard/DashboardContent';
-import DashboardFilter from '../features/dashboard/DashboardFilter';
+import { Container, Heading, Row } from '../components';
+import { DashboardContent, DashboardFilter } from '../features/dashboard';
 
 export default function Dashboard() {
 	return (

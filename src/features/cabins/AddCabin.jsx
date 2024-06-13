@@ -1,16 +1,15 @@
-import Modal from '../../components/Modal';
-import Button from '../../components/Button';
-import CreateCabinForm from './CreateCabinForm';
-import ButtonGroup from '../../components/ButtonGroup';
+import { Modal, Button, ButtonGroup } from '../../components';
+import { CreateCabinForm } from './index';
 
 export default function AddCabin() {
 	return (
 		<ButtonGroup>
 			<Modal>
-				<Modal.Trigger type="cabin-form">
+				<Modal.Trigger type="cabin-form-create">
 					<Button>Add new cabin</Button>
 				</Modal.Trigger>
-				<Modal.Window type="cabin-form">
+
+				<Modal.Window type="cabin-form-create">
 					<CreateCabinForm />
 				</Modal.Window>
 			</Modal>

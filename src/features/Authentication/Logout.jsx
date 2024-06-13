@@ -1,7 +1,6 @@
 import { HiArrowRightOnRectangle } from 'react-icons/hi2';
-import Button from '../../components/Button';
+import { Button, Spinner } from '../../components';
 import { useLogout } from '../../hooks/useAuth';
-import Spinner from '../../components/Spinner';
 
 export default function Logout() {
 	const { userLogoutMutate, isLogoutLoading } = useLogout();

@@ -1,5 +1,5 @@
-import Button from '../../components/Button';
 import { useCheckout } from '../../hooks/useCheckBooking';
+import { Button } from '../../components';
 
 export default function CheckoutButton({ bookingId, size = 'md' }) {
 	const { updateCheckoutMutate, isCheckoutUpdating } = useCheckout();

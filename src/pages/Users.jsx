@@ -1,6 +1,5 @@
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import SingupForm from '../features/Authentication/SingupForm';
+import { Container, Heading } from '../components';
+import { SingupForm } from '../features/authentication';
 
 export default function Users() {
 	return (

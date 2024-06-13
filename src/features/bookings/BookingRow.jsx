@@ -5,11 +5,7 @@ import { format, isToday } from 'date-fns';
 import { useDeleteBooking } from '../../hooks/useBooking';
 import { useCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
-import Table from '../../components/Table';
-import Badge from '../../components/Badge';
-import Modal from '../../components/Modal';
-import ConfirmDelete from '../../components/ConfirmDelete';
+import { Table, EllipsisDropdown, Badge, Modal, ConfirmDelete } from '../../components';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);

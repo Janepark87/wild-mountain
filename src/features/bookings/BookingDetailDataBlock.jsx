@@ -3,9 +3,7 @@ import { format, isToday } from 'date-fns';
 import { HiOutlineChatBubbleBottomCenterText, HiOutlineCheckCircle, HiOutlineCurrencyDollar, HiOutlineHomeModern } from 'react-icons/hi2';
 import { Media } from '../../styles/Breakpoints';
 import { formatDistanceFromNow, formatCurrency } from '../../utils/helpers';
-
-import Flag from '../../components/Flag';
-import DataItem from '../../components/DataItem';
+import { Flag, DataItem } from '../../components';
 
 const StyledDataContainer = styled.section`
 	background-color: var(--color-grey-0);

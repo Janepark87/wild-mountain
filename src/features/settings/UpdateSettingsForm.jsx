@@ -1,11 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
 import useInputValidation from '../../hooks/useInputValidation';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Spinner from '../../components/Spinner';
-import Button from '../../components/Button';
+import { Form, FormRow, Input, Spinner, Button } from '../../components';
 
 export default function UpdateSettingsForm() {
 	const { settings = {}, isSettingLoading } = useSettingQuery();

@@ -1,6 +1,4 @@
-import TableOperations from '../../components/TableOperations';
-import Filter from '../../components/Filter';
-import SortBy from '../../components/SortBy';
+import { TableOperations, Filter, SortBy } from '../../components';
 
 export default function BookingTableOperations() {
 	return (

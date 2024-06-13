@@ -1,8 +1,5 @@
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import Row from '../components/Row';
-import BookingTable from '../features/bookings/BookingTable';
-import BookingTableOperations from '../features/bookings/BookingTableOperations';
+import { Container, Heading, Row } from '../components';
+import { BookingTable, BookingTableOperations } from '../features/bookings';
 
 export default function Bookings() {
 	return (

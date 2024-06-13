@@ -1,5 +1,5 @@
-import Container from '../components/Container';
-import CheckinBooking from '../features/check-in-out/CheckinBooking';
+import { Container } from '../components';
+import { CheckinBooking } from '../features/check-in-out';
 
 export default function Checkin() {
 	return (

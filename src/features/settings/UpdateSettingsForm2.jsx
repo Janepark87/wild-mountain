@@ -1,8 +1,5 @@
 import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Spinner from '../../components/Spinner';
+import { Form, FormRow, Input, Spinner } from '../../components';
 
 export default function UpdateSettingsForm() {
 	const { settings = {}, isSettingLoading } = useSettingQuery();

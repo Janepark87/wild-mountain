@@ -6,14 +6,8 @@ import { useGoback } from '../../hooks/useGoback';
 import { useCheckin } from '../../hooks/useCheckBooking';
 import { useSettingQuery } from '../../hooks/useSetting';
 import { formatCurrency } from '../../utils/helpers';
-import Row from '../../components/Row';
-import Heading from '../../components/Heading';
-import Spinner from '../../components/Spinner';
-import ButtonGroup from '../../components/ButtonGroup';
-import Button from '../../components/Button';
-import BookingDetailDataBlock from '../bookings/BookingDetailDataBlock';
-import Checkbox from '../../components/Checkbox';
-import Empty from '../../components/Empty';
+import { Row, Heading, Spinner, ButtonGroup, Button, Checkbox, Empty } from '../../components';
+import { BookingDetailDataBlock } from '../bookings';
 
 const Block = styled.div`
 	padding: 2.4rem 4rem;
@@ -83,9 +77,7 @@ export default function CheckinBooking() {
 			<Block>
 				<Checkbox id="confirm" checked={confirmPaid} onChange={() => setConfirmPaid((confirm) => !confirm)} disabled={confirmPaid || isCheckinUpdating}>
 					I confirm that {guests.fullName} has paid the total amount of{' '}
-					{!addBreakfast
-						? formatCurrency(totalPrice)
-						: `${formatCurrency(totalPriceIncludingBreakfast)} (${formatCurrency(totalPrice)} + ${formatCurrency(totalPriceIncludingBreakfast)})`}
+					{!addBreakfast ? formatCurrency(totalPrice) : `${formatCurrency(totalPriceIncludingBreakfast)} (${formatCurrency(totalPrice)} + ${formatCurrency(totalPriceIncludingBreakfast)})`}
 				</Checkbox>
 			</Block>
 

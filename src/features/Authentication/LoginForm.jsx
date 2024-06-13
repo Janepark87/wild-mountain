@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { useLogin } from '../../hooks/useAuth';
-import Form from '../../components/Form';
-import FormRow from '../../components/FormRow';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import Spinner from '../../components/Spinner';
+import { Form, FormRow, Input, Button, Spinner } from '../../components';
 
 export default function LoginForm() {
 	const [email, setEmail] = useState(import.meta.env.VITE_LOGIN_EMAIL);
@@ -32,14 +28,7 @@ export default function LoginForm() {
 				<Input type="email" id="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoginLoading} />
 			</FormRow>
 			<FormRow label="Password" orientation="vertical">
-				<Input
-					type="password"
-					id="password"
-					autoComplete="current-password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					disabled={isLoginLoading}
-				/>
+				<Input type="password" id="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoginLoading} />
 			</FormRow>
 			<FormRow orientation="vertical">
 				<Button size="lg" disabled={isLoginLoading}>

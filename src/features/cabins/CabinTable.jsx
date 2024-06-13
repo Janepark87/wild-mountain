@@ -31,7 +31,7 @@ export default function CabinTable() {
 
 	return (
 		<EllipsisDropdown>
-			<Table columns='.8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr'>
+			<Table columns=".8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr">
 				<Table.Header>
 					<span>Image</span>
 					<span>Cabin</span>

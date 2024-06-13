@@ -1,9 +1,6 @@
 import { useBookingQuery } from '../../hooks/useBooking';
-import EllipsisDropdown from '../../components/EllipsisDropdown';
-import Table from '../../components/Table';
-import BookingRow from './BookingRow';
-import Spinner from '../../components/Spinner';
-import Pagination from '../../components/Pagination';
+import { EllipsisDropdown, Table, Spinner, Pagination } from '../../components';
+import { BookingRow } from './index';
 
 export default function BookingTable() {
 	const { bookings, isBookingLoading, count } = useBookingQuery();

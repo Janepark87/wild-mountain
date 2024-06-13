@@ -1,9 +1,9 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
-import Heading from '../../components/Heading';
-import { useDarkMode } from '../../context/DarkModeContext';
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
+import { useDarkMode } from '../../context/DarkModeContext';
 import { lineChartColorScheme } from '../../styles/chartColorScheme';
+import { Heading } from '../../components';
 
 const DashboardBox = styled.div`
 	display: flex;
@@ -70,26 +70,8 @@ export default function SalesChart({ bookings, numDays }) {
 					<YAxis unit="$" tick={{ fill: text }} tickLine={{ stroke: text }} />
 					<CartesianGrid strokeDasharray="3 3" />
 					<Tooltip contentStyle={{ backgroundColor: 'var(--color-grey-0)', borderRadius: '5px', borderColor: 'var(--color-grey-200)' }} />
-					<Area
-						dataKey="totalSales"
-						name="Total sales"
-						unit="$"
-						type="monotone"
-						fillOpacity={1}
-						strokeWidth={1}
-						stroke={totalSales.stroke}
-						fill="url(#colorTotalSales)"
-					/>
-					<Area
-						dataKey="extrasSales"
-						name="Extras Sales"
-						unit="$"
-						type="monotone"
-						fillOpacity={1}
-						strokeWidth={1.15}
-						stroke={extrasSales.stroke}
-						fill="url(#colorExtrasSales)"
-					/>
+					<Area dataKey="totalSales" name="Total sales" unit="$" type="monotone" fillOpacity={1} strokeWidth={1} stroke={totalSales.stroke} fill="url(#colorTotalSales)" />
+					<Area dataKey="extrasSales" name="Extras Sales" unit="$" type="monotone" fillOpacity={1} strokeWidth={1.15} stroke={extrasSales.stroke} fill="url(#colorExtrasSales)" />
 				</AreaChart>
 			</ResponsiveContainer>
 		</StyledSalesChart>

@@ -1,6 +1,6 @@
 import { HiOutlineBriefcase, HiOutlineCash, HiOutlineChartBar, HiOutlineCalendar } from 'react-icons/hi';
 import { formatCurrency } from '../../utils/helpers';
-import Statistic from './Statistic';
+import { Statistic } from './index';
 
 export default function Statistics({ bookings, confirmedStays, numDays, totalCabins }) {
 	const numBookings = bookings.length;
