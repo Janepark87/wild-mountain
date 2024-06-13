@@ -40,16 +40,24 @@ async function uploadImageToSupabase(image) {
 async function createImagePath(image, existingImagePath = null) {
 	const hasCabinImage = Boolean(image);
 
+	// If no new image provided, return existing image path
 	if (!hasCabinImage) return existingImagePath;
 
-	if (existingImagePath) {
-		await deleteImageFromSupabase(existingImagePath);
+	try {
+		// Check if existing image path is different from new image
+		if (existingImagePath && existingImagePath !== image) {
+			await deleteImageFromSupabase(existingImagePath); // Delete existing image
+		}
+
+		// Upload new image or return existing image path if already uploaded
+		const hasImagePath = image.startsWith?.(import.meta.env.VITE_SUPABASE_URL);
+		const imagePath = hasImagePath ? image : await uploadImageToSupabase(image);
+
+		return imagePath;
+	} catch (error) {
+		console.error(error);
+		throw new Error('Failed to process cabin image.');
 	}
-
-	const hasImagePath = image?.startsWith?.(import.meta.env.VITE_SUPABASE_URL);
-	const imagePath = hasImagePath ? image : await uploadImageToSupabase(image);
-
-	return imagePath;
 }
 
 export async function createUpdateCabin(cabin, updateId) {
@@ -71,15 +79,18 @@ export async function createUpdateCabin(cabin, updateId) {
 		}
 
 		// Fetch the existing cabin data to get the current image path
-		const { data: existingCabin } = await query.select('image').eq('id', updateId).single();
+		const { data: existingCabin, error } = await query.select('image').eq('id', updateId).single();
+		if (error) throw new Error('Failed to fetch existing cabin.');
 		const existingImagePath = existingCabin?.image;
 
 		// Upload new image and delete the old one if necessary
 		const imagePath = await createImagePath(cabin.image, existingImagePath);
 
 		// Update cabin with image path
-		query = query.update({ ...cabin, image: imagePath }).eq('id', updateId);
-		const { data } = await query.select().single();
+		const { data } = await query
+			.update({ ...cabin, image: imagePath })
+			.eq('id', updateId)
+			.single();
 
 		return data;
 	} catch (error) {

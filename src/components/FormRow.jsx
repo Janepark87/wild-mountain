@@ -68,12 +68,13 @@ const PreviewImgWrapper = styled.div`
 const PreviewImg = styled.img`
 	width: 100%;
 	max-width: 20rem;
-	max-height: 15rem;
+	height: 13rem;
 	object-fit: cover;
 	border-radius: var(--border-radius-sm);
 
 	${Media.sm`
 		max-width: 100%;
+		height: auto;
 		max-height: 22rem;
 		margin-top: 2.5rem;
 	`}
