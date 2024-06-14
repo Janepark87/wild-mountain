@@ -1,5 +1,5 @@
 import { Container, Heading, Row } from '../components';
-import UpdateSettingsForm from '../features/settings/UpdateSettingsForm2-trial';
+import { UpdateSettingsForm2 } from '../features/settings';
 
 export default function Settings() {
 	return (
@@ -8,7 +8,7 @@ export default function Settings() {
 				<Heading as="h1">Update hotel settings</Heading>
 			</Row>
 
-			<UpdateSettingsForm />
+			<UpdateSettingsForm2 />
 		</Container>
 	);
 }

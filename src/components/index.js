@@ -35,7 +35,7 @@ export { default as SortBy } from './SortBy';
 export { default as Filter } from './Filter';
 
 // Form & table
-export { default as Form } from './Form.style';
+export { default as Form } from './Form';
 export { default as FormRow } from './FormRow';
 export { default as Row } from './Row.style';
 export { default as Table } from './Table';

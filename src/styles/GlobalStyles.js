@@ -192,6 +192,7 @@ img {
 input#avatar{
   & + div > img{
     width: 3.75rem;
+    height: 3.75rem;
     aspect-ratio: 1;
     border-radius: 50%;
   }
