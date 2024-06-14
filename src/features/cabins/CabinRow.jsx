@@ -2,22 +2,24 @@ import { HiEllipsisVertical, HiPencil, HiSquare2Stack, HiTrash } from 'react-ico
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { formatCurrency } from '../../utils/helpers';
 import { Table, Modal, EllipsisDropdown, ConfirmDelete } from '../../components';
-import { CreateCabinForm } from './index';
 import { Img, Cabin, Price, Discount } from './styles/Cabins.style';
+import { CreateCabinForm } from './index';
+import { duplicateImage } from '../../services/apiCabins';
 
 export default function CabinRow({ cabin }) {
 	const { id: cabinId, name, maxCapacity, regularPrice, discount, description, image } = cabin;
 	const { deleteCabinMutate, isCabinDeleting } = useDeleteCabin();
 	const { careateUpdateCabinMutate, isCabinCreatingUpdating } = useCreateUpdateCabin();
 
-	const duplicateCabin = () => {
+	const duplicateCabin = async () => {
+		const copyImage = await duplicateImage(image);
 		const copyCabin = {
 			name: `Copy of ${name}`,
 			maxCapacity,
 			regularPrice,
 			discount,
 			description,
-			image,
+			image: copyImage,
 		};
 
 		careateUpdateCabinMutate({ cabinData: copyCabin });

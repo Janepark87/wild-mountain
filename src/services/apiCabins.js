@@ -11,6 +11,16 @@ export async function getCabins() {
 	return data;
 }
 
+export async function duplicateImage(image) {
+	if (!image) return null;
+
+	const response = await fetch(image);
+	const blob = await response.blob();
+	const file = new File([blob], image.split('/').pop(), { type: blob.type });
+
+	return uploadImageToSupabase(file);
+}
+
 async function deleteImageFromSupabase(imagePath) {
 	// Extract the image name from the path
 	const imageName = imagePath.split('/').pop();
