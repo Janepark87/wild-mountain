@@ -12,7 +12,7 @@ export { default as DarkModeToggle } from './DarkModeToggle';
 
 // block components
 export { default as Modal } from './Modal';
-export { default as EllipsisDropdown } from './EllipsisDropdown';
+export { default as Dropdown } from './Dropdown';
 export { default as DataItem } from './DataItem';
 export { default as ConfirmDelete } from './ConfirmDelete';
 

@@ -5,7 +5,7 @@ import { format, isToday } from 'date-fns';
 import { useDeleteBooking } from '../../hooks/useBooking';
 import { useCheckout } from '../../hooks/useCheckBooking';
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
-import { Table, EllipsisDropdown, Badge, Modal, ConfirmDelete } from '../../components';
+import { Table, Dropdown, Badge, Modal, ConfirmDelete } from '../../components';
 
 const Cabin = styled.div`
 	color: var(--color-grey-600);
@@ -91,39 +91,39 @@ export default function BookingRow({ booking }) {
 
 			<Badge type={statusBadgeType[isPaid]}>{isPaid ? 'Paid' : 'Not yet'}</Badge>
 
-			<EllipsisDropdown.Inner>
+			<Dropdown.Inner>
 				<Modal>
-					<EllipsisDropdown.Toggle id={bookingId} />
+					<Dropdown.Trigger id={bookingId} />
 
-					<EllipsisDropdown.Menu id={bookingId}>
-						<EllipsisDropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
+					<Dropdown.List id={bookingId}>
+						<Dropdown.Item icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>
 							See details
-						</EllipsisDropdown.Item>
+						</Dropdown.Item>
 
 						{status === 'unconfirmed' && (
-							<EllipsisDropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
+							<Dropdown.Item icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>
 								Check in
-							</EllipsisDropdown.Item>
+							</Dropdown.Item>
 						)}
 
 						{status === 'checked-in' && (
-							<EllipsisDropdown.Item icon={<HiArrowUpOnSquare />} onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
+							<Dropdown.Item icon={<HiArrowUpOnSquare />} onClick={() => updateCheckoutMutate(bookingId)} disabled={isCheckoutUpdating}>
 								Check out
-							</EllipsisDropdown.Item>
+							</Dropdown.Item>
 						)}
 
 						<Modal.Trigger type="booking-delete-confirmation">
-							<EllipsisDropdown.Item icon={<HiTrash />} onClick={() => deleteBookingMutate(bookingId)} disabled={isBookingDeleting}>
+							<Dropdown.Item icon={<HiTrash />} onClick={() => deleteBookingMutate(bookingId)} disabled={isBookingDeleting}>
 								Delete
-							</EllipsisDropdown.Item>
+							</Dropdown.Item>
 						</Modal.Trigger>
-					</EllipsisDropdown.Menu>
+					</Dropdown.List>
 
 					<Modal.Window type="booking-delete-confirmation">
 						<ConfirmDelete resource={`Booking #${bookingId}`} disabled={isBookingDeleting} onConfirm={() => deleteBookingMutate(bookingId)} />
 					</Modal.Window>
 				</Modal>
-			</EllipsisDropdown.Inner>
+			</Dropdown.Inner>
 		</Table.Row>
 	);
 }

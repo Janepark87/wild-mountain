@@ -3,16 +3,16 @@ import { CreateCabinForm } from './index';
 
 export default function AddCabin() {
 	return (
-		<ButtonGroup>
-			<Modal>
-				<Modal.Trigger type="cabin-form-create">
+		<Modal>
+			<Modal.Trigger name="cabin-form">
+				<ButtonGroup>
 					<Button>Add new cabin</Button>
-				</Modal.Trigger>
+				</ButtonGroup>
+			</Modal.Trigger>
 
-				<Modal.Window type="cabin-form-create">
-					<CreateCabinForm />
-				</Modal.Window>
-			</Modal>
-		</ButtonGroup>
+			<Modal.Window name="cabin-form">
+				<CreateCabinForm />
+			</Modal.Window>
+		</Modal>
 	);
 }

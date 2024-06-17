@@ -45,11 +45,11 @@ export default function BookingDetail() {
 
 			<ButtonGroup>
 				<Modal>
-					<Modal.Trigger type="booking-detail-delete-confirmation">
+					<Modal.Trigger name="booking-detail-delete-confirmation">
 						<Button variation="danger">Delete Booking</Button>
 					</Modal.Trigger>
 
-					<Modal.Window type="booking-detail-delete-confirmation">
+					<Modal.Window name="booking-detail-delete-confirmation">
 						<ConfirmDelete
 							resource={`Booking #${bookingId}`}
 							disabled={isBookingDeleting}

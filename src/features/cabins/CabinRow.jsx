@@ -1,8 +1,8 @@
-import { HiEllipsisVertical, HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import { useCreateUpdateCabin, useDeleteCabin } from '../../hooks/useCabin';
 import { formatCurrency } from '../../utils/helpers';
-import { Table, Modal, EllipsisDropdown, ConfirmDelete } from '../../components';
-import { Img, Cabin, Price, Discount } from './styles/Cabins.style';
+import { Table, Modal, Dropdown, ConfirmDelete } from '../../components';
+import { Img, Cabin, Price, Discount } from './styles/CabinRow.style';
 import { CreateCabinForm } from './index';
 import { duplicateImage } from '../../services/apiCabins';
 
@@ -33,35 +33,33 @@ export default function CabinRow({ cabin }) {
 			<Price>{formatCurrency(regularPrice)}</Price>
 			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 
-			<EllipsisDropdown.Inner>
+			<Dropdown.Inner>
 				<Modal>
-					<EllipsisDropdown.Toggle id={cabinId}>
-						<HiEllipsisVertical />
-					</EllipsisDropdown.Toggle>
+					<Dropdown.Trigger id={cabinId} />
 
-					<EllipsisDropdown.Menu id={cabinId}>
-						<EllipsisDropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
-							Copy
-						</EllipsisDropdown.Item>
+					<Dropdown.List id={cabinId}>
+						<Dropdown.Item icon={<HiSquare2Stack />} onClick={duplicateCabin} disabled={isCabinCreatingUpdating}>
+							Duplicate
+						</Dropdown.Item>
 
-						<Modal.Trigger type="cabin-form-edit">
-							<EllipsisDropdown.Item icon={<HiPencil />}>Edit</EllipsisDropdown.Item>
+						<Modal.Trigger name="cabin-form-edit">
+							<Dropdown.Item icon={<HiPencil />}>Edit</Dropdown.Item>
 						</Modal.Trigger>
 
-						<Modal.Trigger type="cabin-delete-confirmation">
-							<EllipsisDropdown.Item icon={<HiTrash />}>Delete</EllipsisDropdown.Item>
+						<Modal.Trigger name="cabin-delete-confirmation">
+							<Dropdown.Item icon={<HiTrash />}>Delete</Dropdown.Item>
 						</Modal.Trigger>
-					</EllipsisDropdown.Menu>
+					</Dropdown.List>
 
-					<Modal.Window type="cabin-form-edit">
+					<Modal.Window name="cabin-form-edit">
 						<CreateCabinForm updateCabin={cabin} />
 					</Modal.Window>
 
-					<Modal.Window type="cabin-delete-confirmation">
+					<Modal.Window name="cabin-delete-confirmation">
 						<ConfirmDelete resource="Cabin" disabled={isCabinDeleting} onConfirm={() => deleteCabinMutate(cabinId)} />
 					</Modal.Window>
 				</Modal>
-			</EllipsisDropdown.Inner>
+			</Dropdown.Inner>
 		</Table.Row>
 	);
 }

@@ -1,5 +1,5 @@
 import { useBookingQuery } from '../../hooks/useBooking';
-import { EllipsisDropdown, Table, Spinner, Pagination } from '../../components';
+import { Dropdown, Table, Spinner, Pagination } from '../../components';
 import { BookingRow } from './index';
 
 export default function BookingTable() {
@@ -8,7 +8,7 @@ export default function BookingTable() {
 	if (isBookingLoading) return <Spinner />;
 
 	return (
-		<EllipsisDropdown>
+		<Dropdown>
 			<Table columns="0.6fr 2.5fr repeat(3, 1.5fr) repeat(2, 2fr) repeat(2, 1fr)">
 				<Table.Header>
 					<span>Cabin</span>
@@ -28,6 +28,6 @@ export default function BookingTable() {
 					<Pagination count={count} />
 				</Table.Footer>
 			</Table>
-		</EllipsisDropdown>
+		</Dropdown>
 	);
 }

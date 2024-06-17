@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function useClickAway(handlerFunction, listenCapturing = true) {
+export function useClickAway(handlerFunction, listenCapturing = false) {
 	const ref = useRef();
 
 	useEffect(() => {
@@ -9,6 +9,7 @@ export function useClickAway(handlerFunction, listenCapturing = true) {
 		};
 
 		document.addEventListener('click', handlerClickAway, listenCapturing);
+
 		return () => document.removeEventListener('click', handlerClickAway, listenCapturing);
 	}, [handlerFunction, listenCapturing]);
 

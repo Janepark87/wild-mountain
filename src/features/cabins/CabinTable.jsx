@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useCabinQuery } from '../../hooks/useCabin';
-import { Spinner, Table, EllipsisDropdown } from '../../components';
+import { Spinner, Table, Dropdown } from '../../components';
 import { CabinRow } from './index';
 
 export default function CabinTable() {
@@ -30,7 +30,7 @@ export default function CabinTable() {
 	});
 
 	return (
-		<EllipsisDropdown>
+		<Dropdown>
 			<Table columns=".8fr 1.8fr 1.5fr 1.5fr 1.5fr 1fr">
 				<Table.Header>
 					<span>Image</span>
@@ -43,6 +43,6 @@ export default function CabinTable() {
 
 				<Table.Body data={sortedCabins} render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />} />
 			</Table>
-		</EllipsisDropdown>
+		</Dropdown>
 	);
 }
