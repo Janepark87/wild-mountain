@@ -10,19 +10,20 @@ export default function CabinTable() {
 	if (isCabinsLoading) return <Spinner />;
 
 	// filter by discount
-	const filterDiscount = searchParams.get('discount') || 'all';
-	const filteredDiscount = filterDiscount === 'all' ? cabins : filterDiscount === 'no-discount' ? cabins.filter((cabin) => cabin.discount === 0) : cabins.filter((cabin) => cabin.discount > 0);
+	const filterValue = searchParams.get('discount') || 'all';
+	const filteredCabins = filterValue === 'all' ? cabins : filterValue === 'no-discount' ? cabins.filter((cabin) => cabin.discount === 0) : cabins.filter((cabin) => cabin.discount > 0);
 
 	// sort by
-	const sortBy = searchParams.get('sortBy') || 'name-asc';
-	const [field, direction] = sortBy.split('-');
+	const sortByValue = searchParams.get('sortBy') || 'created_at-desc';
+	const [field, direction] = sortByValue.split('-');
 	const modifire = direction === 'asc' ? 1 : -1;
-	const sortedCabins = filteredDiscount.sort((a, b) => {
+	const sortedCabins = filteredCabins.sort((a, b) => {
 		if (field === 'name') {
 			return a.name.localeCompare(b.name) * modifire;
 		} else if (field === 'created_at') {
 			const dateA = new Date(a.created_at);
 			const dateB = new Date(b.created_at);
+
 			return (dateA - dateB) * modifire;
 		} else {
 			return (a[field] - b[field]) * modifire;

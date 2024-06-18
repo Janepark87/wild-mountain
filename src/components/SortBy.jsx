@@ -3,12 +3,12 @@ import { Select } from './index';
 
 export default function SortBy({ options }) {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const sortBy = searchParams.get('sortBy') || '';
+	const currentSortBy = searchParams.get('sortBy') || options.at(options.length - 1).value;
 
 	const handleChange = (e) => {
 		searchParams.set('sortBy', e.target.value);
 		setSearchParams(searchParams);
 	};
 
-	return <Select options={options} value={sortBy} type="white" onChange={handleChange} />;
+	return <Select options={options} value={currentSortBy} type="white" onChange={handleChange} />;
 }
