@@ -5,14 +5,25 @@ import { useAppNavigation } from '../context/NavigationContext';
 import { Button } from './index';
 
 const StyledSidebarOveray = styled.div`
-	display: none;
+	&,
+	> button {
+		display: none;
+		position: fixed;
+		transition: opacity 0.3s ease-in 0.2s;
+		z-index: -1;
+	}
+
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(3px);
 
 	> button {
-		position: fixed;
 		top: 1rem;
 		right: 2rem;
 		font-size: 2.5rem;
-		z-index: 1001;
 
 		&:hover {
 			background-color: transparent;
@@ -20,20 +31,19 @@ const StyledSidebarOveray = styled.div`
 	}
 
 	${Media.sm`
-		display: block;
+		&, > button{
+			display: block;
+		}
+
 		opacity: 0;
 
 		.toggle-on & {
 			opacity: 1;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100vh;
-			background-color: rgba(255, 255, 255, 0.1);
-			backdrop-filter: blur(3px);	
-			transition: opacity 0.3s ease-in .2s;			
 			z-index: 1000;
+
+			> button{
+				z-index: 1001;
+			}
 		}
 	`}
 `;

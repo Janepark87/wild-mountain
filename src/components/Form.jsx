@@ -51,9 +51,9 @@ const StyledForm = styled.form`
 	font-size: 1.4rem;
 `;
 
-export default function Form({ type = 'regular', children }) {
+export default function Form({ type = 'regular', children, onSubmit }) {
 	return (
-		<StyledForm type={type} className={`${type !== 'regular' ? 'modal' : ''}`}>
+		<StyledForm onSubmit={onSubmit} type={type} className={`${type !== 'regular' ? 'modal' : ''}`}>
 			{children}
 		</StyledForm>
 	);
