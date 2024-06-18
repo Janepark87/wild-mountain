@@ -42,6 +42,12 @@ export const StyledModalInner = styled.div`
 		padding: 2.5rem;
 	`}
 
+	#modal-closed-btn {
+		position: absolute;
+		top: 1rem;
+		right: 1.75rem;
+	}
+
 	&::-webkit-scrollbar {
 		width: 10px;
 	}
@@ -55,32 +61,5 @@ export const StyledModalInner = styled.div`
 	&::-webkit-scrollbar-track {
 		margin: 3px 0;
 		background-color: rgba(0, 0, 0, 0);
-	}
-`;
-
-export const StyledModalCloseBtn = styled.button`
-	position: absolute;
-	top: 1rem;
-	right: 1.75rem;
-	width: 2.5rem;
-	min-width: 2.5rem;
-	height: 2.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: none;
-	border: none;
-	border-radius: var(--border-radius-sm);
-	transform: translateX(0.8rem);
-	transition: all 0.2s;
-
-	&:hover {
-		background-color: var(--color-grey-100);
-	}
-
-	& svg {
-		padding: 0.25rem;
-		font-size: 2.5rem;
-		color: var(--color-grey-500);
 	}
 `;

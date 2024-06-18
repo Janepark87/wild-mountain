@@ -16,7 +16,7 @@ const sizes = {
 
 		${Media.sm`
 			font-size: 1.3rem;
-			padding: 1rem 1.5rem;
+			padding: 1.2rem 1.5rem;
 		`}
 	`,
 	lg: css`
@@ -25,8 +25,20 @@ const sizes = {
 		font-weight: 500;
 
 		${Media.sm`
-			font-size: 1.4rem;
-			padding: 1.2rem 1.6rem;
+			font-size: 1.5rem;
+			padding: 1.3rem 1.5rem;
+		`}
+	`,
+	'icon-sm': css`
+		font-size: 1.75rem;
+		padding: 0.5rem;
+	`,
+	'icon-md': css`
+		font-size: 2.2rem;
+		padding: 1rem;
+
+		${Media.sm`
+			padding: .75rem;
 		`}
 	`,
 };
@@ -77,6 +89,19 @@ const variations = {
 			background-color: var(--color-grey-50);
 		}
 	`,
+	'ghost-secondary': css`
+		color: var(--color-grey-500);
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+		font-weight: 500;
+		text-align: center;
+
+		&:hover,
+		&:active {
+			background-color: var(--color-grey-100);
+		}
+	`,
 };
 
 const Button = styled.button`
@@ -91,6 +116,7 @@ const Button = styled.button`
 	cursor: pointer;
 	transition: all 0.3s;
 
+	width: ${(props) => (props.$fluid === 'true' ? '100%' : 'max-content')};
 	${(props) => sizes[props.size]}
 	${(props) => variations[props.variation]}
 
@@ -102,6 +128,7 @@ const Button = styled.button`
 Button.defaultProps = {
 	size: 'md',
 	variation: 'primary',
+	$fluid: 'false',
 };
 
 Button.shouldForwardProp = () => true;

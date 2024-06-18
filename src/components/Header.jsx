@@ -1,44 +1,32 @@
-import styled from 'styled-components';
-import { Media } from '../styles/Breakpoints';
+import { LuBarChart2 } from 'react-icons/lu';
 import { UserAvatar, Logout } from '../features/authentication';
-import { DarkModeToggle } from './index';
-
-const StyledHeader = styled.header`
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	padding: 1rem 1.25rem;
-	background-color: var(--color-grey-0);
-	border-bottom: 1px solid var(--color-grey-100);
-`;
-
-const StyledHeaderMenu = styled.ul`
-	display: flex;
-	align-items: center;
-
-	> li > button {
-		padding: 1rem 1.25rem;
-		line-height: 0;
-
-		${Media.sm`
-            > span{
-                display: none;
-            }
-        `}
-	}
-`;
+import { useAppNavigation } from '../context/NavigationContext';
+import { Button, DarkModeToggle, Logo } from './index';
+import { StyledHeader, StyledHeaderMenu, StyledMobileLogo, StyledMobileWrapper } from './Header.style';
 
 export default function Header() {
+	const { openNav } = useAppNavigation();
+
 	return (
 		<StyledHeader>
+			<StyledMobileWrapper>
+				<Button id="hamburger" size="icon-md" variation="ghost-secondary" onClick={() => openNav()}>
+					<LuBarChart2 />
+				</Button>
+
+				<StyledMobileLogo>
+					<Logo />
+				</StyledMobileLogo>
+			</StyledMobileWrapper>
+
 			<StyledHeaderMenu>
 				<li>
 					<UserAvatar />
 				</li>
-				<li>
+				<li className="hidden-sm">
 					<DarkModeToggle />
 				</li>
-				<li>
+				<li className="hidden-sm">
 					<Logout />
 				</li>
 			</StyledHeaderMenu>

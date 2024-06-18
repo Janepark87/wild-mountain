@@ -6,15 +6,14 @@ import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
 import { subtractDates } from '../utils/helpers';
-import Button from '../components/Button.style';
-import Heading from '../components/Heading.style';
+import { Button, Heading } from '../components';
 
 const StylesUploader = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	margin-top: auto;
 	padding: 8px;
+	margin-top: 1rem;
 	background-color: var(--color-indigo-100);
 	border-radius: var(--border-radius-sm);
 	text-align: center;
@@ -112,12 +111,12 @@ export function Uploader() {
 			<Heading as="h4">Dev Area</Heading>
 
 			{/* Only run this only once! Cabin images need to be uploaded manually */}
-			<Button onClick={uploadAll} disabled={isLoading}>
+			<Button onClick={uploadAll} disabled={isLoading} $fluid="true">
 				Upload ALL
 			</Button>
 
 			{/* You can run this every day you develop the app */}
-			<Button onClick={uploadBookings} disabled={isLoading}>
+			<Button onClick={uploadBookings} disabled={isLoading} $fluid="true">
 				Upload CURRENT bookings
 			</Button>
 		</StylesUploader>

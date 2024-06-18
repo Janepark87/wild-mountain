@@ -7,34 +7,10 @@ export const Inner = styled.div`
 	justify-content: flex-end;
 `;
 
-export const StyledTrigger = styled.button`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 3rem;
-	min-width: 3rem;
-	height: 3rem;
-	background: none;
-	border: none;
-	border-radius: var(--border-radius-sm);
-	transform: translateX(0.8rem);
-	transition: all 0.2s;
-
-	&:hover {
-		background-color: var(--color-grey-100);
-	}
-
-	& svg {
-		padding: 0.25rem;
-		font-size: 2.5rem;
-		color: var(--color-grey-700);
-	}
-`;
-
 export const StyledList = styled.ul`
 	position: absolute;
-	top: 2rem;
-	right: 2rem;
+	top: 2.5rem;
+	right: 3rem;
 	min-width: max-content;
 	background-color: var(--color-grey-0);
 	box-shadow: var(--shadow-md);

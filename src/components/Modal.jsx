@@ -1,8 +1,9 @@
 import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { HiXMark } from 'react-icons/hi2';
+import { RiCloseLine } from 'react-icons/ri';
 import { useClickAway } from '../hooks/useClickAway';
-import { StyledModal, StyledModalInner, StyledModalCloseBtn } from './Modal.style';
+import { StyledModal, StyledModalInner } from './Modal.style';
+import Button from './Button.style';
 
 const ModalContext = createContext();
 const useModal = () => useContext(ModalContext);
@@ -38,9 +39,9 @@ function Window({ children, name, customEvent = true }) {
 	return createPortal(
 		<StyledModal>
 			<StyledModalInner ref={ref}>
-				<StyledModalCloseBtn onClick={closeModal}>
-					<HiXMark />
-				</StyledModalCloseBtn>
+				<Button id="modal-closed-btn" size="icon-md" variation="ghost-secondary" onClick={closeModal}>
+					<RiCloseLine />
+				</Button>
 
 				{!customEvent ? children : cloneElement(children, { onCloseModal: () => closeModal() })}
 			</StyledModalInner>

@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from 'react';
-import { useClickAway } from '../hooks/useClickAway';
-import { Inner, StyledItem, StyledList, StyledTrigger } from './Dropdown.style';
 import { HiEllipsisVertical } from 'react-icons/hi2';
+import { Inner, StyledItem, StyledList } from './Dropdown.style';
+import { Button } from './index';
+import { useClickAway } from '../hooks/useClickAway';
 
 const DropdownContext = createContext();
 const useDropdown = () => useContext(DropdownContext);
@@ -23,7 +24,11 @@ function Trigger({ id, children, ellipsis = true }) {
 		openId === '' || openId !== id ? openMenu(id) : closeMenu();
 	};
 
-	return <StyledTrigger onClick={handleClick}>{ellipsis ? <HiEllipsisVertical /> : children}</StyledTrigger>;
+	return (
+		<Button size="icon-md" variation="ghost-secondary" onClick={handleClick}>
+			{ellipsis ? <HiEllipsisVertical /> : children}
+		</Button>
+	);
 }
 
 function List({ id, children }) {

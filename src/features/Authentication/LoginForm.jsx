@@ -11,6 +11,7 @@ export default function LoginForm() {
 		e.preventDefault();
 
 		if (!email || !password) return;
+
 		loginMutate(
 			{ email, password },
 			{
