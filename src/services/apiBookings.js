@@ -7,7 +7,7 @@ export async function getBookings({ filters, sortBy, page }) {
 		count: 'exact',
 	});
 
-	// Filters
+	// Filters query.eq('status', 'unconfirmed')
 	if (filters.length > 0) {
 		filters.forEach((filter) => {
 			const { field, value, operator } = filter;

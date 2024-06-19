@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
-import { useCabinQuery } from '../../hooks/useCabin';
-import { Spinner, Table, Dropdown } from '../../components';
+import { useCabins } from '../../hooks/useCabin';
+import { Spinner, Table, Dropdown, Pagination } from '../../components';
 import { CabinRow } from './';
 
 export default function CabinTable() {
-	const { cabins, isCabinsLoading } = useCabinQuery();
+	const { cabins, isCabinsLoading, count } = useCabins();
 	const [searchParams] = useSearchParams();
 
 	if (isCabinsLoading) return <Spinner />;
@@ -43,6 +43,10 @@ export default function CabinTable() {
 				</Table.Header>
 
 				<Table.Body data={sortedCabins} dataName="cabins" render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />} />
+
+				<Table.Footer>
+					<Pagination count={count} />
+				</Table.Footer>
 			</Table>
 		</Dropdown>
 	);

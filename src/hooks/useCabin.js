@@ -2,18 +2,44 @@ import { useQuery } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { getCabins, createUpdateCabin, deleteCabin } from '../services/apiCabins';
+import { useSearchParams } from 'react-router-dom';
+import { PAGE_SIZE } from '../utils/constants';
 
-export function useCabinQuery() {
+export function useCabins() {
+	const queryClient = useQueryClient();
+	const [searchParams] = useSearchParams();
+
+	// pagination
+	const pageValue = searchParams.get('page');
+	const page = !pageValue ? 1 : Number(pageValue);
+
 	const {
-		data: cabins,
+		data: { data: cabins, count } = {},
 		isPending: isCabinsLoading,
 		isError: isCabinsError,
 	} = useQuery({
-		queryKey: ['cabins'],
-		queryFn: getCabins,
+		queryKey: ['cabins', page],
+		queryFn: () => getCabins({ page }),
 	});
 
-	return { cabins, isCabinsLoading, isCabinsError };
+	// function to prefetch pages
+	const prefetchPage = (pageOffset) => {
+		const targetPage = page + pageOffset;
+		const totalPageNumber = Math.ceil(count / PAGE_SIZE);
+
+		if (targetPage >= 1 && targetPage <= totalPageNumber) {
+			queryClient.prefetchQuery({
+				queryKey: ['cabins', targetPage],
+				queryFn: () => getCabins({ page: targetPage }),
+			});
+		}
+	};
+
+	// pre-fetching for next and previous pages
+	prefetchPage(1);
+	prefetchPage(-1);
+
+	return { cabins, isCabinsLoading, isCabinsError, count };
 }
 
 export function useCreateUpdateCabin(updateMode) {
