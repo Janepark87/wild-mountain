@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { RiCloseLine } from 'react-icons/ri';
 import { Media } from '../styles/Breakpoints';
 import { useAppNavigation } from '../context/NavigationContext';
-import { Button } from './index';
+import { Button } from './';
 
 const StyledSidebarOveray = styled.div`
 	&,

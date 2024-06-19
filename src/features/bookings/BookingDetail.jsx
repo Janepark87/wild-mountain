@@ -4,7 +4,7 @@ import { HiArrowLeft } from 'react-icons/hi2';
 import { useBooking, useDeleteBooking } from '../../hooks/useBooking';
 import { useGoback } from '../../hooks/useGoback';
 import { Row, Heading, Spinner, Badge, ButtonGroup, Button, Modal, ConfirmDelete, Empty } from '../../components';
-import { BookingDetailDataBlock } from './index';
+import { BookingDetailDataBlock } from './';
 import { CheckoutButton } from '../check-in-out';
 
 const HeadingGroup = styled.div`
@@ -34,7 +34,7 @@ export default function BookingDetail() {
 			<Row type="horizontal">
 				<HeadingGroup>
 					<Heading as="h1">Booking #{bookingId}</Heading>
-					<Badge type={statusBadgeType[status]}>{status.replace('-', ' ')}</Badge>
+					<Badge $variant={statusBadgeType[status]}>{status.replace('-', ' ')}</Badge>
 				</HeadingGroup>
 				<Button variation="ghost" onClick={goback}>
 					<HiArrowLeft /> Back

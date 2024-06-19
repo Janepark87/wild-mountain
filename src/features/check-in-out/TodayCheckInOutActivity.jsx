@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useTodayCheckInOutActivity } from '../../hooks/useCheckBooking';
 import { Heading, Row, Spinner } from '../../components';
-import { TodayActivityItem } from './index';
+import { TodayActivityItem } from './';
 
 const StyledToday = styled.div`
 	display: flex;

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useAuth';
 import { Spinner } from '../components';
-import { LoginLayout } from './index';
+import { LoginLayout } from './';
 
 export default function ProtectedRoute({ children }) {
 	const navigate = useNavigate();

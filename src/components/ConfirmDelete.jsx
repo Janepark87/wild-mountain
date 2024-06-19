@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Media } from '../styles/Breakpoints';
-import { Heading, Button } from './index';
+import { Heading, Button } from './';
 
 const StyledConfirmDelete = styled.div`
 	max-width: 40rem;
@@ -35,14 +35,14 @@ const StyledConfirmDelete = styled.div`
 export default function ConfirmDelete({ resource, onConfirm, disabled, onCloseModal }) {
 	return (
 		<StyledConfirmDelete>
-			<Heading as='h3'>Delete {resource}</Heading>
+			<Heading as="h3">Delete {resource}</Heading>
 			<p>Are you sure you want to delete this {resource} permanently? This action cannot be undone.</p>
 
 			<div>
-				<Button variation='secondary' onClick={onCloseModal}>
+				<Button variation="secondary" onClick={onCloseModal}>
 					Cancel
 				</Button>
-				<Button variation='danger' onClick={onConfirm} disabled={disabled}>
+				<Button variation="danger" onClick={onConfirm} disabled={disabled}>
 					Delete
 				</Button>
 			</div>

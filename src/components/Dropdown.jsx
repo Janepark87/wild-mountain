@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import { Inner, StyledItem, StyledList } from './Dropdown.style';
-import { Button } from './index';
+import { Button } from './';
 import { useClickAway } from '../hooks/useClickAway';
 
 const DropdownContext = createContext();

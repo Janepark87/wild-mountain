@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useCabinQuery } from '../../hooks/useCabin';
 import { useRecentBookings, useRecentStays } from '../../hooks/useDashboard';
 import { Spinner } from '../../components';
-import { Statistics, SalesChart, DurationChart } from './index';
+import { Statistics, SalesChart, DurationChart } from './';
 import { TodayCheckInOutActivity } from '../check-in-out';
 
 const StyledDashboardContent = styled.div`

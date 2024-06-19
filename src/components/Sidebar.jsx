@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Uploader } from '../data/Uploader.jsx';
-import { DarkModeToggle, Logo, Navbar } from './index';
+import { DarkModeToggle, Logo, Navbar } from './';
 import { Media } from '../styles/Breakpoints';
 import Logout from '../features/authentication/Logout.jsx';
 

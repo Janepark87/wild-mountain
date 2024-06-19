@@ -10,8 +10,8 @@ const Badge = styled.span`
 	white-space: nowrap;
 
 	/* Make these dynamic, based on the received prop */
-	color: var(--color-${(props) => props.type}-700);
-	background-color: var(--color-${(props) => props.type}-100);
+	color: var(--color-${(props) => props.$variant}-700);
+	background-color: var(--color-${(props) => props.$variant}-100);
 `;
 
 export default Badge;

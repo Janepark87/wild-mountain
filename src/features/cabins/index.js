@@ -3,3 +3,4 @@ export { default as CabinRow } from './CabinRow';
 export { default as CabinTable } from './CabinTable';
 export { default as CabinTableOperations } from './CabinTableOperations';
 export { default as CreateCabinForm } from './CreateCabinForm';
+export { default as CabinRowEllipsisDropdown } from './CabinRowEllipsisDropdown';

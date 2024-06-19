@@ -1,6 +1,6 @@
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
 import { useDarkMode } from '../context/DarkModeContext';
-import { Button } from './index';
+import { Button } from './';
 import styled from 'styled-components';
 
 const StyledMobileDarkMode = styled.div`

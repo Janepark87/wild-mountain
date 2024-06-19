@@ -1,7 +1,7 @@
 import { LuBarChart2 } from 'react-icons/lu';
 import { UserAvatar, Logout } from '../features/authentication';
 import { useAppNavigation } from '../context/NavigationContext';
-import { Button, DarkModeToggle, Logo } from './index';
+import { Button, DarkModeToggle, Logo } from './';
 import { StyledHeader, StyledHeaderMenu, StyledMobileLogo, StyledMobileWrapper } from './Header.style';
 
 export default function Header() {

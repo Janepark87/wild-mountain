@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { Footer, StyledBody, StyledHeader, StyledRow, StyledTable } from './Table.style';
-import Empty from './Empty';
+import { Empty } from './';
 
 const TableContext = createContext();
 const useTable = () => useContext(TableContext);
@@ -34,8 +34,8 @@ function Row({ children }) {
 }
 
 // Render props pattern
-function Body({ data, render }) {
-	if (!data.length) return <Empty>No data to show at the moment.</Empty>;
+function Body({ data, render, dataName }) {
+	if (!data.length) return <Empty dataName={dataName} />;
 
 	return <StyledBody>{data.map(render)}</StyledBody>;
 }

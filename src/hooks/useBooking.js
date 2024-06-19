@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { deleteBooking, getBooking, getBookings } from '../services/apiBookings';
 import { PAGE_SIZE } from '../utils/constants';
 
-export function useBookingQuery() {
+export function useBookings() {
 	const queryClient = useQueryClient();
 	const [searchParams] = useSearchParams();
 

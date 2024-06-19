@@ -1,5 +1,5 @@
 import { Modal, Button } from '../../components';
-import { CreateCabinForm } from './index';
+import { CreateCabinForm } from './';
 
 export default function AddCabin() {
 	return (
