@@ -10,8 +10,9 @@ const InnerWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 48rem;
+	max-width: 44rem;
 	gap: 3.2rem;
+	padding: 2rem;
 `;
 
 export default function Login() {

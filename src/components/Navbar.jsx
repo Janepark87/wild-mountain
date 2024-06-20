@@ -74,7 +74,7 @@ export default function Navbar() {
 				<li>
 					<StyledNavLink to="/users" onClick={closeNav}>
 						<HiOutlineUsers />
-						<span>Users</span>
+						<span>Staffs</span>
 					</StyledNavLink>
 				</li>
 				<li>

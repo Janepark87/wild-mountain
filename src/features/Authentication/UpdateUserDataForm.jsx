@@ -12,7 +12,7 @@ export default function UpdateUserDataForm() {
 	} = useUser();
 	const [fullname, setFullname] = useState(currentFullname || 'Unknown');
 	const [avatar, setAvatar] = useState(currentAvatar || 'default-user.jpg');
-	const [errorName, setErrorName] = useState('');
+	const [errorName, setErrorMessage] = useState('');
 	const { updateUserMutate, isUserUpdating } = useUpdateUser();
 	const previewAvatar = avatar === 'default-user.jpg' ? avatar : !avatar || avatar === currentAvatar ? currentAvatar ?? 'default-user.jpg' : URL.createObjectURL(avatar);
 
@@ -21,7 +21,7 @@ export default function UpdateUserDataForm() {
 
 		// Validate name or avatar before submitting
 		const trimmedFullname = fullname.trim();
-		if (!trimmedFullname || trimmedFullname === 'Unknown') return setErrorName('Please update your full name.');
+		if (!trimmedFullname || trimmedFullname === 'Unknown') return setErrorMessage('Please update your full name.');
 
 		// this checks for unchanged values and a null avatar
 		if (trimmedFullname === currentFullname && (!avatar || avatar === currentAvatar || avatar === 'default-user.jpg'))
@@ -32,7 +32,7 @@ export default function UpdateUserDataForm() {
 			{
 				onSuccess: () => {
 					setAvatar(null);
-					setErrorName('');
+					setErrorMessage('');
 					e.target.reset(); // clear the file input value
 				},
 			}
@@ -42,7 +42,7 @@ export default function UpdateUserDataForm() {
 	const handleReset = () => {
 		setFullname(currentFullname);
 		setAvatar(currentAvatar || 'default-user.jpg');
-		setErrorName('');
+		setErrorMessage('');
 	};
 
 	return (
@@ -58,7 +58,7 @@ export default function UpdateUserDataForm() {
 					defaultValue={fullname ? fullname : 'Unknown'}
 					onChange={(e) => {
 						setFullname(e.target.value);
-						setErrorName('');
+						setErrorMessage('');
 					}}
 					disabled={isUserUpdating}
 				/>

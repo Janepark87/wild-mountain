@@ -13,7 +13,7 @@ const StyledUserAvatar = styled.div`
 	cursor: pointer;
 
 	> span {
-		margin-left: 1.25rem;
+		margin-left: 1rem;
 
 		${Media.sm`
 			display: none;		
@@ -23,7 +23,8 @@ const StyledUserAvatar = styled.div`
 
 const Avatar = styled.img`
 	display: block;
-	max-width: 2.5rem;
+	width: 2.5rem;
+	min-width: 2.5rem;
 	aspect-ratio: 1;
 	object-fit: cover;
 	border-radius: 50%;
@@ -40,7 +41,7 @@ export default function UserAvatar() {
 
 	return (
 		<StyledUserAvatar onClick={() => navigate('/account')}>
-			<Avatar src={`${import.meta.env.DEV ? '/' : ''}${avatar || 'default-user.jpg'}`} alt={`Avatar${fullname ? ` of ${fullname}` : ''}`} />
+			<Avatar src={`${avatar || (import.meta.env.DEV ? '/' : '') + 'default-user.jpg'}`} alt={`Avatar${fullname ? ` of ${fullname}` : ''}`} />
 			{fullname && <span>{fullname}</span>}
 		</StyledUserAvatar>
 	);

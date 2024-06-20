@@ -9,7 +9,7 @@ export function useSingup() {
 	const { mutate: signupMutate, isPending: isSignupLoading } = useMutation({
 		mutationFn: ({ fullname, email, password }) => signup({ fullname, email, password }),
 		onSuccess: () => {
-			toast.success("Account successfully created! Please verify the new account from the user's email address.");
+			toast.success("Account successfully created! Please verify the new account from the staff's email address.");
 			navigate('/login', { replace: true });
 		},
 		onError: (err) => {

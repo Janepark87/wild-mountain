@@ -4,7 +4,7 @@ import { SingupForm } from '../features/authentication';
 export default function Users() {
 	return (
 		<Container>
-			<Heading as="h1">Create a new user</Heading>
+			<Heading as="h1">Create a new staff</Heading>
 			<SingupForm />
 		</Container>
 	);

@@ -41,8 +41,19 @@ export async function getCurrentUser() {
 	return data?.user;
 }
 
+async function deleteAvatarFromSupabase(avatarPath) {
+	const avatarName = avatarPath.split('/').pop();
+
+	const { error } = await supabase.storage.from('avatars').remove([avatarName]);
+
+	if (error) {
+		console.error(error);
+		throw new Error('Avatar could not be deleted.');
+	}
+}
+
 async function uploadAvatarToSupabase(user, avatar) {
-	const avatarName = `avatar-${user.id}-${Math.floor(Date.now() + 1)}`;
+	const avatarName = `avatar-${user.id}-${Math.floor(Date.now() + 1)}-${(avatar?.name || '').replaceAll('/', '')}`;
 	const avatarPath = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/avatars/${avatarName}`;
 
 	const { error: storageError } = await supabase.storage.from('avatars').upload(avatarName, avatar);
@@ -55,12 +66,15 @@ async function uploadAvatarToSupabase(user, avatar) {
 	return avatarPath;
 }
 
-async function createAvatarPath(user, avatar) {
+async function createAvatarPath(user, avatar, existingAvatarPath = null) {
 	if (!avatar) return null;
+
+	if (existingAvatarPath) {
+		await deleteAvatarFromSupabase(existingAvatarPath);
+	}
 
 	const hasAvatarPath = avatar?.startsWith?.(import.meta.env.VITE_SUPABASE_URL);
 	const avatarPath = hasAvatarPath ? avatar : await uploadAvatarToSupabase(user, avatar);
-
 	return avatarPath;
 }
 
@@ -71,18 +85,21 @@ export async function updateCurrentUser({ fullname, avatar, password }) {
 	if (password) updateData = { password };
 
 	try {
-		const { data: updateUser } = await supabase.auth.updateUser(updateData);
+		const { data: currentUser } = await supabase.auth.getUser();
+		const { data: updatedUser } = await supabase.auth.updateUser(updateData);
 
-		if (!avatar) {
-			return updateUser;
-		} else {
-			// upload/update the avatar
-			const avatarPath = await createAvatarPath(updateUser.user, avatar);
-			const { data: updateAvatar } = await supabase.auth.updateUser({
-				data: { avatar: avatarPath },
-			});
-			return updateAvatar;
-		}
+		if (!avatar) return updatedUser;
+
+		// Fetch existing avatar path from user_metadata
+		const existingAvatarPath = currentUser.user.user_metadata?.avatar;
+
+		// Upload new avatar and delete the old one if necessary
+		const avatarPath = await createAvatarPath(updatedUser.user, avatar, existingAvatarPath);
+		const { data: updatedAvatar } = await supabase.auth.updateUser({
+			data: { avatar: avatarPath },
+		});
+
+		return updatedAvatar;
 	} catch (err) {
 		console.log(err.message);
 		throw Error(err.message);
