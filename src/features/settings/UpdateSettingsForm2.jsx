@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
+import { useSetting, useUpdateSetting } from '../../hooks/useSetting';
 import { Form, FormRow, Input, Spinner } from '../../components';
 import { useState } from 'react';
 
 export default function UpdateSettingsForm() {
-	const { settings = {}, isSettingLoading } = useSettingQuery();
+	const { settings = {}, isSettingLoading } = useSetting();
 	const { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = settings;
 	const {
 		register,

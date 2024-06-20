@@ -40,7 +40,7 @@ export default function UserAvatar() {
 
 	return (
 		<StyledUserAvatar onClick={() => navigate('/account')}>
-			<Avatar src={avatar || 'default-user.jpg'} alt={`Avatar${fullname ? ` of ${fullname}` : ''}`} />
+			<Avatar src={`${import.meta.env.DEV ? '/' : ''}${avatar || 'default-user.jpg'}`} alt={`Avatar${fullname ? ` of ${fullname}` : ''}`} />
 			{fullname && <span>{fullname}</span>}
 		</StyledUserAvatar>
 	);

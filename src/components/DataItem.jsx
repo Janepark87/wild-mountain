@@ -4,13 +4,13 @@ const StyledDataItem = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	gap: 1.6rem;
+	gap: 1rem;
 `;
 
 const Label = styled.span`
 	display: flex;
 	align-items: center;
-	gap: 0.8rem;
+	gap: 0.5rem;
 	font-weight: 500;
 
 	& svg {

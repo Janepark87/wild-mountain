@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { getSetting, updateSetting } from '../services/apiSetting';
 
-export function useSettingQuery() {
+export function useSetting() {
 	const {
 		data: settings,
 		isPending: isSettingLoading,

@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { useSettingQuery, useUpdateSetting } from '../../hooks/useSetting';
+import { useSetting, useUpdateSetting } from '../../hooks/useSetting';
 import useInputValidation from '../../hooks/useInputValidation';
 import { Form, FormRow, Input, Spinner, Button } from '../../components';
 
 export default function UpdateSettingsForm() {
-	const { settings = {}, isSettingLoading } = useSettingQuery();
+	const { settings = {}, isSettingLoading } = useSetting();
 	const { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = settings;
 	const { updateSettingMutate, isSettingUpdating } = useUpdateSetting();
 	const { btnDisable, setBtnDisable, handleInputValidation } = useInputValidation(settings);
