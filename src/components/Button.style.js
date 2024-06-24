@@ -104,6 +104,15 @@ const variations = {
 	`,
 };
 
+const widths = {
+	'w-full': css`
+		width: 100%;
+	`,
+	'w-max': css`
+		width: max-content;
+	`,
+};
+
 const Button = styled.button`
 	display: flex;
 	justify-content: center;
@@ -116,7 +125,7 @@ const Button = styled.button`
 	cursor: pointer;
 	transition: all 0.3s;
 
-	width: ${(props) => (props.$fluid === 'true' ? '100%' : 'max-content')};
+	${(props) => widths[props.$width]}
 	${(props) => sizes[props.size]}
 	${(props) => variations[props.variation]}
 
@@ -128,7 +137,7 @@ const Button = styled.button`
 Button.defaultProps = {
 	size: 'md',
 	variation: 'primary',
-	$fluid: 'false',
+	$width: 'w-max',
 };
 
 Button.shouldForwardProp = () => true;

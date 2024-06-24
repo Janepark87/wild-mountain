@@ -32,7 +32,7 @@ export default function LoginForm() {
 				<Input type="password" id="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoginLoading} />
 			</FormRow>
 			<FormRow orientation="vertical">
-				<Button size="lg" $fluid="true" disabled={isLoginLoading}>
+				<Button size="lg" $width="w-full" disabled={isLoginLoading}>
 					Log in {isLoginLoading && <Spinner size="mini" />}
 				</Button>
 			</FormRow>

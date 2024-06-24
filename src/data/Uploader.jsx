@@ -111,12 +111,12 @@ export function Uploader() {
 			<Heading as="h4">Dev Area</Heading>
 
 			{/* Only run this only once! Cabin images need to be uploaded manually */}
-			<Button onClick={uploadAll} disabled={isLoading} $fluid="true">
+			<Button onClick={uploadAll} disabled={isLoading} $width="w-full">
 				Upload ALL
 			</Button>
 
 			{/* You can run this every day you develop the app */}
-			<Button onClick={uploadBookings} disabled={isLoading} $fluid="true">
+			<Button onClick={uploadBookings} disabled={isLoading} $width="w-full">
 				Upload CURRENT bookings
 			</Button>
 		</StylesUploader>

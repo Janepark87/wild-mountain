@@ -60,6 +60,7 @@ export default function SalesChart({ bookings, numDays }) {
 			<Heading as="h2">
 				Sales from {format(allDates.at(0), 'MMM dd yyyy')} &mdash; {format(allDates.at(-1), 'MMM dd yyyy')}
 			</Heading>
+
 			<ResponsiveContainer width="100%" height={350}>
 				<AreaChart data={data}>
 					<defs>
@@ -67,11 +68,15 @@ export default function SalesChart({ bookings, numDays }) {
 						{generateLinearGradient('colorExtrasSales', extrasSales)}
 					</defs>
 					<XAxis dataKey="label" tick={{ fill: text }} tickLine={{ stroke: text }} />
-					<YAxis unit="$" tick={{ fill: text }} tickLine={{ stroke: text }} />
-					<CartesianGrid strokeDasharray="3 3" />
-					<Tooltip contentStyle={{ backgroundColor: 'var(--color-grey-0)', borderRadius: '5px', borderColor: 'var(--color-grey-200)' }} />
-					<Area dataKey="totalSales" name="Total sales" unit="$" type="monotone" fillOpacity={1} strokeWidth={1} stroke={totalSales.stroke} fill="url(#colorTotalSales)" />
-					<Area dataKey="extrasSales" name="Extras Sales" unit="$" type="monotone" fillOpacity={1} strokeWidth={1.15} stroke={extrasSales.stroke} fill="url(#colorExtrasSales)" />
+					<YAxis tick={{ fill: text }} tickLine={{ stroke: text }} tickFormatter={(value) => `$${value.toLocaleString()}`} />
+					<CartesianGrid strokeDasharray="4" />
+					<Tooltip
+						contentStyle={{ backgroundColor: 'var(--color-grey-0)', borderRadius: '5px', borderColor: 'var(--color-grey-200)' }}
+						formatter={(value) => `$${value.toLocaleString()}`}
+						labelFormatter={(label) => label}
+					/>
+					<Area dataKey="totalSales" name="Total sales" type="monotone" fillOpacity={1} strokeWidth={1} stroke={totalSales.stroke} fill="url(#colorTotalSales)" />
+					<Area dataKey="extrasSales" name="Extras Sales" type="monotone" fillOpacity={1} strokeWidth={1.15} stroke={extrasSales.stroke} fill="url(#colorExtrasSales)" />
 				</AreaChart>
 			</ResponsiveContainer>
 		</StyledSalesChart>

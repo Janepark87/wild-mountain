@@ -37,7 +37,7 @@ export default function BookingRow({ booking }) {
 
 			<Stacked>
 				<span>{format(new Date(startDate), 'MMM dd, yyyy')}</span>
-				<span>{isToday(new Date(startDate)) ? `${formatDistanceFromNow(startDate)}(today)` : formatDistanceFromNow(startDate)}</span>
+				<span>{isToday(new Date(startDate)) ? `${formatDistanceFromNow(startDate)} (today)` : formatDistanceFromNow(startDate)}</span>
 			</Stacked>
 
 			<span style={{ fontWeight: '500' }}>{format(new Date(endDate), 'MMM dd, yyyy')}</span>

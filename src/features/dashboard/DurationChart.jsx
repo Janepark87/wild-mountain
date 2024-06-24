@@ -35,9 +35,13 @@ function prepareData(startData, stays) {
 		});
 	};
 
-	const data = stays.reduce((arr, cur) => updateReservations(arr, cur.numNights), startData).filter((obj) => obj.reservations > 0);
+	// iterate through the stays array to update reservations
+	const updatedData = stays.reduce((arr, cur) => updateReservations(arr, cur.numNights), startData);
 
-	return data;
+	// filter data to include only those with reservations greater than 0
+	const filteredData = updatedData.filter((obj) => obj.reservations > 0);
+
+	return filteredData;
 }
 
 export default function DurationChart({ confirmedStays }) {
@@ -55,7 +59,11 @@ export default function DurationChart({ confirmedStays }) {
 							<Cell key={entry.durationLabel} fill={entry.color} stroke={entry.color} />
 						))}
 					</Pie>
-					<Tooltip contentStyle={{ backgroundColor: 'var(--color-grey-0)', borderRadius: '5px', borderColor: 'var(--color-grey-200)' }} />
+					<Tooltip
+						contentStyle={{ backgroundColor: 'var(--color-grey-0)', borderRadius: '5px', borderColor: 'var(--color-grey-200)' }}
+						formatter={(value) => `${value.toLocaleString()} booking${value > 1 ? 's' : ''}`}
+						labelFormatter={(label) => label}
+					/>
 					<Legend verticalAlign="middle" align="right" layout="vertical" width="30%" iconSize={15} iconType="circle" />
 				</PieChart>
 			</ResponsiveContainer>

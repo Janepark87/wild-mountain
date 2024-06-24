@@ -22,8 +22,11 @@ export default function DashboardContent() {
 	return (
 		<StyledDashboardContent>
 			<Statistics bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} totalCabins={cabins.length} />
+
 			<TodayCheckInOutActivity />
+
 			<DurationChart confirmedStays={confirmedStays} />
+
 			<SalesChart bookings={bookings} numDays={numDays} />
 		</StyledDashboardContent>
 	);
