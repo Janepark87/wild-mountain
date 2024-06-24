@@ -19,7 +19,7 @@ export default function BookingDetail() {
 	const { deleteBookingMutate, isBookingDeleting } = useDeleteBooking();
 	const goback = useGoback();
 
-	if (!booking) return <Empty dataName="booking" />;
+	if (!booking && !isBookingLoading) return <Empty dataName="booking" />;
 	if (isBookingLoading) return <Spinner />;
 
 	const { id: bookingId, status } = booking;

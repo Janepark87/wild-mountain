@@ -26,7 +26,7 @@ export default function CheckinBooking() {
 
 	useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking?.isPaid]);
 
-	if (!booking) return <Empty dataName="booking" />;
+	if (!booking && !isBookingLoading && !isSettingLoading) return <Empty dataName="booking" />;
 	if (isBookingLoading || isSettingLoading) return <Spinner />;
 
 	const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights, isPaid } = booking;
