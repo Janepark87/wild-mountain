@@ -43,7 +43,7 @@ export default function Logout({ mobile = false }) {
 
 	return (
 		<Button size="lg" variation="ghost" onClick={userLogoutMutate} disabled={isLogoutLoading}>
-			<span>Logout</span> {!isLogoutLoading ? <HiArrowRightOnRectangle /> : <Spinner size="mini" />}
+			<span>Logout</span> {!isLogoutLoading ? <HiArrowRightOnRectangle /> : <Spinner type="mini" />}
 		</Button>
 	);
 }

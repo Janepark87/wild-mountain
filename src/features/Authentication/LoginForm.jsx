@@ -33,7 +33,7 @@ export default function LoginForm() {
 			</FormRow>
 			<FormRow orientation="vertical">
 				<Button size="lg" $width="w-full" disabled={isLoginLoading}>
-					Log in {isLoginLoading && <Spinner size="mini" />}
+					Log in {isLoginLoading && <Spinner type="mini" />}
 				</Button>
 			</FormRow>
 		</Form>

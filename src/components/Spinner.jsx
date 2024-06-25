@@ -7,6 +7,14 @@ const rotate = keyframes`
   }
 `;
 
+const LoaderWrapper = styled.div`
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
 const Loader = styled.div`
 	width: 6.4rem;
 	margin: 4.8rem auto;
@@ -22,6 +30,13 @@ const LoaderMini = styled(BiLoaderAlt)`
 	animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default function Spinner({ size = '' }) {
-	return <>{size === 'mini' ? <LoaderMini /> : <Loader />}</>;
+export default function Spinner({ type }) {
+	if (type === 'full-screen')
+		return (
+			<LoaderWrapper>
+				<Loader></Loader>
+			</LoaderWrapper>
+		);
+	if (type === 'mini') return <LoaderMini />;
+	return <Loader />;
 }

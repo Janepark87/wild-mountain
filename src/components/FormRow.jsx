@@ -68,7 +68,7 @@ export default function FormRow({ label, error, children, updateValues = {}, pre
 					<PreviewImg className="avatar" src={updateValues.image} alt={updateValues.name} />
 				</PreviewImgWrapper>
 			)}
-			{previewLoading && updateValues.image && <Spinner size="mini" />}
+			{previewLoading && updateValues.image && <Spinner type="mini" />}
 		</StyledFormRow>
 	);
 }
