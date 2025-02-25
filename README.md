@@ -70,6 +70,5 @@ Overall, this project provided a well-rounded learning experience, enhancing my 
 
 # Acknowledgments
 
-This application was developed independently, and I would like to highlight that the logo and project name were created by me. Special thanks to Jonas Smechmann for his exceptional teaching and guidance during the Udemy course "The Ultimate React Course 2024: React, Redux & More."
-
+This project was built while following "The Ultimate React Course 2024: React, Redux & More" by Jonas Schmedtmann on Udemy. The course provided valuable guidance on advanced React patterns, database integration, and full-stack development workflows, which I applied while building and structuring this project.
 
