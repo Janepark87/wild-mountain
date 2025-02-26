@@ -1,4 +1,4 @@
-import{p as t,j as r,H as n,c as a,s as e}from"./index-7869a08a.js";const i=e.main`
+import{p as t,j as r,H as n,c as a,s as e}from"./index-bf703710.js";const i=e.main`
 	width: 100%;
 	height: 100vh;
 	background-color: var(--color-grey-50);

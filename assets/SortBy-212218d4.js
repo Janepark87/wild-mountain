@@ -1,1 +1,0 @@
-import{u as c,j as o,a6 as u}from"./index-7869a08a.js";function l({options:e}){const[a,t]=c(),r=a.get("sortBy")||e.at(e.length-1).value,s=n=>{a.set("sortBy",n.target.value),t(a)};return o.jsx(u,{options:e,value:r,type:"white",onChange:s})}export{l as S};
